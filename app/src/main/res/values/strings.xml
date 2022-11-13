@@ -1,5 +1,19 @@
 <resources>
-    <string name="app_name">S3vior</string>
+    <string name="app_name">mafqud</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hi_welcome_back">Hi, Welcome Back!👋</string>
+    <string name="hello_message">Hello again, You\'ve been missed!</string>
+    <string name="email_address_text_view">Email Address</string>
+    <string name="mafqud_gmail_com"> Mafqud@gmail.com</string>
+    <string name="password_text_view">Password</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="login_button">Login</string>
+    <string name="or_login_with">Or Login with</string>
+    <string name="facebook_login">  Facebook</string>
+    <string name="google">  Google</string>
+    <string name="don_t_have_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

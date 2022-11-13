@@ -1,11 +1,17 @@
 package com.example.s3vior.auth
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.example.s3vior.R
+import com.example.s3vior.databinding.FragmentSignInBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,11 +23,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SignInFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SignInFragment : Fragment() {
+class SignInFragment : Fragment(), TextWatcher {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentSignInBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +42,11 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
+        binding.emailEditText.addTextChangedListener(this)
+        binding.passwordEditText.addTextChangedListener(this)
+
+        return binding.root
     }
 
     companion object {
@@ -56,5 +67,16 @@ class SignInFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        binding.loginButton.isEnabled =
+            binding.passwordEditText.text.isNotEmpty() && binding.emailEditText.text.isNotEmpty()
+    }
+
+    override fun afterTextChanged(s: Editable?) {
     }
 }
