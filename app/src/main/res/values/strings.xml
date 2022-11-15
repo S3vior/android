@@ -16,4 +16,13 @@
     <string name="google">  Google</string>
     <string name="don_t_have_account">Don\'t have an account?</string>
     <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_up_button">Sign Up\n</string>
+    <string name="sign_up_with">Sign up with</string>
+    <string name="already_have_account">Already have account ?</string>
+    <string name="login">Login</string>
+    <string name="home">home</string>
+    <string name="announcement">announcement</string>
+    <string name="map">map\n</string>
+    <string name="more">more</string>
 </resources>
