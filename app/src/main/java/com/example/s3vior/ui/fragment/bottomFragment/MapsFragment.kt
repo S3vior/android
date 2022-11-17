@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.bottomFragment
+package com.example.s3vior.ui.fragment.bottomFragment
 
 import androidx.fragment.app.Fragment
 

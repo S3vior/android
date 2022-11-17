@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.bottomFragment
+package com.example.s3vior.ui.fragment.bottomFragment
 
 import com.example.s3vior.databinding.FragmentAnnouncementBinding
 import com.example.s3vior.ui.fragment.base.BaseFragment
@@ -8,7 +8,6 @@ class AnnouncementFragment : BaseFragment<FragmentAnnouncementBinding>(FragmentA
     override fun initViewModel() {
 
     }
-
     override fun recyclerAdapter() {
     }
 

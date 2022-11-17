@@ -10,11 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.s3vior.R
-import com.example.s3vior.auth.social.ILogin
 import com.example.s3vior.databinding.FragmentSignInBinding
 
 
-class SignInFragment : Fragment(), TextWatcher , ILogin {
+class SignInFragment : Fragment(), TextWatcher  {
 
     private lateinit var binding: FragmentSignInBinding
 
@@ -46,14 +45,6 @@ class SignInFragment : Fragment(), TextWatcher , ILogin {
     }
 
     override fun afterTextChanged(s: Editable?) {
-    }
-
-    override fun loginWithGoogle() {
-
-    }
-
-    override fun loginWithFacebook() {
-
     }
 
 }

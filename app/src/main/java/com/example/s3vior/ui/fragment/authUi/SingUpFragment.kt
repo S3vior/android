@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.s3vior.R
-import com.example.s3vior.auth.social.ISignUp
 import com.example.s3vior.databinding.FragmentSingUpBinding
 
-class SingUpFragment : Fragment(), ISignUp {
+class SingUpFragment : Fragment() {
     private lateinit var binding: FragmentSingUpBinding
 
     override fun onCreateView(
@@ -23,12 +22,5 @@ class SingUpFragment : Fragment(), ISignUp {
         return binding.root
     }
 
-    override fun signUpWithGoogle() {
-
-    }
-
-    override fun signUpWithFacebook() {
-
-    }
 
 }
