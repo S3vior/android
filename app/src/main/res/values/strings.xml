@@ -25,4 +25,5 @@
     <string name="announcement">announcement</string>
     <string name="map">map\n</string>
     <string name="more">more</string>
+    <string name="ed_search"> Search</string>
 </resources>
