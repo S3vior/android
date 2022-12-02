@@ -29,5 +29,13 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.s3vior.ui.fragment.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_personDetailsFragment"
+            app:destination="@id/personDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personDetailsFragment"
+        android:name="com.example.s3vior.ui.fragment.personDetails.PersonDetailsFragment"
+        android:label="PersonDetailsFragment" />
 </navigation>

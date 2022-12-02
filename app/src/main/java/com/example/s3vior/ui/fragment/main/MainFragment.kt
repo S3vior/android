@@ -1,11 +1,11 @@
 package com.example.s3vior.ui.fragment.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentMainBinding
 import com.example.s3vior.ui.fragment.bottomFragment.AnnouncementFragment
@@ -22,9 +22,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-
+    ): View  {
 
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_main, container, false)
 
@@ -49,7 +47,7 @@ class MainFragment : Fragment() {
     }
 
     private fun addNavigationListener() {
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        binding.bottomNavigationView.setOnItemSelectedListener  { item ->
             when (item.itemId) {
                 R.id.home -> {
                     replaceFragment(homeFragment)
