@@ -26,4 +26,15 @@
     <string name="map">map\n</string>
     <string name="more">more</string>
     <string name="ed_search"> Search</string>
+    <string name="mafqoud_name">mafqoud_name</string>
+    <string name="mafqoud_location">mafqoud_location</string>
+    <string name="category">category</string>
+    <string name="mafqoud_date">date</string>
+    <string name="ReportAMissingPerson">ابلاغ عن مفقود</string>
+    <string name="ReportFound">ابلاغ عن معثور عليه</string>
+    <string name="reportMafqoud"> ابلاغ عن معثور عليه    </string>
+    <string-array name="spinnerGender">Male,Female</string-array>
+    <string name="insert_more_found">من فضلك قم بملئ أكبر عدد ممكن من بيانات الاستمارة لتساعدنا في سرعة الوصول إلى أهل المعثور عليه</string>
+    <string name="dateOfFinding">تاريخ المعثور عليه</string>
+    <string name="MafqoudDescription">مواصفات المعثور عليه</string>
 </resources>

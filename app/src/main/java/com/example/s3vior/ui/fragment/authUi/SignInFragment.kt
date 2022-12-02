@@ -26,6 +26,7 @@ class SignInFragment : Fragment(), TextWatcher  {
         binding.emailEditText.addTextChangedListener(this)
         binding.passwordEditText.addTextChangedListener(this)
 
+
         binding.loginButton.setOnClickListener { navigationToMainFragment(it) }
 
         return binding.root
@@ -40,8 +41,10 @@ class SignInFragment : Fragment(), TextWatcher  {
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+        //edited
         binding.loginButton.isEnabled =
-            binding.passwordEditText.text.isNotEmpty() && binding.emailEditText.text.isNotEmpty()
+            binding.passwordEditText.text.isEmpty() && binding.emailEditText.text.isEmpty()
     }
 
     override fun afterTextChanged(s: Editable?) {

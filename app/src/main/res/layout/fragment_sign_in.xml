@@ -146,7 +146,7 @@
             android:backgroundTint="#00726d"
             android:text="@string/login_button"
             android:textAllCaps="false"
-            android:enabled="false"
+            android:enabled="true"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
