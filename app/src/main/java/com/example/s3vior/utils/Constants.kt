@@ -6,6 +6,7 @@ object Constants {
         var age = arrayOf("10-20", "20-30")
     }
     object UploadImage{
-        const val REQUEST_CODE = 100
+        const val REQUEST_CODE_GALLERY = 100
+        const val REQUEST_CODE_CAMERA = 200
     }
 }
