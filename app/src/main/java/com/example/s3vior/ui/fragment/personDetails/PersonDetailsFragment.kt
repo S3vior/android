@@ -3,6 +3,7 @@ package com.example.s3vior.ui.fragment.personDetails
 import android.R.attr
 import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.content.ActivityNotFoundException
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -25,9 +26,7 @@ import java.io.File
 
 class PersonDetailsFragment : Fragment() {
 
-    private val PERMISSION_CODE = 1000
-    private val IMAGE_CAPTURE_CODE = 1001
-
+    val REQUEST_IMAGE_CAPTURE = 1
     var vFilename: String = ""
     private lateinit var binding: FragmentPersonDetailsBinding
 
@@ -40,22 +39,45 @@ class PersonDetailsFragment : Fragment() {
 
 
         startFragment()
-
+        binding.addPhoto.setOnClickListener {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(takePictureIntent,8)
+        }
 
         return binding.root
     }
 
-
-    private fun startFragment() {
-        spinner()
-        binding.addPhoto.setOnClickListener {
-            // openGalleryForImage()
-            // openCamera()
-            val intent = Intent( MediaStore.ACTION_IMAGE_CAPTURE )
-            startActivityForResult(intent, 1)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode ==  RESULT_OK && requestCode == REQUEST_IMAGE_CAPTURE && data!=null) {
+            val bitMab =data.extras?.get("data") as Bitmap
+            Toast.makeText(activity?.applicationContext,"success",Toast
+                .LENGTH_LONG).show()
+          //   binding.imageView.setImageURI(data.data) // handle chosen image
+             binding.imageView.setImageBitmap(bitMab)
+        }else{
+           Toast.makeText(activity?.applicationContext,"error",Toast
+               .LENGTH_LONG).show()
         }
     }
 
+    private fun startFragment() {
+        spinner()
+
+    }
+
+
+
+//    private fun dispatchTakePictureIntent() {
+//        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//
+//       try {
+//           startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE)
+//       }catch (e:Exception){
+//           Toast.makeText(this.context,"error",Toast.LENGTH_LONG).show()
+//       }
+//
+//
+//    }
 
     private fun spinner() {
         initSpinner(Constants.SpinnerData.statuts, binding.spinnerGender)
@@ -75,19 +97,7 @@ class PersonDetailsFragment : Fragment() {
 //        startActivityForResult(intent, 1)
 //    }
 //
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        super.onActivityResult(requestCode, resultCode, data)
-        //  val image = data?.data as Bitmap
-        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
-            Toast.makeText(
-                this
-                    .context, "aa", Toast.LENGTH_LONG
-            ).show()
-            //binding.imageView.setImageURI(data?.data) // handle chosen image
-            //    binding.imageView.setImageBitmap(image)
-        }
-    }
 //
 //
 //    private fun openCamera(){
