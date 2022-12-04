@@ -37,4 +37,7 @@
     <string name="insert_more_found">من فضلك قم بملئ أكبر عدد ممكن من بيانات الاستمارة لتساعدنا في سرعة الوصول إلى أهل المعثور عليه</string>
     <string name="dateOfFinding">تاريخ المعثور عليه</string>
     <string name="MafqoudDescription">مواصفات المعثور عليه</string>
+    <string name="name_example">مثل اسلام احمد</string>
+    <string name="add_photo_button">add Photo</string>
+    <string name="select_photo_from">select photo from</string>
 </resources>

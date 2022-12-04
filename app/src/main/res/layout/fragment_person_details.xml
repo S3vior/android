@@ -7,168 +7,263 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/categoryName"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="604dp"
-            android:background="@drawable/action_bar_background"
-            android:gravity="center"
-            android:paddingEnd="@dimen/_15sdp"
-            android:text="@string/reportMafqoud"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_18ssp"
-            app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_24"
-            app:layout_constraintBottom_toTopOf="@+id/addPhoto"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/categoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/action_bar_background"
+                android:fontFamily="@font/tajawal_bold"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_15sdp"
+                android:text="@string/reportMafqoud"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/searchProgressBar"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:background="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoryName"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="exclamations.json"
-            app:lottie_loop="true" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/searchProgressBar"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryName"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="exclamations.json"
+                app:lottie_loop="true" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:gravity="center"
-            android:text="@string/insert_more_found"
-            android:textColor="#2196F3"
-            android:textSize="@dimen/_17sdp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchProgressBar" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/tajawal_bold"
+                android:gravity="center"
+                android:text="@string/insert_more_found"
+                android:textColor="#2196F3"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchProgressBar" />
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="اسم المعثور عليه"
-            app:layout_constraintEnd_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/tajawal_black"
+                android:padding="@dimen/_5sdp"
+                android:text="اسم المعثور عليه"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:background="@drawable/textview_background"
+                android:fontFamily="@font/font_cairo"
+                android:hint="@string/name_example"
+                android:paddingEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-            android:inputType="textPersonName"
-            android:text="مثل اسلام احمد"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/tajawal_black"
+                android:padding="@dimen/_5sdp"
+                android:text="تحديد السن والجنس"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="تحديد السن والجنس"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            <Spinner
+                android:id="@+id/spinnerGender"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/textview_background"
+                app:layout_constraintEnd_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-        <Spinner
-            android:id="@+id/spinnerGender"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            <Spinner
 
-        <Spinner
+                android:id="@+id/ageSpinner"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginEnd="@dimen/_80sdp"
+                android:background="@drawable/textview_background"
+                app:layout_constraintEnd_toStartOf="@+id/spinnerGender"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-            android:id="@+id/ageSpinner"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_80sdp"
-            app:layout_constraintEnd_toStartOf="@+id/spinnerGender"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/tajawal_black"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/dateOfFinding"
+                app:layout_constraintEnd_toEndOf="@+id/spinnerGender"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerGender" />
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="@string/dateOfFinding"
-            app:layout_constraintEnd_toEndOf="@+id/spinnerGender"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerGender" />
+            <TextView
+                android:id="@+id/editTextTextPersonName2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:background="@drawable/textview_background"
+                android:paddingStart="@dimen/_10sdp"
+                app:drawableStartCompat="@drawable/ic_baseline_calendar_month_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-        <TextView
-            android:id="@+id/editTextTextPersonName2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:inputType="date"
-            android:paddingStart="@dimen/_10sdp"
-            app:drawableStartCompat="@drawable/ic_baseline_calendar_month_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/tajawal_black"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/MafqoudDescription"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/MafqoudDescription"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            <EditText
+                android:id="@+id/editTextTextPersonName3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginHorizontal="@dimen/_40sdp"
+                android:background="@drawable/textview_background"
+                android:ems="10"
+                android:gravity="top|end"
+                android:hint="|"
+                android:paddingEnd="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-        <Button
-            android:id="@+id/addPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
-            android:text="add Photo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            <Button
+                android:id="@+id/addPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_100sdp"
+                android:background="@drawable/back_ground_buttons"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/font_cairo"
+                android:text="@string/add_photo_button"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:orientation="horizontal"
+                android:background="#e0e0e0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addPhoto">
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_weight="1"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_weight="1"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_weight="1"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:scaleType="centerCrop"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_weight="1"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:scaleType="centerCrop"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/tajawal_black"
+                android:padding="@dimen/_5sdp"
+                android:text="اضافة صور للمفقود"
+                app:layout_constraintEnd_toEndOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </layout>
