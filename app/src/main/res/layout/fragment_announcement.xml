@@ -14,7 +14,7 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/searchProgressBar"
-            android:layout_width="@dimen/_200sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,10 +27,11 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="@dimen/_100sdp"
+            android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_120sdp"
             android:text="@string/ReportAMissingPerson"
+            android:background="@drawable/back_ground_buttons"
             app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="@+id/button2"
             app:layout_constraintStart_toStartOf="@+id/button2"
@@ -38,10 +39,12 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="@dimen/_100sdp"
+            android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:text="@string/ReportFound"
             android:layout_marginTop="@dimen/_40sdp"
+            android:background="@drawable/back_ground_buttons"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button" />
