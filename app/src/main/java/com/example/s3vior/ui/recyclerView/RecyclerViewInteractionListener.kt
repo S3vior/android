@@ -1,5 +1,8 @@
 package com.example.s3vior.ui.recyclerView
 
+import android.view.View
+import android.view.ViewGroup
+
 interface RecyclerViewInteractionListener {
-    fun onClickItem()
+    fun onClickItem(view:View)
 }

@@ -28,7 +28,7 @@
     <string name="ed_search"> Search</string>
     <string name="mafqoud_name">mafqoud_name</string>
     <string name="mafqoud_location">mafqoud_location</string>
-    <string name="category">category</string>
+    <string name="state">state</string>
     <string name="mafqoud_date">date</string>
     <string name="ReportAMissingPerson">ابلاغ عن مفقود</string>
     <string name="ReportFound">ابلاغ عن معثور عليه</string>

@@ -9,16 +9,17 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        app:cardElevation="@dimen/_8sdp"
+        app:cardElevation="@dimen/_4sdp"
         android:layout_margin="@dimen/_5sdp"
-        app:cardCornerRadius="@dimen/_8sdp"
-        android:backgroundTint="#A6A6A6"
+        app:cardCornerRadius="@dimen/_13sdp"
+        android:backgroundTint="@color/white"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:padding="@dimen/_8sdp"
-            android:layout_height="wrap_content">
+            >
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/person_imageView"
@@ -33,48 +34,61 @@
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                 tools:srcCompat="@tools:sample/avatars" />
 
+            <View
+                android:id="@+id/view"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:background="#C2C2C3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/person_imageView" />
+
             <TextView
                 android:id="@+id/mafqoud_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/_9sdp"
                 android:text="@string/mafqoud_name"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/person_imageView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="spread" />
+                app:layout_constraintTop_toTopOf="@+id/person_imageView" />
+
+            <TextView
+                android:id="@+id/state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:text="@string/state"
+                app:layout_constraintEnd_toEndOf="@+id/mafqoud_name"
+                app:layout_constraintTop_toBottomOf="@+id/mafqoud_name" />
 
             <TextView
                 android:id="@+id/mafqoud_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
                 android:text="@string/mafqoud_location"
-                app:layout_constraintEnd_toStartOf="@+id/person_imageView"
-                app:layout_constraintTop_toBottomOf="@+id/mafqoud_name" />
-
-            <TextView
-                android:id="@+id/states"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:text="@string/category"
-                app:layout_constraintEnd_toStartOf="@+id/person_imageView"
-                app:layout_constraintTop_toBottomOf="@+id/mafqoud_location" />
-
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mafqoud_date" />
 
             <TextView
                 android:id="@+id/mafqoud_date"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
                 android:text="@string/mafqoud_date"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/person_imageView"
-                app:layout_constraintTop_toBottomOf="@+id/states" />
+                app:layout_constraintEnd_toEndOf="@+id/mafqoud_location"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/star_border_24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

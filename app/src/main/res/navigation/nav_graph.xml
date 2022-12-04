@@ -33,9 +33,24 @@
         <action
             android:id="@+id/action_mainFragment_to_personDetailsFragment"
             app:destination="@id/personDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_morePersonDetailFragment"
+            app:destination="@id/morePersonDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/personDetailsFragment"
         android:name="com.example.s3vior.ui.fragment.personDetails.PersonDetailsFragment"
         android:label="PersonDetailsFragment" />
+    <fragment
+        android:id="@+id/morePersonDetailFragment"
+        android:name="com.example.s3vior.ui.fragment.personDetails.MorePersonDetailFragment"
+        android:label="MorePersonDetailFragment" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.s3vior.ui.fragment.bottomFragment.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_morePersonDetailFragment"
+            app:destination="@id/morePersonDetailFragment" />
+    </fragment>
 </navigation>
