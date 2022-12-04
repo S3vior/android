@@ -9,13 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
-        android:background="@drawable/bottom_sheet_background"
+        android:background="#b3e5fc"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="select photo from"
+            android:text="@string/select_photo_from"
+            android:fontFamily="@font/font_cairo"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:layout_marginVertical="@dimen/_2sdp"/>
@@ -31,7 +32,7 @@
                 android:id="@+id/galleryIntent"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:background="@drawable/image_button_background"
+                android:background="#81d4fa"
                 android:padding="@dimen/_10sdp"
                 android:clickable="true"
                 android:focusable="true"
@@ -45,9 +46,8 @@
                 android:layout_marginLeft="@dimen/_15sdp"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="@drawable/image_button_background"
+                android:background="#81d4fa"
                 android:padding="@dimen/_10sdp"
-
                 android:src="@drawable/camera" />
         </LinearLayout>
 
@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:textColor="@color/black"
+                android:fontFamily="@font/font_cairo"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:padding="@dimen/_5sdp"
                 android:text="gallery" />
@@ -72,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="top"
+                android:fontFamily="@font/font_cairo"
                 android:textColor="@color/black"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:padding="@dimen/_5sdp"
