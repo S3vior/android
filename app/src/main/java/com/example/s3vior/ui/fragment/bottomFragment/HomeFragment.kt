@@ -17,10 +17,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
         val list = listOf<Case>(
-            Case(R.drawable.baseline_home_24, "ahmed", "benha", "2033", "afa"),
-            Case(R.drawable.baseline_home_24, "ahmed", "benha", "2033", "afa"),
-            Case(R.drawable.baseline_home_24, "ahmed", "benha", "2033", "afa"),
-            Case(R.drawable.baseline_home_24, "ahmed", "benha", "2033", "afa")
+            Case(1,R.drawable.baseline_home_24, "ahmed", "benha", "2033", "afa"),
+            Case(2,R.drawable.baseline_home_24, "ahmed", "benha", "2033", "afa"),
+            Case(3,R.drawable.baseline_home_24, "ahmed", "benha", "2033", "afa"),
+            Case(4,R.drawable.baseline_home_24, "ahmed", "benha", "2033", "afa")
         )
         binding.recyclerView.adapter = HomeItemAdapter(list, this)
     }
