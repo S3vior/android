@@ -57,6 +57,6 @@ class DiffUtilHomeLists(private val oldListItem:List<Case>, private val newListI
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldListItem[oldItemPosition] === newListItem[newItemPosition]
+        return oldListItem[oldItemPosition] == newListItem[newItemPosition]
     }
 }
