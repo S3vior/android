@@ -31,6 +31,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun onClickItem(view: View) {
-        Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_morePersonDetailFragment)
-    }
+     }
 }
