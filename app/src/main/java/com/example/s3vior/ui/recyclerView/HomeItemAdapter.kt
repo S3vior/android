@@ -11,7 +11,7 @@ import com.example.s3vior.databinding.RecycleHomeItemsBinding
 
 class HomeItemAdapter(
     private var list: List<Case>,
-    val clickListener: RecyclerViewInteractionListener
+    private val clickListener: RecyclerViewInteractionListener
 ) : RecyclerView.Adapter<HomeItemAdapter.HomeViewHolder>() {
 
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,8 +37,9 @@ class HomeItemAdapter(
             mafqoudDate.text=currentItem.data
             mafqoudLocation.text=currentItem.location
             mafqoudName.text=currentItem.name
-            states.text=currentItem.state
+            state.text=currentItem.state
         }
+        holder.itemView.setOnClickListener {clickListener.onClickItem(it)  }
 
     }
 
