@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <item
-        android:id="@+id/more"
+        android:id="@+id/morePersonDetailFragment"
         android:enabled="true"
         android:icon="@drawable/baseline_menu_24"
         android:title="@string/more" />
 
 
     <item
-        android:id="@+id/map"
+        android:id="@+id/mapsFragment"
         android:enabled="true"
         android:icon="@drawable/baseline_person_pin_circle_24"
         android:title="@string/map" />
 
 
     <item
-        android:id="@+id/report"
+        android:id="@+id/announcementFragment"
         android:enabled="true"
         android:icon="@drawable/baseline_person_24"
         android:title="@string/announcement" />
 
+
+
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/baseline_home_24"
         android:title="@string/home" />

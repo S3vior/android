@@ -20,7 +20,7 @@ class SignInFragment : Fragment(), TextWatcher  {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View  {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
         binding.emailEditText.addTextChangedListener(this)
@@ -34,7 +34,7 @@ class SignInFragment : Fragment(), TextWatcher  {
 
 
     private fun navigationToMainFragment(v:View){
-        Navigation.findNavController(v).navigate(R.id.action_signInFragment_to_mainFragment)
+        Navigation.findNavController(v).navigate(R.id.action_signInFragment_to_homeFragment)
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

@@ -13,11 +13,16 @@ class AnnouncementFragment :
     }
 
     override fun recyclerAdapter() {
-        binding.button2.setOnClickListener {
-            Navigation.findNavController(it).navigate(
-                R.id.action_mainFragment_to_personDetailsFragment
-            )
-        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+            binding.button2.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_announcementFragment_to_personDetailsFragment)
+
+            }
+
     }
 
 

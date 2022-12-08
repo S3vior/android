@@ -49,8 +49,9 @@ class HomeItemAdapter(
 
 
 class DiffUtilHomeLists(private val oldListItem:List<Case>, private val newListItem:List<Case>):DiffUtil.Callback() {
-    override fun getOldListSize()=oldListItem.size
 
+
+    override fun getOldListSize()=oldListItem.size
     override fun getNewListSize()=newListItem.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
