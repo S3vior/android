@@ -45,12 +45,27 @@
         android:id="@+id/morePersonDetailFragment"
         android:name="com.example.s3vior.ui.fragment.personDetails.MorePersonDetailFragment"
         android:label="MorePersonDetailFragment" />
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.s3vior.ui.fragment.bottomFragment.HomeFragment"
-        android:label="HomeFragment" >
+    <navigation android:id="@+id/navigation2"
+        app:startDestination="@id/moreFragment">
+        <fragment
+            android:id="@+id/moreFragment"
+            android:name="com.example.s3vior.ui.fragment.bottomFragment.MoreFragment"
+            android:label="MoreFragment" />
+        <fragment
+            android:id="@+id/mapsFragment"
+            android:name="com.example.s3vior.ui.fragment.bottomFragment.MapsFragment"
+            android:label="fragment_maps"
+            tools:layout="@layout/fragment_maps" />
+        <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.example.s3vior.ui.fragment.bottomFragment.HomeFragment"
+            android:label="HomeFragment" />
+        <fragment
+            android:id="@+id/announcementFragment"
+            android:name="com.example.s3vior.ui.fragment.bottomFragment.AnnouncementFragment"
+            android:label="AnnouncementFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_morePersonDetailFragment"
+            android:id="@+id/action_global_morePersonDetailFragment"
             app:destination="@id/morePersonDetailFragment" />
-    </fragment>
+    </navigation>
 </navigation>
