@@ -4,28 +4,28 @@
     <item
         android:id="@+id/morePersonDetailFragment"
         android:enabled="true"
-        android:icon="@drawable/baseline_menu_24"
-        android:title="@string/more" />
+        android:icon="@drawable/more"
+        android:title="@string/_more" />
 
 
     <item
         android:id="@+id/mapsFragment"
         android:enabled="true"
-        android:icon="@drawable/baseline_person_pin_circle_24"
-        android:title="@string/map" />
+        android:icon="@drawable/location"
+        android:title="@string/maps" />
 
 
     <item
         android:id="@+id/announcementFragment"
         android:enabled="true"
-        android:icon="@drawable/baseline_person_24"
-        android:title="@string/announcement" />
+        android:icon="@drawable/announcement"
+        android:title="@string/_announcement" />
 
 
 
     <item
         android:id="@+id/homeFragment"
         android:enabled="true"
-        android:icon="@drawable/baseline_home_24"
-        android:title="@string/home" />
+        android:icon="@drawable/home_icon"
+        android:title="@string/_home" />
 </menu>
