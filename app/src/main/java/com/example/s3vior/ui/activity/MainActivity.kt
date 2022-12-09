@@ -4,11 +4,14 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.s3vior.R
 import com.example.s3vior.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,19 +49,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bottomNavigationAnimation() {
-        ObjectAnimator.ofFloat(binding.bottomNav, "translationY", 100f).apply {
-            duration = 500
-            start()
-        }
+        animator(100f)
     }
 
     private fun showBottomNav() {
-        ObjectAnimator.ofFloat(binding.bottomNav, "translationY", 0f).apply {
-            duration = 500
+        lifecycleScope.launch{
+            delay(100)
+            animator(0f)
             binding.bottomNav.visibility = View.VISIBLE
-            start()
         }
 
+
+    }
+
+    private fun animator(values: Float) {
+        ObjectAnimator.ofFloat(binding.bottomNav, "translationY", values).apply {
+            duration = 800
+            start()
+        }
     }
 
     private fun hideBottomNav() {

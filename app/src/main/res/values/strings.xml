@@ -25,7 +25,7 @@
     <string name="announcement">announcement</string>
     <string name="map">map\n</string>
     <string name="more">more</string>
-    <string name="ed_search"> Search</string>
+    <string name="ed_search">    Search</string>
     <string name="mafqoud_name">mafqoud_name</string>
     <string name="mafqoud_location">mafqoud_location</string>
     <string name="state">state</string>
@@ -40,4 +40,8 @@
     <string name="name_example">مثل اسلام احمد</string>
     <string name="add_photo_button">add Photo</string>
     <string name="select_photo_from">select photo from</string>
+    <string name="_more">المزيد</string>
+    <string name="maps">الخريطة</string>
+    <string name="_announcement">ابلاغ</string>
+    <string name="_home">الرئيسية</string>
 </resources>

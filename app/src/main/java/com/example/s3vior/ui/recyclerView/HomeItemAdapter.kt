@@ -3,10 +3,11 @@ package com.example.s3vior.ui.recyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.s3vior.R
-import com.example.s3vior.databinding.RecycleHomeItemsBinding
+import com.example.s3vior.databinding.AnimatedItemRowBinding
 
 
 class HomeItemAdapter(
@@ -15,12 +16,12 @@ class HomeItemAdapter(
 ) : RecyclerView.Adapter<HomeItemAdapter.HomeViewHolder>() {
 
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = RecycleHomeItemsBinding.bind(view)
+        val binding = AnimatedItemRowBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.recycle_home_items, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.animated_item_row, parent, false)
         return HomeViewHolder(view)
     }
 
@@ -39,6 +40,8 @@ class HomeItemAdapter(
             mafqoudName.text=currentItem.name
             state.text=currentItem.state
         }
+        val animation = AnimationUtils.loadAnimation(holder.itemView.context,R.anim.slide_in)
+        holder.itemView.startAnimation(animation)
         holder.itemView.setOnClickListener {clickListener.onClickItem(it)  }
 
     }
