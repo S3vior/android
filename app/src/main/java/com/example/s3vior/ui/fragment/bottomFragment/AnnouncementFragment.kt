@@ -19,7 +19,7 @@ class AnnouncementFragment :
     override fun onResume() {
         super.onResume()
             binding.button2.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_announcementFragment_to_personDetailsFragment)
+                Navigation.findNavController(it).navigate(R.id.action_announcementFragment_to_viewPagerFragment)
 
             }
 

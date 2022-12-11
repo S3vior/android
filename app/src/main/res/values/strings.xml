@@ -44,4 +44,10 @@
     <string name="maps">الخريطة</string>
     <string name="_announcement">ابلاغ</string>
     <string name="_home">الرئيسية</string>
+    <string name="how_to_use">طريقة استخدام الخاصية</string>
+    <string name="guide_one_text">اولا عليك ان تملئ كل المعلومات الكافية عن المفقود لتسهيل الوصول اليه في صفحة المعلومات</string>
+    <string name="next">التالي</string>
+    <string name="guide_two_text">يمكنك بكل سهولة ان تستخدم الكاميرا مباشرة من التطبيق واخذ صورة للمفقود وهذه الخاصية تسهل علينا</string>
+    <string name="finish">انهاء</string>
+    <string name="guide_three_text">يمكنك استخدام الصور من المعرض في حالة وجود صور للمفقود فيها</string>
 </resources>
