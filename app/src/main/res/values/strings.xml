@@ -50,4 +50,5 @@
     <string name="guide_two_text">يمكنك بكل سهولة ان تستخدم الكاميرا مباشرة من التطبيق واخذ صورة للمفقود وهذه الخاصية تسهل علينا</string>
     <string name="finish">انهاء</string>
     <string name="guide_three_text">يمكنك استخدام الصور من المعرض في حالة وجود صور للمفقود فيها</string>
+    <string name="add_photo">اضافة صورة</string>
 </resources>
