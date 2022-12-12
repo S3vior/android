@@ -19,7 +19,7 @@
                 android:id="@+id/categoryName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:fontFamily="@font/tajawal_bold"
+                android:fontFamily="@font/tajawal_bold"
                 android:gravity="center"
                 android:paddingVertical="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_15sdp"
@@ -40,8 +40,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryName"
                 app:lottie_autoPlay="true"
-                app:lottie_rawRes="@raw/exclamation_mark"
-                app:lottie_loop="true" />
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/exclamation_mark" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -68,6 +68,7 @@
                 android:fontFamily="@font/tajawal_black"
                 android:padding="@dimen/_5sdp"
                 android:text="اسم المعثور عليه"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -76,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:background="@drawable/textview_background"
+                android:background="@drawable/ed_style"
                 android:fontFamily="@font/font_cairo"
                 android:hint="@string/name_example"
                 android:paddingEnd="@dimen/_10sdp"
@@ -92,6 +93,8 @@
                 android:fontFamily="@font/tajawal_black"
                 android:padding="@dimen/_5sdp"
                 android:text="تحديد السن والجنس"
+
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
@@ -99,7 +102,7 @@
                 android:id="@+id/spinnerGender"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:background="@drawable/textview_background"
+                android:background="@drawable/ed_style"
                 app:layout_constraintEnd_toEndOf="@+id/textView11"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -109,7 +112,7 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginEnd="@dimen/_80sdp"
-                android:background="@drawable/textview_background"
+                android:background="@drawable/ed_style"
                 app:layout_constraintEnd_toStartOf="@+id/spinnerGender"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -121,6 +124,8 @@
                 android:fontFamily="@font/tajawal_black"
                 android:padding="@dimen/_5sdp"
                 android:text="@string/dateOfFinding"
+                android:textColor="@color/black"
+
                 app:layout_constraintEnd_toEndOf="@+id/spinnerGender"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerGender" />
 
@@ -129,12 +134,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:background="@drawable/textview_background"
+                android:background="@drawable/ed_style"
                 android:paddingStart="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black"
                 app:drawableStartCompat="@drawable/ic_baseline_calendar_month_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                app:layout_constraintTop_toBottomOf="@+id/textView12"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -144,6 +152,8 @@
                 android:fontFamily="@font/tajawal_black"
                 android:padding="@dimen/_5sdp"
                 android:text="@string/MafqoudDescription"
+
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
@@ -152,7 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
                 android:layout_marginHorizontal="@dimen/_40sdp"
-                android:background="@drawable/textview_background"
+                android:background="@drawable/ed_style"
                 android:ems="10"
                 android:gravity="top|end"
                 android:hint="|"
@@ -163,14 +173,14 @@
 
             <Button
                 android:id="@+id/addPhoto"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_100sdp"
                 android:background="@drawable/back_ground_buttons"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/font_cairo"
-                android:text="@string/add_photo_button"
+                android:text="@string/add_photo"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -182,12 +192,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
-                android:orientation="horizontal"
                 android:layout_margin="@dimen/_10sdp"
                 android:background="#F8F8F8"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addPhoto">
 
                 <ImageView
@@ -257,6 +267,8 @@
                 android:fontFamily="@font/tajawal_black"
                 android:padding="@dimen/_5sdp"
                 android:text="اضافة صور للمفقود"
+                android:textColor="@color/black"
+
                 app:layout_constraintEnd_toEndOf="@+id/textView13"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
