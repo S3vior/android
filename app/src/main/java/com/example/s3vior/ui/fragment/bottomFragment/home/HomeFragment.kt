@@ -48,12 +48,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
         )
         binding.recyclerView.adapter = HomeItemAdapter(list, this)
-//        initCategoryObserve()
+//        initpersonObserve()
     }
-    private fun initCategoryObserve() {
-        activity?.let { personViewModel.loadCategories() }
-        personViewModel.categoriesLiveData.observe(viewLifecycleOwner) {
-            Log.d("data", "initCategoryObserve:$it ")
+    private fun initPersonObserve() {
+        activity?.let { personViewModel.getPersons() }
+        personViewModel.personsLiveData.observe(viewLifecycleOwner) {
+            Log.d("data", "initObserve:$it ")
             binding.recyclerView.adapter = HomeItemAdapter(it, this)
         }
 

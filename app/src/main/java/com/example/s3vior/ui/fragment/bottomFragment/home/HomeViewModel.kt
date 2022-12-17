@@ -15,10 +15,10 @@ import javax.security.auth.callback.Callback
 
 class PersonViewModel : ViewModel() {
 
-    val categoriesLiveData = MutableLiveData<List<Person>>()
-    lateinit var categoryList: List<Person>
+    val personsLiveData = MutableLiveData<List<Person>>()
+    lateinit var personList: List<Person>
 
-    fun loadCategories() {
+    fun getPersons() {
         val retrofitBuilder = RetrofitInstance().personApi.getAllPersons()
 
         retrofitBuilder.enqueue(object : retrofit2.Callback<List<Person>> {
@@ -27,9 +27,9 @@ class PersonViewModel : ViewModel() {
                 response: Response<List<Person>>
             ) {
                 if (response.isSuccessful) {
-                    categoriesLiveData.value = response.body()
-                    categoryList = categoriesLiveData.value!!
-                    Log.d("data", "initCategoryObserve:$categoryList ")
+                    personsLiveData.value = response.body()
+                    personList = personsLiveData.value!!
+                    Log.d("data", "initCategoryObserve:$personList ")
 
 
                 }
