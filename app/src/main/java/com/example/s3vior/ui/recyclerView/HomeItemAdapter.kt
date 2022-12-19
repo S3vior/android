@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.s3vior.R
 import com.example.s3vior.databinding.AnimatedItemRowBinding
 
 
 class HomeItemAdapter(
-    private var list: List<Case>,
+    private var list: List<Person>,
     private val clickListener: RecyclerViewInteractionListener
 ) : RecyclerView.Adapter<HomeItemAdapter.HomeViewHolder>() {
 
@@ -25,7 +27,7 @@ class HomeItemAdapter(
         return HomeViewHolder(view)
     }
 
-    fun updateRecycler( newList: List<Case>){
+    fun updateRecycler( newList: List<Person>){
         val diffResult=DiffUtil.calculateDiff(DiffUtilHomeLists(list,newList))
         list=newList
         diffResult.dispatchUpdatesTo(this)
@@ -34,11 +36,15 @@ class HomeItemAdapter(
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val currentItem = list[position]
         holder.binding.apply {
+//            Glide.with(holder.binding.root.context)
+//                .load(currentItem.image)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .into(personImageView)
             personImageView.setImageResource(currentItem.image)
             mafqoudDate.text=currentItem.data
             mafqoudLocation.text=currentItem.location
             mafqoudName.text=currentItem.name
-            state.text=currentItem.state
+//            state.text=currentItem.age.toString()
         }
         val animation = AnimationUtils.loadAnimation(holder.itemView.context,R.anim.slide_in)
         holder.itemView.startAnimation(animation)
@@ -51,7 +57,7 @@ class HomeItemAdapter(
 }
 
 
-class DiffUtilHomeLists(private val oldListItem:List<Case>, private val newListItem:List<Case>):DiffUtil.Callback() {
+class DiffUtilHomeLists(private val oldListItem:List<Person>, private val newListItem:List<Person>):DiffUtil.Callback() {
 
 
     override fun getOldListSize()=oldListItem.size
