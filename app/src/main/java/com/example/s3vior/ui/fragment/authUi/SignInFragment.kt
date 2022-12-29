@@ -28,13 +28,18 @@ class SignInFragment : Fragment(), TextWatcher  {
 
 
         binding.loginButton.setOnClickListener { navigationToMainFragment(it) }
-
+        binding.tvSignUp.setOnClickListener {  navigationToSignupFragment(it)}
         return binding.root
     }
 
 
     private fun navigationToMainFragment(v:View){
         Navigation.findNavController(v).navigate(R.id.action_signInFragment_to_homeFragment)
+    }
+
+
+    private fun navigationToSignupFragment(v:View){
+        Navigation.findNavController(v).navigate(R.id.action_signInFragment_to_singUpFragment)
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

@@ -8,6 +8,10 @@ import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.ui.recyclerView.Case
 import com.example.s3vior.ui.recyclerView.HomeItemAdapter
 import com.example.s3vior.ui.recyclerView.RecyclerViewInteractionListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
     RecyclerViewInteractionListener {
@@ -15,6 +19,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun recyclerAdapter() {
+
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
         val list = listOf(
