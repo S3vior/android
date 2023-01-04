@@ -22,33 +22,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
-        val list = listOf(
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
-        )
-        binding.recyclerView.adapter = HomeItemAdapter(list, this)
+//        val list = listOf(
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//            Person(1, R.drawable.testimage, "Eslam", "Cairo,Egypt", "3-12-2022", "Found"),
+//        )
+//        binding.recyclerView.adapter = HomeItemAdapter(list, this)
     }
 
     override fun onClickItem(view: View) {
