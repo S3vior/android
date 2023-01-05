@@ -36,15 +36,17 @@ class HomeItemAdapter(
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val currentItem = list[position]
         holder.binding.apply {
-//            Glide.with(holder.binding.root.context)
-//                .load(currentItem.image)
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(personImageView)
-            personImageView.setImageResource(currentItem.image)
-            mafqoudDate.text=currentItem.data
-            mafqoudLocation.text=currentItem.location
+            Glide.with(holder.binding.root.context)
+                .load(currentItem.image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(personImageView)
+            mafqoudDate.text=currentItem.message
             mafqoudName.text=currentItem.name
-//            state.text=currentItem.age.toString()
+//          age.text=currentItem.age.toString()
+//          personImageView.setImageResource(currentItem.image)
+//          mafqoudDescription.text=currentItem.description
+
+
         }
         val animation = AnimationUtils.loadAnimation(holder.itemView.context,R.anim.slide_in)
         holder.itemView.startAnimation(animation)

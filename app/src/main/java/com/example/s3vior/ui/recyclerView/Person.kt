@@ -2,9 +2,10 @@ package com.example.s3vior.ui.recyclerView
 
 data class Person(
     var id:Int,
-    var image:Int,
+    var image:String,
     var name:String,
-    var location:String,
-    var data:String,
-    var state:String
+    var age :Int,
+//    var location:String,
+    var description:String,
+    var message:String
 )
