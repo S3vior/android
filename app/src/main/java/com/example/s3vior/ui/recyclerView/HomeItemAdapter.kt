@@ -40,11 +40,13 @@ class HomeItemAdapter(
                 .load(currentItem.image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(personImageView)
-//            personImageView.setImageResource(currentItem.image)
             mafqoudDate.text=currentItem.message
-//            mafqoudDescription.text=currentItem.description
             mafqoudName.text=currentItem.name
-//            age.text=currentItem.age.toString()
+//          age.text=currentItem.age.toString()
+//          personImageView.setImageResource(currentItem.image)
+//          mafqoudDescription.text=currentItem.description
+
+
         }
         val animation = AnimationUtils.loadAnimation(holder.itemView.context,R.anim.slide_in)
         holder.itemView.startAnimation(animation)
