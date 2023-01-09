@@ -26,7 +26,7 @@
     <string name="announcement" translatable="false">announcement</string>
     <string name="map" translatable="false">map\n</string>
     <string name="more" translatable="false">more</string>
-    <string name="ed_search" translatable="false">    Search</string>
+    <string name="ed_search" translatable="false">  search </string>
     <string name="mafqoud_name" translatable="false">mafqoud_name</string>
     <string name="mafqoud_location" translatable="false">mafqoud_location</string>
     <string name="state" translatable="false">state</string>
