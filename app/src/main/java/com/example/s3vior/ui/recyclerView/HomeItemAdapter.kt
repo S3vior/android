@@ -2,6 +2,7 @@ package com.example.s3vior.ui.recyclerView
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.s3vior.R
+import com.example.s3vior.model.Person
 import com.example.s3vior.ui.recyclerView.baseAdapter.BaseAdapter
 import com.example.s3vior.ui.recyclerView.baseAdapter.BaseInterfaceListener
 

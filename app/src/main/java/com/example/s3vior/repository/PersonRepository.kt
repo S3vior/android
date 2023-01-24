@@ -2,8 +2,7 @@ package com.example.s3vior.repository
 
 import com.example.s3vior.model.State
 import com.example.s3vior.networking.API
-import com.example.s3vior.networking.PersonApiService
-import com.example.s3vior.ui.recyclerView.Person
+import com.example.s3vior.model.Person
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,6 +14,7 @@ class PersonRepository {
 
         return wrapWithFlow(API.apiService::getAllPersons)
     }
+
 
     private fun <T> wrapWithFlow(function : suspend () -> Response< T> ):Flow<State<T?>>{
         return flow {

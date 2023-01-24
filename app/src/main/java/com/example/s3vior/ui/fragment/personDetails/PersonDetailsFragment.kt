@@ -17,6 +17,7 @@ import androidx.navigation.Navigation
 import com.example.s3vior.databinding.FragmentPersonDetailsBinding
 import com.example.s3vior.ui.sheetFragment.BottomSheetFragment
 import com.example.s3vior.utils.Constants
+import com.example.s3vior.viewModels.PersonDetailsViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.time.Year
@@ -30,7 +31,6 @@ class PersonDetailsFragment : Fragment() {
     private lateinit var binding: FragmentPersonDetailsBinding
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -41,8 +41,13 @@ class PersonDetailsFragment : Fragment() {
             initCalendar()
         }
 
+
+
         return binding.root
     }
+
+
+
 
     private fun startFragment() {
         spinner()

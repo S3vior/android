@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.s3vior.model.State
 import com.example.s3vior.repository.PersonRepository
-import com.example.s3vior.ui.recyclerView.Person
+import com.example.s3vior.model.Person
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
