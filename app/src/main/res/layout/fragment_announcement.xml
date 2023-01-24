@@ -22,7 +22,8 @@
             app:lottie_autoPlay="true"
             android:layout_marginTop="@dimen/_25sdp"
             app:lottie_fileName="search-users.json"
-            app:lottie_loop="true" />
+            app:lottie_loop="true"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -41,28 +42,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                  android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@drawable/back_ground_buttons"
-                    android:textSize="@dimen/_12sdp"
                     android:fontFamily="@font/tajawal_bold"
+                    android:gravity="center"
                     android:text="@string/ReportAMissingPerson"
                     android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
                     app:layout_constraintBottom_toTopOf="@+id/button2"
                     app:layout_constraintEnd_toEndOf="@+id/button2"
                     app:layout_constraintStart_toStartOf="@+id/button2"
-                    app:layout_constraintTop_toBottomOf="@+id/searchProgressBar" />
+                    app:layout_constraintTop_toBottomOf="@+id/searchProgressBar"
+                    tools:ignore="TextSizeCheck" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="match_parent"
                     app:lottie_autoPlay="true"
                     app:lottie_fileName="announcement.json"
-                    app:lottie_loop="true" />
+                    app:lottie_loop="true"
+                    app:lottie_enableMergePathsForKitKatAndAbove="true"/>
 
             </LinearLayout>
 
@@ -101,7 +105,8 @@
                     android:layout_height="match_parent"
                     app:lottie_autoPlay="true"
                     app:lottie_rawRes="@raw/finalcommunication"
-                    app:lottie_loop="true" />
+                    app:lottie_loop="true"
+                    app:lottie_enableMergePathsForKitKatAndAbove="true"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
