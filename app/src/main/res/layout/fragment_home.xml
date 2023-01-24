@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.home.PersonViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:context=".ui.fragment.navigationBottomFragment.HomeFragment">
+
+
+        <EditText
+            android:id="@+id/ed_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_6sdp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/ed_style"
+            android:drawableStart="@drawable/search"
+            android:fontFamily="@font/font_cairo"
+            android:hint="@string/ed_search"
+            android:inputType="text"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/_6sdp"
+            android:background="@drawable/ed_style"
+            android:layoutAnimation="@anim/layout_animation"
+            app:items="@{viewModel._personsLiveData.toData()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_search"
+            app:layout_constraintVertical_bias="1.0"
+            app:showWhenSuccess="@{viewModel._personsLiveData}" />
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel._personsLiveData}" />
+
+        <ImageView
+            android:id="@+id/image_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel._personsLiveData}"
+            app:srcCompat="@drawable/baseline_error_24" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/back_ground_buttons"
+            android:onClick="@{() -> viewModel.getAllPersons()}"
+            android:text="@string/retry"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="@+id/progress_loading"
+            app:layout_constraintStart_toStartOf="@+id/progress_loading"
+            app:layout_constraintTop_toBottomOf="@+id/progress_loading"
+            app:showWhenError="@{viewModel._personsLiveData}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
