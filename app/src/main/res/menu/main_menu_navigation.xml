@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/morePersonDetailFragment"
+        android:id="@+id/moreFragment"
         android:enabled="true"
         android:icon="@drawable/more"
         android:title="@string/_more" />

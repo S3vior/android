@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment -> showBottomNav()
                 R.id.mapsFragment -> showBottomNav()
-                R.id.morePersonDetailFragment -> showBottomNav()
+                R.id.moreFragment -> showBottomNav()
                 R.id.announcementFragment -> showBottomNav()
                 else -> hideBottomNav()
             }

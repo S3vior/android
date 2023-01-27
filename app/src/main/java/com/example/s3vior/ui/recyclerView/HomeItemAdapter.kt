@@ -1,10 +1,10 @@
 package com.example.s3vior.ui.recyclerView
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.SettingData
 import com.example.s3vior.R
 import com.example.s3vior.ui.recyclerView.baseAdapter.BaseAdapter
 import com.example.s3vior.ui.recyclerView.baseAdapter.BaseInterfaceListener
-
 
 class HomeItemAdapter(
     list: List<Person>,
@@ -15,6 +15,7 @@ class HomeItemAdapter(
 
 
 }
+
 
 
 class DiffUtilHomeLists(private val oldListItem:List<Person>, private val newListItem:List<Person>):DiffUtil.Callback() {

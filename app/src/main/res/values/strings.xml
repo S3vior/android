@@ -60,6 +60,9 @@
     <string name="phone_number" translatable="false">رقم الهاتف</string>
     <string name="confirm_your_password" translatable="false">إعادة تأكيد كلمة المرور</string>
     <string name="retry">retry</string>
+    <string name="setting">الاعدادات</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="email_edit">تعديل الايميل</string>
     <string-array name="countryCodes">
         <item>93,AF</item>
         <item>355,AL</item>

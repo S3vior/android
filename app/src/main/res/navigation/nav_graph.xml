@@ -78,4 +78,8 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
     </fragment>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.MoreFragment"
+        android:label="MoreFragment" />
 </navigation>
