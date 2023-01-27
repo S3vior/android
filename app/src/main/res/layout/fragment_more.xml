@@ -84,6 +84,7 @@
             android:layout_width="match_parent"
             android:id="@+id/recycler_setting"
             android:layout_height="wrap_content"
+            app:showWhenSuccess="@{viewModel.itemSettingData}"
             app:items="@{viewModel.itemSettingData.toData()}"
             app:layout_constraintEnd_toEndOf="parent"
             tools:listitem="@layout/setting_item_layout"

@@ -17,23 +17,19 @@ class MoreFragment :
     BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::inflate, R.layout.fragment_more),
     RecyclerViewInteractionListener {
 
-    private val settingViewModel by activityViewModels<SettingViewModel>()
+    private val settingViewModel:SettingViewModel by activityViewModels()
     override fun initViewModel() {
         binding.viewModel=settingViewModel
-        binding.lifecycleOwner=this
+        binding.lifecycleOwner= viewLifecycleOwner
     }
 
     override fun recyclerAdapter() {
-
-
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerSetting.layoutManager = layoutManager
         binding.recyclerSetting.adapter = SettingItemAdapter(mutableListOf(), this)
     }
 
     override fun onClickItem(view: View) {
-
-
     }
 
 }
