@@ -8,6 +8,7 @@
         <variable
             name="viewModel"
             type="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.SettingViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +32,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_17sdp"
                 android:textStyle="bold" />
+
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,18 +40,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/account_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/account_image"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:elevation="5dp"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/testimage"
-                android:translationZ="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -61,8 +62,9 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/tajawal_bold"
                 android:text="@string/username"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/account_image"
@@ -72,11 +74,11 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:text="@string/email_edit"
                 android:textColor="#1B54DA"
+                android:textSize="@dimen/_8sdp"
                 app:layout_constraintEnd_toEndOf="@+id/textView4"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -84,7 +86,9 @@
             android:layout_width="match_parent"
             android:id="@+id/recycler_setting"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="@dimen/_30sdp"
             app:showWhenSuccess="@{viewModel.itemSettingData}"
             app:items="@{viewModel.itemSettingData.toData()}"
             app:layout_constraintEnd_toEndOf="parent"

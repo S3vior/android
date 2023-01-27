@@ -1,6 +1,8 @@
 package com.example.s3vior.utils
 
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -26,7 +28,7 @@ fun <T> showWhenError(view: View, state: State<T>?){
     }
 }
 
-@BindingAdapter(value = ["app:showWhenSuccess"])
+ @BindingAdapter(value = ["app:showWhenSuccess"])
 fun <T> showWhenSuccess(view: View, state: State<T>?){
     if (state is State.Success){
         view.visibility = View.VISIBLE
