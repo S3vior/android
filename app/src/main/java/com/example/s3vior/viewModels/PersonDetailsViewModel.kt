@@ -1,18 +1,20 @@
 package com.example.s3vior.viewModels
 
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import com.example.s3vior.repository.AddCaseRepository
 import java.io.File
 
-class PersonDetailsViewModel : ViewModel() {
+class PersonDetailsViewModel(context: Context) : ViewModel() {
 
-    private val addCaseRepository = AddCaseRepository()
+    private val addCaseRepository = AddCaseRepository(context)
 
     suspend fun upload(
         person_name: String,
         person_age: String,
         person_des: String,
-        file: File
+        file: Uri
     ) {
 
         addCaseRepository.uploadProduct(

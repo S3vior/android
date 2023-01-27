@@ -41,8 +41,6 @@ class PersonDetailsFragment : Fragment() {
             initCalendar()
         }
 
-
-
         return binding.root
     }
 

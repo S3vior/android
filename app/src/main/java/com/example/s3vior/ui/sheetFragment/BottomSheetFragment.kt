@@ -17,7 +17,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.s3vior.R
 import com.example.s3vior.databinding.BottomSheetFragmentBinding
@@ -25,7 +27,10 @@ import com.example.s3vior.databinding.FragmentPersonDetailsBinding
 import com.example.s3vior.networking.API
 import com.example.s3vior.utils.Constants
 import com.example.s3vior.utils.FileUtils
+import com.example.s3vior.utils.FileUtils.*
+import com.example.s3vior.utils.RealPathUtil
 import com.example.s3vior.viewModels.PersonDetailsViewModel
+import com.example.s3vior.viewModels.ViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
@@ -39,7 +44,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
 
     private lateinit var binding: BottomSheetFragmentBinding
     var Images: ArrayList<Uri> = ArrayList()
-    private val viewModel: PersonDetailsViewModel by viewModels()
+    private lateinit var viewModel: PersonDetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +54,15 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
         binding = BottomSheetFragmentBinding.inflate(inflater)
         initButtons()
 
+
+        val viewModelFactory = ViewModelFactory(requireActivity())
+
+        viewModel =
+            ViewModelProvider(this, viewModelFactory).get(PersonDetailsViewModel::class.java)
+
+//        lifecycleScope.launch {
+//            viewModel.upload("Ahmed", "0", "lose", Uri.parse("/storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images/IMG-20230125-WA0094.jpeg")   )
+//        }
         return binding.root
     }
 
@@ -68,45 +82,30 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
 
     private fun openGalleryForImage() {
         // For latest versions API LEVEL 19+
-        var intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = "image/*"
-        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY);
-        //        val intent = Intent(Intent.ACTION_PICK)
+//        var intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+//        intent.addCategory(Intent.CATEGORY_OPENABLE)
 //        intent.type = "image/*"
-//        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY)
+//        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY);
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_GALLERY && data != null) {
+                 if (data.data != null) {
 
-            if (data.clipData != null) {
-//                val count = data.clipData?.itemCount
-//                for (i in 0 until count!!) {
-//                    var imageUri: Uri = data.clipData?.getItemAt(i)!!.uri
-//                    Images.add(imageUri)
-//                }
-//                try {
-//                    _binding.imageView.setImageURI(Images[0])
-//                    _binding.imageView1.setImageURI(Images[1])
-//                    _binding.imageView2.setImageURI(Images[2])
-//                    _binding.imageView3.setImageURI(Images[3])
-//                    _binding.imageView4.setImageURI(Images[4])
-//                } catch (e: Exception) {
-//                    Toast.makeText(this.context, "You must select 5 photos", Toast.LENGTH_LONG)
-//                        .show()
-//                }
-
-            } else if (data.data != null) {
 
                 val imageUri: Uri = data.data!!
                 _binding.imageView.setImageURI(imageUri)
-                val imageUri_ = getRealPathFromURI(this.requireContext(), imageUri)
-                val file = FileUtils.getFile(this.requireActivity(),imageUri)
+
+                val fileRealPath = getRealPathFromURI(requireContext(), imageUri) ?: "no"
+
+                Log.i("zcacaksbcjvasv", "onActivityResult:  ${Uri.parse(fileRealPath)} ")
 
                 lifecycleScope.launch {
-                    viewModel.upload("Ahmed", "0", "lose", file)
+              //  viewModel.upload("Ahmed", "0", "lose", Uri.parse(fileRealPath)   )
                 }
 
             }
@@ -133,8 +132,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                         // This is for checking Main Memory
                         return if ("primary".equals(type, ignoreCase = true)) {
                             if (split.size > 1) {
-                                Environment.getExternalStorageDirectory()
-                                    .toString() + "/" + split[1]
+                                Environment.getExternalStorageDirectory().toString() + "/" + split[1]
                             } else {
                                 Environment.getExternalStorageDirectory().toString() + "/"
                             }
@@ -146,8 +144,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                     isDownloadsDocument(uri) -> {
                         val fileName = getFilePath(context, uri)
                         if (fileName != null) {
-                            return Environment.getExternalStorageDirectory()
-                                .toString() + "/Download/" + fileName
+                            return Environment.getExternalStorageDirectory().toString() + "/Download/" + fileName
                         }
                         var id = DocumentsContract.getDocumentId(uri)
                         if (id.startsWith("raw:")) {
@@ -155,10 +152,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                             val file = File(id)
                             if (file.exists()) return id
                         }
-                        val contentUri = ContentUris.withAppendedId(
-                            Uri.parse("content://downloads/public_downloads"),
-                            java.lang.Long.valueOf(id)
-                        )
+                        val contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id))
                         return getDataColumn(context, contentUri, null, null)
                     }
                     isMediaDocument(uri) -> {
@@ -185,12 +179,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
             }
             "content".equals(uri.scheme, ignoreCase = true) -> {
                 // Return the remote address
-                return if (isGooglePhotosUri(uri)) uri.lastPathSegment else getDataColumn(
-                    context,
-                    uri,
-                    null,
-                    null
-                )
+                return if (isGooglePhotosUri(uri)) uri.lastPathSegment else getDataColumn(context, uri, null, null)
             }
             "file".equals(uri.scheme, ignoreCase = true) -> {
                 return uri.path
@@ -199,10 +188,8 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
         return null
     }
 
-    fun getDataColumn(
-        context: Context, uri: Uri?, selection: String?,
-        selectionArgs: Array<String>?
-    ): String? {
+    fun getDataColumn(context: Context, uri: Uri?, selection: String?,
+                      selectionArgs: Array<String>?): String? {
         var cursor: Cursor? = null
         val column = "_data"
         val projection = arrayOf(
@@ -210,10 +197,8 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
         )
         try {
             if (uri == null) return null
-            cursor = context.contentResolver.query(
-                uri, projection, selection, selectionArgs,
-                null
-            )
+            cursor = context.contentResolver.query(uri, projection, selection, selectionArgs,
+                null)
             if (cursor != null && cursor.moveToFirst()) {
                 val index = cursor.getColumnIndexOrThrow(column)
                 return cursor.getString(index)
@@ -232,10 +217,8 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
         )
         try {
             if (uri == null) return null
-            cursor = context.contentResolver.query(
-                uri, projection, null, null,
-                null
-            )
+            cursor = context.contentResolver.query(uri, projection, null, null,
+                null)
             if (cursor != null && cursor.moveToFirst()) {
                 val index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME)
                 return cursor.getString(index)
@@ -254,27 +237,6 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
         return "com.android.externalstorage.documents" == uri.authority
     }
 
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is DownloadsProvider.
-     */
-    fun isDownloadsDocument(uri: Uri): Boolean {
-        return "com.android.providers.downloads.documents" == uri.authority
-    }
 
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is MediaProvider.
-     */
-    fun isMediaDocument(uri: Uri): Boolean {
-        return "com.android.providers.media.documents" == uri.authority
-    }
 
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is Google Photos.
-     */
-    fun isGooglePhotosUri(uri: Uri): Boolean {
-        return "com.google.android.apps.photos.content" == uri.authority
-    }
 }

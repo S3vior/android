@@ -3,6 +3,7 @@ package com.example.s3vior.networking
  import com.example.s3vior.model.Person
  import okhttp3.MultipartBody
  import okhttp3.RequestBody
+ import retrofit2.Call
  import retrofit2.Response
  import retrofit2.http.GET
  import retrofit2.http.Multipart
@@ -17,11 +18,11 @@ interface PersonApiService {
   @Multipart
  @POST("persons")
  suspend fun sendPerson(
-      @Part("Name") personName :RequestBody?,
-      @Part("Age") personAge :RequestBody?,
-      @Part("Description") personDescription :RequestBody?,
+      @Part("name") personName :RequestBody?,
+      @Part("age") personAge :RequestBody?,
+      @Part("description") personDescription :RequestBody?,
       @Part file:MultipartBody.Part?,
- ): Response<List<Person>>
+ ): Call<Person>
 }
 
 
