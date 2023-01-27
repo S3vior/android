@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.recyclerView
+package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
 data class Person(
     var id:Int,

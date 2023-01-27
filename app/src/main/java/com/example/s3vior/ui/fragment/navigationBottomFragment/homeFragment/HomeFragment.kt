@@ -1,14 +1,14 @@
-package com.example.s3vior.ui.fragment.navigationBottomFragment
+package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentHomeBinding
 import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.ui.fragment.navigationBottomFragment.home.PersonViewModel
-import com.example.s3vior.ui.recyclerView.HomeItemAdapter
-import com.example.s3vior.ui.recyclerView.RecyclerViewInteractionListener
+import com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.SettingData
 
 class HomeFragment :BaseFragment<FragmentHomeBinding>
     (FragmentHomeBinding::inflate, R.layout.fragment_home), RecyclerViewInteractionListener {
@@ -27,10 +27,9 @@ class HomeFragment :BaseFragment<FragmentHomeBinding>
         binding.recyclerView.adapter = HomeItemAdapter(mutableListOf(), this)
     }
 
-
-
-
-    override fun onClickItem(view: View) {
+    override fun <T> onClickItem(view: T) {
+        view as Person
+        Toast.makeText(requireActivity(),view.name, Toast.LENGTH_LONG).show()
     }
 
 

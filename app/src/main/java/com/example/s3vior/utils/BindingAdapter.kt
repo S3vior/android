@@ -1,13 +1,12 @@
 package com.example.s3vior.utils
 
+import android.os.Build
 import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.s3vior.model.State
-import com.example.s3vior.ui.recyclerView.Person
 import com.example.s3vior.ui.recyclerView.baseAdapter.BaseAdapter
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -29,7 +28,7 @@ fun <T> showWhenError(view: View, state: State<T>?){
     }
 }
 
-@BindingAdapter(value = ["app:showWhenSuccess"])
+ @BindingAdapter(value = ["app:showWhenSuccess"])
 fun <T> showWhenSuccess(view: View, state: State<T>?){
     if (state is State.Success){
         view.visibility = View.VISIBLE

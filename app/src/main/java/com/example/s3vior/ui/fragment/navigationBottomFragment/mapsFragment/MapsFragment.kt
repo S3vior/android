@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment.navigationBottomFragment
+package com.example.s3vior.ui.fragment.navigationBottomFragment.mapsFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

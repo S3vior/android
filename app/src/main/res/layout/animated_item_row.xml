@@ -7,7 +7,10 @@
 
         <variable
             name="item"
-            type="com.example.s3vior.ui.recyclerView.Person" />
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person" />
+        <variable
+            name="listener"
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.RecyclerViewInteractionListener" />
     </data>
 
 
@@ -28,6 +31,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_60sdp"
             android:backgroundTint="@color/white"
+            android:onClick="@{() -> listener.onClickItem(item)}"
             app:cardCornerRadius="@dimen/_13sdp"
             app:cardElevation="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent"

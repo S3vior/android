@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment.navigationBottomFragment
+package com.example.s3vior.ui.fragment.navigationBottomFragment.announcementFragment
 
 import androidx.navigation.Navigation
 import com.example.s3vior.R
