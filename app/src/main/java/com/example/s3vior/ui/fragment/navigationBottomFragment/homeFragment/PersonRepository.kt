@@ -1,9 +1,7 @@
-package com.example.s3vior.repository
+package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
 import com.example.s3vior.model.State
 import com.example.s3vior.networking.API
-import com.example.s3vior.networking.PersonApiService
-import com.example.s3vior.ui.recyclerView.Person
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.s3vior.ui.recyclerView.Person" />
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person" />
     </data>
 
 

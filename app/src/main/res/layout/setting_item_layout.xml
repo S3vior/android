@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.SettingData" />
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.SettingData" />
     </data>
 
     <androidx.cardview.widget.CardView

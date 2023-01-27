@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment.navigationBottomFragment
+package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -7,8 +7,6 @@ import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentHomeBinding
 import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.ui.fragment.navigationBottomFragment.home.PersonViewModel
-import com.example.s3vior.ui.recyclerView.HomeItemAdapter
-import com.example.s3vior.ui.recyclerView.RecyclerViewInteractionListener
 
 class HomeFragment :BaseFragment<FragmentHomeBinding>
     (FragmentHomeBinding::inflate, R.layout.fragment_home), RecyclerViewInteractionListener {

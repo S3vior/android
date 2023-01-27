@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.s3vior.viewModels.SettingViewModel" />
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.SettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.navigationBottomFragment.MoreFragment">
+        tools:context=".ui.fragment.navigationBottomFragment.moreFragment.MoreFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"

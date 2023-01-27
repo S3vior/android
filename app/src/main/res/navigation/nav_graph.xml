@@ -36,7 +36,7 @@
         android:label="PersonDetailsFragment" />
     <fragment
         android:id="@+id/announcementFragment"
-        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.AnnouncementFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.announcementFragment.AnnouncementFragment"
         android:label="AnnouncementFragment">
         <action
             android:id="@+id/action_announcementFragment_to_personDetailsFragment"
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.HomeFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/morePersonDetailFragment"
@@ -63,7 +63,7 @@
         android:label="MorePersonDetailFragment" />
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.MapsFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.mapsFragment.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <fragment
@@ -80,6 +80,6 @@
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
-        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.MoreFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.MoreFragment"
         android:label="MoreFragment" />
 </navigation>

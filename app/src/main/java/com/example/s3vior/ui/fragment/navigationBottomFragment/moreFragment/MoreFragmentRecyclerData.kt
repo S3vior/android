@@ -1,6 +1,5 @@
-package com.example.s3vior.utils
+package com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment
 
-import com.example.SettingData
 import com.example.s3vior.R
 
 object MoreFragmentRecyclerData {
