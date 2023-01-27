@@ -5,10 +5,12 @@ import com.example.s3vior.R
 
 object MoreFragmentRecyclerData {
     val list = listOf(
-        SettingData(R.drawable.home_icon, "Home", R.drawable.announcement),
-        SettingData(R.drawable.announcement, "announcement", R.drawable.baseline_error_24),
-        SettingData(R.drawable.gallery, "gallery", R.drawable.announcement),
-        SettingData(R.drawable.facebook_oval__1_, "Facebook", R.drawable.baseline_error_24),
-        SettingData(R.drawable.google, "Google", R.drawable.announcement)
+        SettingData(R.drawable.locked, "تغير كلمة السر", R.drawable.baseline_arrow_back_ios_24),
+        SettingData(R.drawable.notification_bell, "اشعارات", R.drawable.baseline_arrow_back_ios_24),
+        SettingData(R.drawable.plus, "دعوة اصدقاء", R.drawable.baseline_arrow_back_ios_24),
+        SettingData(R.drawable.faq, "FAQ", R.drawable.baseline_arrow_back_ios_24),
+        SettingData(R.drawable.support, "تواصل معنا", R.drawable.baseline_arrow_back_ios_24),
+        SettingData(R.drawable.assignment, "المبادئ و الشروط", R.drawable.baseline_arrow_back_ios_24),
+        SettingData(R.drawable.logout, "تسجيل الخروج", R.drawable.baseline_arrow_back_ios_24)
     )
 }
