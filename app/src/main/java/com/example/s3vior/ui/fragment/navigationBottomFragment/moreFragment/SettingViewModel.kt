@@ -20,7 +20,7 @@ class SettingViewModel : ViewModel() {
     private fun getData() {
         viewModelScope.launch {
             repository.getData().collect{
-                _itemSettingData.postValue(it)
+                _itemSettingData.value = (it)
             }
         }
     }

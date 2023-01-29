@@ -1,16 +1,24 @@
 package com.example.s3vior.networking
 
- import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person
- import retrofit2.Response
- import retrofit2.http.GET
- import retrofit2.http.POST
+import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Response
+import retrofit2.http.*
 
 interface PersonApiService {
- @GET("persons")
-  suspend fun getAllPersons(): Response<List<Person>>
+    @GET("persons")
+    suspend fun getAllPersons(): Response<List<Person>>
 
- @POST("persons")
- suspend fun sendAllPersons(): Response<List<Person>>
+    @Multipart
+    @POST("persons")
+    suspend fun sendAllPersons(
+        @Query("name")name: String,
+        @Query("age")age: Int,
+        @Query("description")description: String,
+        @Query("message") message: String,
+        @Part image: MultipartBody.Part,
+    )
 }
 
 

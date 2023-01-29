@@ -1,5 +1,6 @@
 package com.example.s3vior.ui.sheetFragment
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
@@ -11,11 +12,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.example.s3vior.R
 import com.example.s3vior.databinding.BottomSheetFragmentBinding
 import com.example.s3vior.databinding.FragmentPersonDetailsBinding
+import com.example.s3vior.networking.API
 import com.example.s3vior.utils.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
     BottomSheetDialogFragment() {
@@ -49,42 +57,54 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
 
     private fun openGalleryForImage() {
         // For latest versions API LEVEL 19+
-        var intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = "image/*"
-        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY);
-        //        val intent = Intent(Intent.ACTION_PICK)
+//        var intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+//        intent.addCategory(Intent.CATEGORY_OPENABLE)
 //        intent.type = "image/*"
-//        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY)
+//        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY);
+       val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY)
     }
 
+    @SuppressLint("Range")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_GALLERY && data != null) {
 
-            if (data.clipData != null) {
-                val count = data.clipData?.itemCount
-                for (i in 0 until count!!) {
-                    var imageUri: Uri = data.clipData?.getItemAt(i)!!.uri
-                    Images.add(imageUri)
+            data?.data?.let { uri ->
+                context?.contentResolver?.query(uri, null, null, null, null)?.use {
+                    if (it.moveToFirst()) {
+                        val picturePath =
+                            it.getString(it.getColumnIndex(MediaStore.MediaColumns.DATA))
+                        uploadFile(File(picturePath))
+                    }
                 }
-                try {
-                    _binding.imageView.setImageURI(Images[0])
-                    _binding.imageView1.setImageURI(Images[1])
-                    _binding.imageView2.setImageURI(Images[2])
-                    _binding.imageView3.setImageURI(Images[3])
-                    _binding.imageView4.setImageURI(Images[4])
-                } catch (e: Exception) {
-                    Toast.makeText(this.context, "You must select 5 photos", Toast.LENGTH_LONG)
-                        .show()
-                }
-
-            } else if (data.data != null) {
-
-                val imageUri: Uri = data.data!!
-                _binding.imageView.setImageURI(imageUri)
-
             }
+
+
+//            if (data.clipData != null) {
+//                val count = data.clipData?.itemCount
+//                for (i in 0 until count!!) {
+//                    var imageUri: Uri = data.clipData?.getItemAt(i)!!.uri
+//                    Images.add(imageUri)
+//                }
+//                try {
+//                    _binding.imageView.setImageURI(Images[0])
+//                    _binding.imageView1.setImageURI(Images[1])
+//                    _binding.imageView2.setImageURI(Images[2])
+//                    _binding.imageView3.setImageURI(Images[3])
+//                    _binding.imageView4.setImageURI(Images[4])
+//                } catch (e: Exception) {
+//                    Toast.makeText(this.context, "You must select 5 photos", Toast.LENGTH_LONG)
+//                        .show()
+//                }
+//
+//            } else if (data.data != null) {
+//
+//                val imageUri: Uri = data.data!!
+//                _binding.imageView.setImageURI(imageUri)
+//
+//            }
 
         }
         if (resultCode == RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_CAMERA && data != null) {
@@ -92,6 +112,25 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
             _binding.imageView.setImageBitmap(bitMab)
         } else {
             super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+    private fun uploadFile(file: File) {
+        lifecycleScope.launch {
+            try {
+                val requestBody = RequestBody.create(MediaType.parse("image/*"), file)
+                val filePart = MultipartBody.Part.createFormData(
+                    "image",
+                    "test.jpg",
+                    requestBody
+                )
+
+                API.apiService.sendAllPersons("ahmed",20,"aaa","afa",filePart)
+
+            }catch (e:Exception){
+                println("!!! Handle Exception $e")
+            }
+        // Coroutine scope from androidx.lifecycle:lifecycle-runtime-ktx
+
         }
     }
 }
