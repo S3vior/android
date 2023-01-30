@@ -63,65 +63,11 @@ class SignInFragment : Fragment(), TextWatcher {
                 ).show()
             }
         }
-        binding.googleLogin.setOnClickListener {
-            Toast.makeText(requireContext(), "Logging In", Toast.LENGTH_SHORT).show()
-            signInGoogle()
-        }
+
         binding.tvSignUp.setOnClickListener { navigationToSignupFragment(it) }
         return binding.root
     }
-    private fun signInGoogle() {
-        val signInIntent: Intent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, Req_Code)
-    }
 
-    // onActivityResult() function : this is where
-    // we provide the task and data for the Google Account
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Req_Code) {
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleResult(task)
-        }
-    }
-
-    private fun handleResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account: GoogleSignInAccount? = completedTask.getResult(ApiException::class.java)
-            if (account != null) {
-                UpdateUI(account)
-            }
-        } catch (e: ApiException) {
-            Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    // this is where we update the UI after Google signin takes place
-    private fun UpdateUI(account: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        auth.signInWithCredential(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                SavedPreference.setEmail(this, account.email.toString())
-                SavedPreference.setUsername(this, account.displayName.toString())
-                val intent = Intent(requireContext(), DashboardActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (GoogleSignIn.getLastSignedInAccount(requireContext()) != null) {
-            startActivity(
-                Intent(
-                    this, DashboardActivity
-                    ::class.java
-                )
-            )
-            finish()
-        }
-    }
     private fun navigationToMainFragment(v: View) {
         Navigation.findNavController(v).navigate(R.id.action_signInFragment_to_homeFragment)
     }
