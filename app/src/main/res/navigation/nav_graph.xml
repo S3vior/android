@@ -29,7 +29,11 @@
         android:id="@+id/singUpFragment"
         android:name="com.example.s3vior.ui.fragment.authUi.SingUpFragment"
         android:label="fragment_sing_up"
-        tools:layout="@layout/fragment_sing_up" />
+        tools:layout="@layout/fragment_sing_up" >
+        <action
+            android:id="@+id/action_singUpFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/personDetailsFragment"
         android:name="com.example.s3vior.ui.fragment.personDetails.PersonDetailsFragment"

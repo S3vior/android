@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1027688017168",
+    "project_id": "sav3or",
+    "storage_bucket": "sav3or.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027688017168:android:fe3d71362574c977390995",
+        "android_client_info": {
+          "package_name": "com.example.s3vior"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027688017168-qo9kk0365kvijsof6vj6esplnl4dnvu3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEylD90txA7k-X6pXi_wgeTW34I2zGs5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027688017168-qo9kk0365kvijsof6vj6esplnl4dnvu3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
