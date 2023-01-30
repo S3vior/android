@@ -8,17 +8,28 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.cloudinary.Cloudinary
+import com.cloudinary.android.MediaManager
+import com.cloudinary.android.callback.ErrorInfo
+import com.cloudinary.android.callback.UploadCallback
 import com.example.s3vior.R
 import com.example.s3vior.databinding.BottomSheetFragmentBinding
 import com.example.s3vior.databinding.FragmentPersonDetailsBinding
+import com.example.s3vior.model.UserInfo
+import com.example.s3vior.model.UserInfo2
 import com.example.s3vior.networking.API
+import com.example.s3vior.networking.UploadStreamRequestBody
 import com.example.s3vior.utils.Constants
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -27,6 +38,9 @@ import java.io.File
 
 class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
     BottomSheetDialogFragment() {
+
+    var config: HashMap<String, String> = HashMap()
+
 
     private lateinit var binding: BottomSheetFragmentBinding
     var Images: ArrayList<Uri> = ArrayList()
@@ -37,6 +51,10 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
     ): View {
         binding = BottomSheetFragmentBinding.inflate(inflater)
         initButtons()
+        config.put("cloud_name", "khaledelabady11")
+        config.put("api_key", "772589215762873")
+        config.put("api_secret", "6EtKMojSfmrBn3t2UMH2wrAODCA")
+        MediaManager.init(requireActivity(), config)
 
         return binding.root
     }
@@ -62,21 +80,28 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
 //        intent.addCategory(Intent.CATEGORY_OPENABLE)
 //        intent.type = "image/*"
 //        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY);
-       val intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY)
     }
 
     @SuppressLint("Range")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
         if (resultCode == RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_GALLERY && data != null) {
 
-            data?.data?.let { uri ->
+
+            data.data?.let { uri ->
                 context?.contentResolver?.query(uri, null, null, null, null)?.use {
                     if (it.moveToFirst()) {
                         val picturePath =
                             it.getString(it.getColumnIndex(MediaStore.MediaColumns.DATA))
-                        uploadFile(File(picturePath))
+                         uploadFile(File(picturePath))
+
+                     //   uploadFile(uri)
+
+                        // uploadToCloudinary(picturePath)
+                        Log.d("ajbcjabv", "onActivityResult: $picturePath\n ${data}")
                     }
                 }
             }
@@ -114,6 +139,44 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    fun uploadToCloudinary(filepath: String) {
+        MediaManager.get().upload(filepath).callback(object : UploadCallback {
+            override fun onSuccess(requestId: String?, resultData: MutableMap<Any?, Any?>?) {
+                Toast.makeText(requireContext(), "Task successful", Toast.LENGTH_SHORT).show()
+                Log.d("Aklbvaiugbavi", "onSuccess: ${resultData?.get("secure_url")}")
+                val userInfo = UserInfo(
+                    age = 21,
+                    description = "كسم ميمي ",
+                    id = 5, "${resultData?.get("secure_url")}", "no message yet", "كسم فرعون"
+                )
+
+                lifecycleScope.launch {
+                    API.apiService.sendPersons(userInfo)
+                }
+            }
+
+            override fun onProgress(requestId: String?, bytes: Long, totalBytes: Long) {
+
+            }
+
+            override fun onReschedule(requestId: String?, error: ErrorInfo?) {
+
+            }
+
+            override fun onError(requestId: String?, error: ErrorInfo?) {
+
+                Toast.makeText(requireContext(), "Task Not successful" + error, Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            override fun onStart(requestId: String?) {
+
+                Toast.makeText(requireContext(), "Start", Toast.LENGTH_SHORT).show()
+            }
+        }).dispatch()
+    }
+
     private fun uploadFile(file: File) {
         lifecycleScope.launch {
             try {
@@ -124,13 +187,37 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                     requestBody
                 )
 
-                API.apiService.sendAllPersons("ahmed",20,"aaa","afa",filePart)
+                API.apiService.sendAllPersons("10",10,"10","aac"  ,filePart)
 
-            }catch (e:Exception){
+
+            } catch (e: Exception) {
                 println("!!! Handle Exception $e")
             }
-        // Coroutine scope from androidx.lifecycle:lifecycle-runtime-ktx
+            // Coroutine scope from androidx.lifecycle:lifecycle-runtime-ktx
 
         }
     }
+
+    private fun uploadFile(uri: Uri) {
+        lifecycleScope.launch {
+            val stream = requireActivity().contentResolver.openInputStream(uri) ?: return@launch
+            val request = UploadStreamRequestBody("image/*", stream, onUploadProgress = {
+                Log.d("MyActivity", "On upload progress $it")
+
+            })
+            val filePart = MultipartBody.Part.createFormData(
+                "image",
+                "test.jpg",
+                request
+            )
+            Log.d("acacacMyaAactivity", filePart .toString())
+            try {
+            //    API.apiService.sendAllPersons( "10",10,"10","aac"  ,filePart)
+            }
+            catch(e: Exception) { // if something happens to the network
+                Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT).show()
+                return@launch
+            }
+            Log.d("MyActivity", "On finish upload file")
+        }}
 }
