@@ -9,6 +9,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.s3vior.R
 import com.example.s3vior.databinding.ActivityMainBinding
+import com.example.s3vior.model.UserInfo
+import com.example.s3vior.networking.API
+import com.example.s3vior.networking.RestApiService
+import com.google.android.gms.common.api.Api
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -20,10 +24,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         startUp()
+    //   addDummyUser()
+
+
+
     }
 
+    fun addDummyUser() {
+        val apiService = RestApiService()
+        val userInfo = UserInfo(  age = 400,
+        description = "hello",
+            id = 5,"https://res.cloudinary.com/khaledelabady11/image/upload/v1670713957/vvlmmoldoeufe2uljixj.jpg","nomsg","ahmed")
+
+        lifecycleScope.launch {
+            API.apiService.sendPersons(userInfo)
+        }
+
+        apiService.addUser(userInfo) {
+            if (it?.id != null) {
+                // it = newly added user parsed as response
+                // it?.id = newly added user ID
+            } else {
+
+            }
+        }
+    }
     private fun startUp() {
         navigationSetup()
         bottomNavigationAnimation()
