@@ -11,18 +11,19 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentSignInBinding
+import com.example.s3vior.databinding.NewLoginFragmentBinding
 
 
 class SignInFragment : Fragment(), TextWatcher  {
 
-    private lateinit var binding: FragmentSignInBinding
+    private lateinit var binding: NewLoginFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View  {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.new_login_fragment, container, false)
         binding.emailEditText.addTextChangedListener(this)
         binding.passwordEditText.addTextChangedListener(this)
 
