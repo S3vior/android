@@ -1,5 +1,7 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.announcementFragment
 
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.navigation.Navigation
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentAnnouncementBinding
