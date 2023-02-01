@@ -1,45 +1,53 @@
 package com.example.s3vior.ui.fragment.authUi
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentSignInBinding
+
 import com.example.s3vior.databinding.NewLoginFragmentBinding
 
 
-class SignInFragment : Fragment(), TextWatcher  {
+class SignInFragment : Fragment(), TextWatcher {
 
     private lateinit var binding: NewLoginFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View  {
+    ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.new_login_fragment, container, false)
         binding.emailEditText.addTextChangedListener(this)
         binding.passwordEditText.addTextChangedListener(this)
 
+        
 
-        binding.loginButton.setOnClickListener { navigationToMainFragment(it) }
-        binding.tvSignUp.setOnClickListener {  navigationToSignupFragment(it)}
+        binding.loginButton.setOnClickListener { v ->
+
+                navigationToMainFragment(v)
+
+        }
+
+        binding.tvSignUp.setOnClickListener { navigationToSignupFragment(it) }
         return binding.root
     }
 
-
-    private fun navigationToMainFragment(v:View){
+    private fun navigationToMainFragment(v: View) {
         Navigation.findNavController(v).navigate(R.id.action_signInFragment_to_homeFragment)
     }
 
 
-    private fun navigationToSignupFragment(v:View){
+    private fun navigationToSignupFragment(v: View) {
         Navigation.findNavController(v).navigate(R.id.action_signInFragment_to_singUpFragment)
     }
 
