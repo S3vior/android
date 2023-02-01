@@ -29,7 +29,7 @@
         android:id="@+id/singUpFragment"
         android:name="com.example.s3vior.ui.fragment.authUi.SingUpFragment"
         android:label="fragment_sing_up"
-        tools:layout="@layout/new_signup_fragment" />
+        tools:layout="@layout/new_signup_fragment" >
 
         <action
             android:id="@+id/action_singUpFragment_to_homeFragment"
@@ -91,4 +91,8 @@
         android:id="@+id/addNameFragment"
         android:name="com.example.s3vior.ui.onBoarding.screens.AddNameFragment"
         android:label="AddNameFragment" />
+    <fragment
+        android:id="@+id/addAgeGenderDateFragment"
+        android:name="com.example.s3vior.ui.onBoarding.screens.AddAgeGenderDateFragment"
+        android:label="AddAgeGenderDateFragment" />
 </navigation>

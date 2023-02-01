@@ -21,4 +21,8 @@ class AddNameFragment :
         }
     }
 
+    override fun initSpinner() {
+
+    }
+
 }
