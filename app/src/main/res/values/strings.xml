@@ -63,6 +63,12 @@
     <string name="setting">الاعدادات</string>
     <string name="username">اسم المستخدم</string>
     <string name="email_edit">تعديل الايميل</string>
+    <string name="add_data_text">برجاء ادخال البيانات التالية \n كي نستطيع مساعدتك في العثور علي الشخص المفقود</string>
+    <string name="name" translatable="false">الاسم</string>
+    <string name="mafqoud">مفقود</string>
+    <string name="day_text">اليوم</string>
+    <string name="year_text">سنة</string>
+    <string name="age_text">العمر</string>
     <string-array name="countryCodes">
         <item>93,AF</item>
         <item>355,AL</item>

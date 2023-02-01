@@ -14,4 +14,8 @@ class GuideTwoFragment :
         }
 
     }
+
+    override fun initSpinner() {
+
+    }
 }

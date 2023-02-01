@@ -30,9 +30,12 @@ abstract class BaseScreenFragment<VB : ViewBinding>(
         }
 
         initButton()
+        initSpinner()
         return binding.root
     }
 
     abstract fun initButton()
+
+    abstract fun initSpinner()
 
 }

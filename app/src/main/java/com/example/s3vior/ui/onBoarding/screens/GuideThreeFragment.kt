@@ -16,4 +16,9 @@ class GuideThreeFragment : BaseScreenFragment<FragmentGuideThreeBinding>(Fragmen
             }
 
     }
+
+    override fun initSpinner() {
+
+
+    }
 }

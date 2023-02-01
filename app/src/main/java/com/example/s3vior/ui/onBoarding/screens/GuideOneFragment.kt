@@ -17,4 +17,9 @@ class GuideOneFragment : BaseScreenFragment<FragmentGuideOneBinding>(
         }
     }
 
+    override fun initSpinner() {
+
+
+    }
+
 }
