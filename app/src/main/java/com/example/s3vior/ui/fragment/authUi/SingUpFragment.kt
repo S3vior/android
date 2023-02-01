@@ -25,21 +25,6 @@ class SingUpFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sing_up, container, false)
 
-        binding.btnSignUp.setOnClickListener { v ->
-            auth = FirebaseAuth.getInstance()
-            auth.createUserWithEmailAndPassword(
-                binding.emailEditTextSignUp.text.toString(),
-                binding.passwordEditTextSignup.text.toString()
-            ).addOnSuccessListener {
-                navigationToMainFragment(v)
-            }.addOnFailureListener {
-                Toast.makeText(
-                    requireContext(),
-                    it.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
         return binding.root
     }
 

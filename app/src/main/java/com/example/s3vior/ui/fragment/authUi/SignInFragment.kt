@@ -29,8 +29,6 @@ class SignInFragment : Fragment(), TextWatcher {
 
     private lateinit var binding: FragmentSignInBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private val Req_Code: Int = 123
 
 
     override fun onCreateView(
@@ -41,27 +39,13 @@ class SignInFragment : Fragment(), TextWatcher {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
         binding.emailEditText.addTextChangedListener(this)
         binding.passwordEditText.addTextChangedListener(this)
-        FirebaseApp.initializeApp(requireContext())
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+
         auth = FirebaseAuth.getInstance()
 
         binding.loginButton.setOnClickListener { v ->
-            auth.signInWithEmailAndPassword(
-                binding.emailEditText.text.toString(),
-                binding.passwordEditText.text.toString()
-            ).addOnSuccessListener {
+
                 navigationToMainFragment(v)
-            }.addOnFailureListener {
-                Toast.makeText(
-                    requireContext(),
-                    it.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+
         }
 
         binding.tvSignUp.setOnClickListener { navigationToSignupFragment(it) }
@@ -84,7 +68,7 @@ class SignInFragment : Fragment(), TextWatcher {
 
         //edited
         binding.loginButton.isEnabled =
-            binding.passwordEditText.text.isNotEmpty() && binding.emailEditText.text.isNotEmpty()
+            binding.passwordEditText.text.isEmpty() && binding.emailEditText.text.isEmpty()
     }
 
     override fun afterTextChanged(s: Editable?) {

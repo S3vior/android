@@ -86,4 +86,8 @@
         android:id="@+id/moreFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.MoreFragment"
         android:label="MoreFragment" />
+    <fragment
+        android:id="@+id/addNameFragment"
+        android:name="com.example.s3vior.ui.onBoarding.screens.AddNameFragment"
+        android:label="AddNameFragment" />
 </navigation>

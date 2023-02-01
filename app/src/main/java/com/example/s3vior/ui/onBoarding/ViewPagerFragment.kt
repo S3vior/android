@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentViewPagerBinding
+import com.example.s3vior.ui.onBoarding.screens.AddNameFragment
 import com.example.s3vior.ui.onBoarding.screens.GuideOneFragment
 import com.example.s3vior.ui.onBoarding.screens.GuideThreeFragment
 import com.example.s3vior.ui.onBoarding.screens.GuideTwoFragment
@@ -30,7 +31,8 @@ class ViewPagerFragment : Fragment() {
         val fragmentList = arrayListOf<Fragment>(
             GuideOneFragment(),
             GuideTwoFragment(),
-            GuideThreeFragment()
+            GuideThreeFragment(),
+            AddNameFragment()
         )
 
         val adapter = ViewPagerAdapter(fragmentList,requireActivity().supportFragmentManager,lifecycle)
