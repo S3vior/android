@@ -91,6 +91,11 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                         val picturePath =
                             it.getString(it.getColumnIndex(MediaStore.MediaColumns.DATA))
                          uploadFile(File(picturePath))
+                        var imageAsByte =
+                           requireActivity().contentResolver.openInputStream(uri)?.buffered()?.use { it.readBytes() }
+
+
+
 
                      //   uploadFile(uri)
 
