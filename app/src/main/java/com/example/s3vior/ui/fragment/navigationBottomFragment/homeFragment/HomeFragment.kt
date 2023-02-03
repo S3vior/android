@@ -9,20 +9,25 @@ import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.ui.fragment.navigationBottomFragment.home.PersonViewModel
 
 class HomeFragment :BaseFragment<FragmentHomeBinding>
-    (FragmentHomeBinding::inflate, R.layout.fragment_home), RecyclerViewInteractionListener {
+    (FragmentHomeBinding::inflate ), RecyclerViewInteractionListener {
 
     private val personViewModel: PersonViewModel by activityViewModels()
 
-    override fun initViewModel() {
+     fun initViewModel() {
         binding.viewModel = personViewModel
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
-    override fun recyclerAdapter() {
+    fun recyclerAdapter() {
 
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = HomeItemAdapter(mutableListOf(), this)
+    }
+
+    override fun callFunctions() {
+        initViewModel()
+        recyclerAdapter()
     }
 
     override fun <T> onClickItem(view: T) {

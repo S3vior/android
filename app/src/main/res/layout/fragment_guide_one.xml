@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="listener"
+            type="com.example.s3vior.ui.onBoarding.screens.GuideOneFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +36,7 @@
             android:fontFamily="@font/tajawal_bold"
             android:text="@string/how_to_use"
             android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_20ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +50,7 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:gravity="center"
             android:text="@string/guide_one_text"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="@dimen/_15ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/howToUse" />
@@ -62,7 +65,7 @@
             android:gravity="center"
             android:text="@string/next"
             android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

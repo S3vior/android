@@ -9,12 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.example.s3vior.ui.recyclerView.baseAdapter.BaseInterfaceListener
 
 
 abstract class BaseFragment<VB : ViewDataBinding>(
         private val bindingInflater: (inflater: LayoutInflater) -> VB,
-        @LayoutRes private val layoutResId : Int
-    ) : Fragment()  {
+    //    @LayoutRes private val layoutResId : Int,
+
+    ) : Fragment(),BaseInterfaceListener  {
 
 
         private var _binding: VB? = null
@@ -29,21 +31,23 @@ abstract class BaseFragment<VB : ViewDataBinding>(
             savedInstanceState: Bundle?
         ): View? {
 
-            _binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
-
-
+            _binding = bindingInflater.invoke(inflater)
+                    //DataBindingUtil.inflate(inflater, layoutResId, container, false)
 
             if (_binding == null) {
                 throw IllegalArgumentException("binding cannot be null")
             }
 
-            initViewModel()
-            recyclerAdapter()
+//            initViewModel()
+//            recyclerAdapter()
+            callFunctions()
             return _binding!!.root
         }
 
-        abstract fun initViewModel()
-        abstract fun recyclerAdapter()
+//        abstract fun initViewModel()
+//        abstract fun recyclerAdapter()
+
+        abstract fun callFunctions()
 
     }
 

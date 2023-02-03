@@ -1,25 +1,16 @@
 package com.example.s3vior.ui.onBoarding.screens
 
-import androidx.viewpager2.widget.ViewPager2
-import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentGuideOneBinding
-import com.example.s3vior.ui.onBoarding.screens.base.BaseScreenFragment
+import com.example.s3vior.ui.fragment.base.BaseFragment
+import com.example.s3vior.ui.fragment.base.ViewPagerInstance
 
 
-class GuideOneFragment : BaseScreenFragment<FragmentGuideOneBinding>(
-    FragmentGuideOneBinding::inflate,
+class GuideOneFragment : BaseFragment<FragmentGuideOneBinding>(
+    FragmentGuideOneBinding::inflate
 ) {
-
-    override fun initButton() {
+    override fun callFunctions() {
         binding.nextGuideOne.setOnClickListener {
-            val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
-            viewPager?.currentItem =1
+            ViewPagerInstance.callFunction(1,  requireActivity())
         }
     }
-
-    override fun initSpinner() {
-
-
-    }
-
 }

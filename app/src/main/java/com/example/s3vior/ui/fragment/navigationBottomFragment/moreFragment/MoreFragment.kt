@@ -11,20 +11,25 @@ import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.RecyclerViewInteractionListener
 
 class MoreFragment :
-    BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::inflate, R.layout.fragment_more),
+    BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::inflate ),
     RecyclerViewInteractionListener {
 
     private val settingViewModel: SettingViewModel by activityViewModels()
-    override fun initViewModel() {
+    fun initViewModel() {
         binding.viewModel=settingViewModel
         binding.lifecycleOwner= viewLifecycleOwner
     }
 
-    override fun recyclerAdapter() {
+      fun recyclerAdapter() {
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerSetting.layoutManager = layoutManager
 
         binding.recyclerSetting.adapter = SettingItemAdapter(mutableListOf(), this)
+    }
+
+    override fun callFunctions() {
+        initViewModel()
+        recyclerAdapter()
     }
 
     override fun <T> onClickItem(view: T) {
