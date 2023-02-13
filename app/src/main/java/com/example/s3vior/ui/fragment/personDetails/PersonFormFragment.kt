@@ -27,6 +27,10 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
             binding.textView25.text = it.gender
         }
 
+        sharedViewModel.thirdDetails.observe(viewLifecycleOwner){
+            binding.shapeableImageView.setImageURI(it.imageUri)
+        }
+
 
     }
 

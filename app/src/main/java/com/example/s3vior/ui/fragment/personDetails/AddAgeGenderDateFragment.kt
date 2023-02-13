@@ -44,7 +44,7 @@ class AddAgeGenderDateFragment :
                 )
             )
             Navigation.findNavController(it)
-                .navigate(R.id.action_addAgeGenderDateFragment_to_personFormFragment)
+                .navigate(R.id.action_addAgeGenderDateFragment_to_addPhotoLocationFragment)
 
         }
     }

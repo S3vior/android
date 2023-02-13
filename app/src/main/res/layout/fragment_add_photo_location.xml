@@ -10,9 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_color"
-        tools:context=".ui.fragment.personDetails.AddNameFragment">
-
+        android:background="@color/main_color">
 
         <TextView
             android:id="@+id/tV18"
@@ -38,7 +36,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tV18" />
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
             android:layout_width="match_parent"
@@ -51,67 +48,75 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView17">
 
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/back_ground_buttons"
+                android:text="اضافة مكان المفقود"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+            <Button
+                android:id="@+id/photoFromGallery"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/back_ground_buttons"
+                android:text="معرض الصور"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/photoFromCamera"
+                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+            <Button
+                android:id="@+id/photoFromCamera"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/back_ground_buttons"
+                android:text="الكاميرا"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/photoFromGallery"
+                app:layout_constraintEnd_toStartOf="@+id/photoFromGallery"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/photoFromGallery" />
+
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="50dp"
-                android:text="اسم المفقود"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/boarder_background"
+                android:padding="@dimen/_5sdp"
+                android:text="يرجي اضافة عنوان المفقود"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/edCaseName"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginHorizontal="@dimen/_35sdp"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:background="@drawable/ed_style"
-                android:ems="10"
-                android:hint="@string/name_example"
-                android:inputType="text"
-                android:padding="@dimen/_6sdp"
-                app:layout_constraintEnd_toEndOf="@+id/textView18"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="43dp"
-                android:fontFamily="@font/tajawal_black"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/boarder_background"
                 android:padding="@dimen/_5sdp"
-                android:text="@string/MafqoudDescription"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:text="يرجي اضافة صورة المفقود"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edCaseName" />
-
-            <EditText
-                android:id="@+id/editTextTextPersonName3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_marginHorizontal="@dimen/_40sdp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/ed_style"
-                android:ems="10"
-                android:gravity="top|end"
-                android:hint="|"
-                android:paddingEnd="@dimen/_5sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/textView13"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
+                app:layout_constraintTop_toBottomOf="@+id/button5" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/nextAddName"
+            android:id="@+id/next"
             android:layout_width="109dp"
             android:layout_height="57dp"
             android:layout_marginBottom="16dp"
@@ -119,9 +124,10 @@
             android:gravity="center"
             android:text="@string/next"
             android:textColor="@color/black"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

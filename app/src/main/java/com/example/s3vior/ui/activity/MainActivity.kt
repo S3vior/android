@@ -9,7 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.s3vior.R
 import com.example.s3vior.databinding.ActivityMainBinding
-import com.example.s3vior.model.UserInfo
+import com.example.s3vior.domain.model.UserInfo
 import com.example.s3vior.networking.API
 import com.example.s3vior.networking.RestApiService
 import com.google.android.gms.common.api.Api

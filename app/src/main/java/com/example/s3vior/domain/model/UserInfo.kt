@@ -1,4 +1,4 @@
-package com.example.s3vior.model
+package com.example.s3vior.domain.model
 
 import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody

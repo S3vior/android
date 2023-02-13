@@ -20,11 +20,6 @@ class AnnouncementFragment :
 
     }
 
-    override fun onResume() {
-        super.onResume()
-
-
-    }
 
 
 }

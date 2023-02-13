@@ -1,6 +1,6 @@
 package com.example.s3vior.networking
 
-import com.example.s3vior.model.UserInfo
+import com.example.s3vior.domain.model.UserInfo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

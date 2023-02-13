@@ -18,7 +18,7 @@ import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.example.s3vior.databinding.BottomSheetFragmentBinding
 import com.example.s3vior.databinding.FragmentPersonDetailsBinding
-import com.example.s3vior.model.UserInfo
+import com.example.s3vior.domain.model.UserInfo
 import com.example.s3vior.networking.API
 import com.example.s3vior.networking.UploadStreamRequestBody
 import com.example.s3vior.utils.Constants
@@ -68,12 +68,6 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
     }
 
     private fun openGalleryForImage() {
-        // For latest versions API LEVEL 19+
-//        var intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-//        intent.addCategory(Intent.CATEGORY_OPENABLE)
-//        intent.type = "image/*"
-//        startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY);
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY)
@@ -95,8 +89,6 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                            requireActivity().contentResolver.openInputStream(uri)?.buffered()?.use { it.readBytes() }
 
 
-
-
                      //   uploadFile(uri)
 
                         // uploadToCloudinary(picturePath)
@@ -104,31 +96,6 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                     }
                 }
             }
-
-
-//            if (data.clipData != null) {
-//                val count = data.clipData?.itemCount
-//                for (i in 0 until count!!) {
-//                    var imageUri: Uri = data.clipData?.getItemAt(i)!!.uri
-//                    Images.add(imageUri)
-//                }
-//                try {
-//                    _binding.imageView.setImageURI(Images[0])
-//                    _binding.imageView1.setImageURI(Images[1])
-//                    _binding.imageView2.setImageURI(Images[2])
-//                    _binding.imageView3.setImageURI(Images[3])
-//                    _binding.imageView4.setImageURI(Images[4])
-//                } catch (e: Exception) {
-//                    Toast.makeText(this.context, "You must select 5 photos", Toast.LENGTH_LONG)
-//                        .show()
-//                }
-//
-//            } else if (data.data != null) {
-//
-//                val imageUri: Uri = data.data!!
-//                _binding.imageView.setImageURI(imageUri)
-//
-//            }
 
         }
         if (resultCode == RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_CAMERA && data != null) {
@@ -165,7 +132,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
 
             override fun onError(requestId: String?, error: ErrorInfo?) {
 
-                Toast.makeText(requireContext(), "Task Not successful" + error, Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "Task Not successful$error", Toast.LENGTH_SHORT)
                     .show()
             }
 
@@ -192,7 +159,6 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
             } catch (e: Exception) {
                 println("!!! Handle Exception $e")
             }
-            // Coroutine scope from androidx.lifecycle:lifecycle-runtime-ktx
 
         }
     }
