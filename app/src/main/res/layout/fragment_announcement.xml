@@ -64,7 +64,7 @@
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="match_parent"
                     app:lottie_autoPlay="true"
-                    app:lottie_fileName="announcement.json"
+                    app:lottie_rawRes="@raw/announcement"
                     app:lottie_loop="true"
                     app:lottie_enableMergePathsForKitKatAndAbove="true"/>
 

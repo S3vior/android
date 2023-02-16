@@ -61,7 +61,18 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"
+        >
+        <action
+            android:id="@+id/action_homeFragment_to_allPersonInfo"
+            app:destination="@id/allPersonInfo"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+
+    </fragment>
     <fragment
         android:id="@+id/morePersonDetailFragment"
         android:name="com.example.s3vior.ui.fragment.personDetails.MorePersonDetailFragment"
@@ -82,6 +93,15 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_addNameFragment"
+            app:destination="@id/addNameFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/announcementFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
@@ -89,10 +109,47 @@
         android:label="MoreFragment" />
     <fragment
         android:id="@+id/addNameFragment"
-        android:name="com.example.s3vior.ui.onBoarding.screens.AddNameFragment"
-        android:label="AddNameFragment" />
+        android:name="com.example.s3vior.ui.fragment.personDetails.AddNameFragment"
+        android:label="AddNameFragment" >
+        <action
+            android:id="@+id/action_addNameFragment_to_addAgeGenderDateFragment"
+            app:destination="@id/addAgeGenderDateFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/addAgeGenderDateFragment"
-        android:name="com.example.s3vior.ui.onBoarding.screens.AddAgeGenderDateFragment"
-        android:label="AddAgeGenderDateFragment" />
+        android:name="com.example.s3vior.ui.fragment.personDetails.AddAgeGenderDateFragment"
+        android:label="AddAgeGenderDateFragment" >
+        <action
+            android:id="@+id/action_addAgeGenderDateFragment_to_addPhotoLocationFragment"
+            app:destination="@id/addPhotoLocationFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/personFormFragment"
+        android:name="com.example.s3vior.ui.fragment.personDetails.PersonFormFragment"
+        android:label="PersonFormFragment" />
+    <fragment
+        android:id="@+id/addPhotoLocationFragment"
+        android:name="com.example.s3vior.ui.fragment.personDetails.AddPhotoLocationFragment"
+        android:label="AddPhotoLocationFragment" >
+        <action
+            android:id="@+id/action_addPhotoLocationFragment_to_personFormFragment"
+            app:destination="@id/personFormFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/allPersonInfo"
+        android:name="com.example.s3vior.ui.fragment.AllPersonInfo"
+        android:label="AllPersonInfo"
+        tools:layout="@layout/fragment_all_person_info"/>
 </navigation>

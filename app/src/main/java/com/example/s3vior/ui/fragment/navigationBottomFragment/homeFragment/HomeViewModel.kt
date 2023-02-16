@@ -1,13 +1,9 @@
-package com.example.s3vior.ui.fragment.navigationBottomFragment.home
+package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.s3vior.model.State
-import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.PersonRepository
-import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person
-import kotlinx.coroutines.Dispatchers
+import com.example.s3vior.domain.model.State
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class PersonViewModel : ViewModel() {
@@ -15,20 +11,18 @@ class PersonViewModel : ViewModel() {
     private val repository = PersonRepository()
 
 
-    private val personsLiveData = MutableLiveData<State<List<Person>?>>()
-    val _personsLiveData: LiveData<State<List<Person>?>> = personsLiveData
-
+    private val _personsStateFlow = MutableStateFlow<State<List<Person>?>>(State.Loading)
+    val  personsStateFlow: StateFlow<State<List<Person>?>> = _personsStateFlow
 
     init {
         getAllPersons()
     }
 
-
     fun getAllPersons() {
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch{
             repository.getAllPersons().collect {
-                personsLiveData.postValue(it)
-            }
+                _personsStateFlow.value = it
+              }
         }
     }
 

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.s3vior.ui.fragment.navigationBottomFragment.home.PersonViewModel" />
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.PersonViewModel" />
 
     </data>
 
@@ -44,14 +44,15 @@
             android:layout_margin="@dimen/_6sdp"
             android:background="@drawable/ed_style"
             android:layoutAnimation="@anim/layout_animation"
-            app:items="@{viewModel._personsLiveData.toData()}"
+            app:items="@{viewModel.personsStateFlow.toData()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:transitionGroup="true"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ed_search"
             app:layout_constraintVertical_bias="1.0"
-            app:showWhenSuccess="@{viewModel._personsLiveData}" />
+            app:showWhenSuccess="@{viewModel.personsStateFlow}" />
 
         <ProgressBar
             android:id="@+id/progress_loading"
@@ -62,7 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenLoading="@{viewModel._personsLiveData}" />
+            app:showWhenLoading="@{viewModel.personsStateFlow}" />
 
         <ImageView
             android:id="@+id/image_error"
@@ -72,7 +73,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenError="@{viewModel._personsLiveData}"
+            app:showWhenError="@{viewModel.personsStateFlow}"
             app:srcCompat="@drawable/baseline_error_24" />
 
         <Button
@@ -87,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="@+id/progress_loading"
             app:layout_constraintStart_toStartOf="@+id/progress_loading"
             app:layout_constraintTop_toBottomOf="@+id/progress_loading"
-            app:showWhenError="@{viewModel._personsLiveData}" />
+            app:showWhenError="@{viewModel.personsStateFlow}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

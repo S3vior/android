@@ -7,23 +7,19 @@ import com.example.s3vior.ui.fragment.base.BaseFragment
 
 
 class AnnouncementFragment :
-    BaseFragment<FragmentAnnouncementBinding>(FragmentAnnouncementBinding::inflate,R.layout.fragment_announcement) {
-    override fun initViewModel() {
+    BaseFragment<FragmentAnnouncementBinding>(FragmentAnnouncementBinding::inflate) {
+
+
+    override fun callFunctions() {
+        binding.button2.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_announcementFragment_to_viewPagerFragment)
+
+        }
+    }
+    private fun callBack(){
 
     }
 
-    override fun recyclerAdapter() {
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-            binding.button2.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_announcementFragment_to_viewPagerFragment)
-
-            }
-
-    }
 
 
 }

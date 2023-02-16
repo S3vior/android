@@ -1,7 +1,7 @@
 package com.example.s3vior.networking
 
-import com.example.s3vior.model.UserInfo
-import com.example.s3vior.model.UserInfo2
+import com.example.s3vior.domain.model.UserInfo
+import com.example.s3vior.domain.model.UserInfo2
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+<variable
+    name="listener"
+    type="com.example.s3vior.ui.onBoarding.screens.GuideThreeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,6 +1,6 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
-import com.example.s3vior.model.State
+import com.example.s3vior.domain.model.State
 import com.example.s3vior.networking.API
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +17,7 @@ class PersonRepository {
     private fun <T> wrapWithFlow(function : suspend () -> Response< T> ):Flow<State<T?>>{
         return flow {
             emit(State.Loading)
+            delay(500)
             try {
                 val result = function()
                 if (result.isSuccessful){

@@ -8,11 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
 import com.example.s3vior.R
+import com.example.s3vior.ui.recyclerView.baseAdapter.BaseInterfaceListener
 
 abstract class BaseScreenFragment<VB : ViewBinding>(
     private val bindingInflater: (inflater: LayoutInflater) -> VB
 
-) : Fragment() {
+) : Fragment() ,BaseInterfaceListener{
 
     private var _binding: VB? = null
     val binding: VB
