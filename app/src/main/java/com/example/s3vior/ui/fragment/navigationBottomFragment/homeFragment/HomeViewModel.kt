@@ -3,6 +3,8 @@ package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.s3vior.domain.model.State
+import com.example.s3vior.domain.model.User
+import com.example.s3vior.domain.model.UserInfo
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 

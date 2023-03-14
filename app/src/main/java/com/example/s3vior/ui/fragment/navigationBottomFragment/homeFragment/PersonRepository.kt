@@ -1,6 +1,7 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
 import com.example.s3vior.domain.model.State
+import com.example.s3vior.domain.model.UserInfo
 import com.example.s3vior.networking.API
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
