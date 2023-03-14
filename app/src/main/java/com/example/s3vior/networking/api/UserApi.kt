@@ -13,8 +13,8 @@ interface UserApi {
     @POST("auth/login")
     fun signIn(@Body user: User): Call<User>
 
-    @POST("users")
-    fun signUp(@Body user: JsonObject): Call<User>
+    @POST("auth/register")
+    fun signUp(@Body user: User): Call<User>
 
     @GET("users/profile")
     fun userProfile(@Header("TOKEN") token: String): Call<Profile>
