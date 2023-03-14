@@ -5,7 +5,7 @@
     <string name="hi_welcome_back" translatable="false">Hi, Welcome Back!👋</string>
     <string name="hello_message" translatable="false">اهلا بيكم في تطبيق منقذ,\n قم بالتسجيل للمساعدة في العثور علي المفقودين </string>
     <string name="email_address_text_view" translatable="false">Email Address</string>
-    <string name="mafqud_gmail_com" translatable="false"> البريد الالكتروني</string>
+    <string name="mafqud_gmail_com" translatable="false">اسم المستخدم</string>
     <string name="password_text_view" translatable="false">Password</string>
     <string name="enter_your_password" translatable="false"> كلمة المرور</string>
     <string name="password_login" translatable="false">كلمة المرور</string>

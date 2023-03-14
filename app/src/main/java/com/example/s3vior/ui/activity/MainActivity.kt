@@ -12,7 +12,6 @@ import com.example.s3vior.databinding.ActivityMainBinding
 import com.example.s3vior.domain.model.UserInfo
 import com.example.s3vior.networking.API
 import com.example.s3vior.networking.RestApiService
-import com.google.android.gms.common.api.Api
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
