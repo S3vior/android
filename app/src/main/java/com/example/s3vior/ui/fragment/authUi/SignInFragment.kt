@@ -34,7 +34,7 @@ class SignInFragment : Fragment(), TextWatcher {
         binding = DataBindingUtil.inflate(inflater, R.layout.new_login_fragment, container, false)
 
         binding.loginButton.setOnClickListener { v ->
-            initUserClick(v)
+            navigationToMainFragment(v)
         }
 
         binding.tvSignUp.setOnClickListener {
