@@ -84,7 +84,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
                 val lastLocation = p0.lastLocation
                 val latitude = lastLocation?.latitude
                 val longitude = lastLocation?.longitude
-                Toast.makeText(requireContext(), longitude.toString(),Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), longitude.toString()+" lat "+latitude.toString(), Toast.LENGTH_SHORT).show()
             }
         }
         if (hasLocationPermission()) {

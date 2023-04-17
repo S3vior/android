@@ -113,9 +113,9 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                 Log.d("Aklbvaiugbavi", "onSuccess: ${resultData?.get("secure_url")}")
                 val userInfo = UserInfo(
                     age = 21,
-                    description = "كسم ميمي ",
-                    id = 5, "${resultData?.get("secure_url")}", "no message yet", "كسم فرعون"
-                )
+                    description = " ميمي ",
+                    id = 5, "${resultData?.get("secure_url")}", "no message yet", " فرعون"
+                    )
 
                 lifecycleScope.launch {
                     API.apiService.sendPersons(userInfo)

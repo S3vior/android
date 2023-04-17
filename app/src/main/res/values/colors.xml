@@ -11,4 +11,5 @@
     <color name="startColor">#29b6f6</color>
     <color name="endColor">#81d4fa</color>
     <color name="gray_sign">#A0A0A0</color>
+    <color name="light_black">#4F4F51</color>
 </resources>
