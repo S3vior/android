@@ -14,12 +14,12 @@ import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentHomeBinding
 import com.example.s3vior.ui.fragment.base.BaseFragment
 
-class HomeFragment :BaseFragment<FragmentHomeBinding>
-    (FragmentHomeBinding::inflate ), RecyclerViewInteractionListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
+    RecyclerViewInteractionListener {
 
     private val personViewModel: PersonViewModel by activityViewModels()
 
-     private fun initViewModel() {
+    private fun initViewModel() {
         binding.viewModel = personViewModel
         binding.lifecycleOwner = viewLifecycleOwner
     }
