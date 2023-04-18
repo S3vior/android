@@ -5,65 +5,57 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.notification.NotificationContent" />
+
+        <variable
+            name="listener"
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.RecyclerViewInteractionListener" />
     </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="@dimen/_100sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:elevation="@dimen/_8sdp"
+        android:onClick="@{() -> listener.onClickItem(item)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/person_imageView"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_marginEnd="4dp"
-                android:elevation="5dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/testimage"
-                android:transitionName="photoTransition"
-                android:translationZ="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.4"
-                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                app:strokeColor="@null"
-                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp">
 
             <TextView
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="اسم المرسل"
+                android:text="@{item.senderName}"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/person_imageView"
-                app:layout_constraintTop_toTopOf="@+id/person_imageView" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView29"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:text="الوصفالوصفالوصفالوصفالوصفالوصفالوصفالوصفالوصف"
+                android:paddingTop="@dimen/_5sdp"
+                android:text="@{item.content}"
                 app:layout_constraintEnd_toEndOf="@+id/textView28"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
                 app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
             <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:src="@drawable/testimage"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/remove_notification"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

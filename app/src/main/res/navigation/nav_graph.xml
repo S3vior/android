@@ -113,6 +113,12 @@
         <action
             android:id="@+id/action_moreFragment_to_notificationsFragment"
             app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_contactUsFragment"
+            app:destination="@id/contactUsFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_FQAFragment"
+            app:destination="@id/FQAFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNameFragment"
@@ -161,10 +167,18 @@
         tools:layout="@layout/fragment_all_person_info"/>
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.ChangePasswordFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.password.ChangePasswordFragment"
         android:label="ChangePasswordFragment" />
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.NotificationsFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.notification.NotificationsFragment"
         android:label="NotificationsFragment" />
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.contact_us.ContactUsFragment"
+        android:label="ContactUsFragment" />
+    <fragment
+        android:id="@+id/FQAFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.fqa.FQAFragment"
+        android:label="FQAFragment" />
 </navigation>

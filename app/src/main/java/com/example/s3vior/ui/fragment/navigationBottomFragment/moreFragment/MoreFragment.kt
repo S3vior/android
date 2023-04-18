@@ -41,11 +41,27 @@ class MoreFragment :
                 Navigation.findNavController(requireView())
                     .navigate(R.id.action_moreFragment_to_changePasswordFragment)
             }
-            2->{
+
+            2 -> {
                 Navigation.findNavController(requireView())
                     .navigate(R.id.action_moreFragment_to_notificationsFragment)
 
             }
+
+            3 -> {}
+            4 -> {
+                Navigation.findNavController(requireView())
+                    .navigate(R.id.action_moreFragment_to_FQAFragment)
+            }
+
+            5 -> {
+                Navigation.findNavController(requireView())
+                    .navigate(R.id.action_moreFragment_to_contactUsFragment)
+            }
+
+            6 -> {}
+            7 -> {}
+
         }
     }
 

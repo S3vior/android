@@ -10,15 +10,10 @@ interface PersonApi {
     @GET("persons")
     suspend fun getAllPersons(): Response<List<Person>>
 
-
-    @Multipart
-    @POST("persons")
+    @POST("person")
     suspend fun sendAllPersons(
-        @Query("name") name: String,
-        @Query("age") age: Int,
-        @Query("description") description: String,
-        @Query("message") message: String,
-        @Part image: MultipartBody.Part,
+        @Header("token") token: String,
+        @Body person: Person
     )
 
     @POST("persons")
