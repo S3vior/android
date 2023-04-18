@@ -13,8 +13,8 @@ object API {
         .callTimeout(10, TimeUnit.MINUTES)
         .connectTimeout(10, TimeUnit.MINUTES)
         .build()
-        private const val BASE_URL = "http://192.168.1.11:8000/api/"
-        private val retrofit = Retrofit.Builder()
+    private const val BASE_URL = "http://192.168.1.2:8000/api/"
+    private val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(mOkHttpClient)

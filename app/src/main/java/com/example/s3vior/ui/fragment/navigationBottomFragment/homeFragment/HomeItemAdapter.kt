@@ -26,7 +26,7 @@ class DiffUtilHomeLists(private val oldListItem:List<Person>, private val newLis
     override fun getNewListSize()=newListItem.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldListItem[oldItemPosition].id == newListItem[newItemPosition].id
+        return oldListItem[oldItemPosition].description == newListItem[newItemPosition].description
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

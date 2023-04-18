@@ -73,6 +73,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
         startActivityForResult(intent, Constants.UploadImage.REQUEST_CODE_GALLERY)
     }
 
+    @Deprecated("Deprecated in Java")
     @SuppressLint("Range")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
@@ -153,7 +154,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                     requestBody
                 )
 
-                API.apiService.sendAllPersons("10",10,"10","aac"  ,filePart)
+            //    API.apiService.sendAllPersons("10",10,"10"  ,filePart)
 
 
             } catch (e: Exception) {
