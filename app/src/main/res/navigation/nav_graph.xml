@@ -106,7 +106,14 @@
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.MoreFragment"
-        android:label="MoreFragment" />
+        android:label="MoreFragment" >
+        <action
+            android:id="@+id/action_moreFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addNameFragment"
         android:name="com.example.s3vior.ui.fragment.personDetails.AddNameFragment"
@@ -152,4 +159,12 @@
         android:name="com.example.s3vior.ui.fragment.AllPersonInfo"
         android:label="AllPersonInfo"
         tools:layout="@layout/fragment_all_person_info"/>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.NotificationsFragment"
+        android:label="NotificationsFragment" />
 </navigation>

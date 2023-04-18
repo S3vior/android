@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.adapters.ToolbarBindingAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentMoreBinding
@@ -11,16 +12,16 @@ import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.RecyclerViewInteractionListener
 
 class MoreFragment :
-    BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::inflate ),
+    BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::inflate),
     RecyclerViewInteractionListener {
 
     private val settingViewModel: SettingViewModel by activityViewModels()
     fun initViewModel() {
-        binding.viewModel=settingViewModel
-        binding.lifecycleOwner= viewLifecycleOwner
+        binding.viewModel = settingViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
     }
 
-      fun recyclerAdapter() {
+    fun recyclerAdapter() {
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerSetting.layoutManager = layoutManager
 
@@ -33,8 +34,19 @@ class MoreFragment :
     }
 
     override fun <T> onClickItem(view: T) {
+
         view as SettingData
-        Toast.makeText(requireActivity(),view.name,Toast.LENGTH_LONG).show()
+        when (view.id) {
+            1 -> {
+                Navigation.findNavController(requireView())
+                    .navigate(R.id.action_moreFragment_to_changePasswordFragment)
+            }
+            2->{
+                Navigation.findNavController(requireView())
+                    .navigate(R.id.action_moreFragment_to_notificationsFragment)
+
+            }
+        }
     }
 
 
