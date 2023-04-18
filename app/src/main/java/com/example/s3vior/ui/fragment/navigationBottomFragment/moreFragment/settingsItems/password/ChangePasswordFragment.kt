@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems
+package com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.password
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

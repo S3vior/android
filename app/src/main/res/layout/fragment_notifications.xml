@@ -10,65 +10,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_margin="@dimen/_10sdp"
-        tools:context=".ui.fragment.navigationBottomFragment.moreFragment.settingsItems.NotificationsFragment">
+        android:orientation="vertical"
+        tools:context=".ui.fragment.navigationBottomFragment.moreFragment.settingsItems.notification.NotificationsFragment">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:text="اشعارات"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/notification"
             android:textColor="@color/light_black"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp"
-            android:id="@+id/cardView"
-            app:cardCornerRadius="2dp">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:background="@drawable/ed_style"
                 android:gravity="end"
-                android:padding="@dimen/_10sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
 
                 <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="start"
                     android:layout_marginEnd="@dimen/_200sdp"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 
-
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="end"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:contentDescription="@string/change_notification_icon"
                     android:src="@drawable/baseline_notifications_active_24" />
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/notification_item_layout"
             android:layout_margin="@dimen/_6sdp"
             android:background="@drawable/ed_style"
+            android:transitionGroup="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:transitionGroup="true"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            tools:listitem="@layout/notification_item_layout" />
 
     </LinearLayout>
 </layout>
