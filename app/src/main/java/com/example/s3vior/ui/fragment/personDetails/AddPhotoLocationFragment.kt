@@ -6,10 +6,16 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
+import android.os.Bundle
 import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -31,13 +37,27 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 
 class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     FragmentAddPhotoLocationBinding::inflate
 ) {
+    private lateinit var pickSingleMediaLauncher: ActivityResultLauncher<Intent>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        pickSingleMediaLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode != Activity.RESULT_OK) {
+                    Toast.makeText(context, "Failed picking media.", Toast.LENGTH_SHORT).show()
+                } else {
+                    uri = it.data?.data!!
+                    showSnackBar("SUCCESS: ${uri .path}")
+                }
+            }
+    }
     companion object {
         private val PERMISSIONS_REQUEST_CODE = 123
     }
@@ -98,6 +118,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -140,8 +161,25 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     }
 
     private fun galleryIntent() {
-        openGalleryForImage()
+       // openGalleryForImage()
+        openGalleryForPhotoPicker()
     }
+
+     private fun openGalleryForPhotoPicker() {
+
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+               pickSingleMediaLauncher.launch(
+                Intent(MediaStore.ACTION_PICK_IMAGES)
+                    .apply {
+                        type = "image/*"
+                    }
+            )
+            }else{
+                openGalleryForImage()
+                showSnackBar("Failed to pick image from")
+        }
+    }
+
 
     private fun cameraIntent() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -160,26 +198,24 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_GALLERY && data != null) {
 
 
-            uri = data.data!!
+           uri = data.data!!
 
 
-//            data.data?.let { uri ->
-//                context?.contentResolver?.query(uri, null, null, null, null)?.use {
-//                    if (it.moveToFirst()) {
-//                        val picturePath =
-//                            it.getString(it.getColumnIndex(MediaStore.MediaColumns.DATA))
-//
-//                        var imageAsByte =
-//                            requireActivity().contentResolver.openInputStream(uri)?.buffered()?.use { it.readBytes() }
-//
-//
-//                        Toast.makeText(context,"$uri",Toast.LENGTH_SHORT).show()
-//
-//                        // uploadToCloudinary(picturePath)
-//                        Log.d("ajbcjabv", "onActivityResult: $picturePath\n ${data}")
-//                    }
-//                }
-//            }
+            data.data?.let { _uri ->
+                context?.contentResolver?.query(_uri, null, null, null, null)?.use {
+                    if (it.moveToFirst()) {
+                        val picturePath = it.getString(it.getColumnIndex(MediaStore.MediaColumns.DATA))
+                     //  uri = Uri.parse(picturePath)
+
+
+
+              //          Toast.makeText(context,"$uri",Toast.LENGTH_SHORT).show()
+
+                        // uploadToCloudinary(picturePath)
+                        Log.d("ajbcjabv", "onActivityResult: $uri ")
+                    }
+                }
+            }
 
         }
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_CAMERA && data != null) {
@@ -190,41 +226,16 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
         }
     }
 
-    fun uploadToCloudinary(filepath: String) {
-        MediaManager.get().upload(filepath).callback(object : UploadCallback {
-            override fun onSuccess(requestId: String?, resultData: MutableMap<Any?, Any?>?) {
-                Toast.makeText(requireContext(), "Task successful", Toast.LENGTH_SHORT).show()
-                Log.d("Aklbvaiugbavi", "onSuccess: ${resultData?.get("secure_url")}")
-                val userInfo = UserInfo(
-                    age = 21,
-                    description = "كسم ميمي ",
-                    id = 5, "${resultData?.get("secure_url")}", "no message yet", "كسم فرعون"
-                )
 
-                lifecycleScope.launch {
-                    API.apiService.sendPersons(userInfo)
-                }
-            }
-
-            override fun onProgress(requestId: String?, bytes: Long, totalBytes: Long) {
-
-            }
-
-            override fun onReschedule(requestId: String?, error: ErrorInfo?) {
-
-            }
-
-            override fun onError(requestId: String?, error: ErrorInfo?) {
-
-                Toast.makeText(requireContext(), "Task Not successful" + error, Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            override fun onStart(requestId: String?) {
-
-                Toast.makeText(requireContext(), "Start", Toast.LENGTH_SHORT).show()
-            }
-        }).dispatch()
+    private fun showSnackBar(message: String) {
+        val snackBar = Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_LONG,
+        )
+        // Set the max lines of SnackBar
+        snackBar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).maxLines =
+            10
+        snackBar.show()
     }
-
 }

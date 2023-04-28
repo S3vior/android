@@ -1,5 +1,6 @@
 package com.example.s3vior.ui.recyclerView.baseAdapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -33,13 +34,16 @@ abstract class BaseAdapter<T>(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun filterList(filterList: List<T>) {
         items = filterList
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setItems(newItems: List<T>) {
         items = newItems
+        notifyDataSetChanged()
     }
 
     fun getItems() = items

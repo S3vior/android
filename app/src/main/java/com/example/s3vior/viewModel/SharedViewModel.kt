@@ -1,11 +1,8 @@
 package com.example.s3vior.viewModel
 
-import android.net.Uri
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.s3vior.domain.usecases.AddNameUseCase
 import com.example.s3vior.domain.usecases.ValidatePersonNameUseCase
 import com.example.s3vior.viewModel.model.FirstDetails
 import com.example.s3vior.viewModel.model.SecondDetails
@@ -24,8 +21,14 @@ class SharedViewModel : ViewModel() {
 
     private val useCase = ValidatePersonNameUseCase()
 
+    private val _mafqoudStatus= MutableLiveData("")
+    val mafqoudStatus :LiveData<String> = _mafqoudStatus
 
 
+
+    fun getMafqoudStatus(status:String){
+        _mafqoudStatus.value = status
+    }
 
     fun getDataFromGalleryFragment(newDetails: ThirdDetails){
         _thirdDetails.value?.imageUri = newDetails.imageUri

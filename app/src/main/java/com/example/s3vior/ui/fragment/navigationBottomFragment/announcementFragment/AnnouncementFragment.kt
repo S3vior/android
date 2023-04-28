@@ -4,6 +4,7 @@ import androidx.navigation.Navigation
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentAnnouncementBinding
 import com.example.s3vior.ui.fragment.base.BaseFragment
+import com.example.s3vior.utils.MafqoudStatus
 
 
 class AnnouncementFragment :
@@ -12,8 +13,12 @@ class AnnouncementFragment :
 
     override fun callFunctions() {
         binding.button2.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_announcementFragment_to_viewPagerFragment)
-
+            val action =  AnnouncementFragmentDirections.actionAnnouncementFragmentToViewPagerFragment(MafqoudStatus.MISSED_PERSON.toString())
+            Navigation.findNavController(it).navigate(action)
+        }
+        binding.button.setOnClickListener {
+            val action =  AnnouncementFragmentDirections.actionAnnouncementFragmentToViewPagerFragment(MafqoudStatus.FOUNDED_PERSON.toString())
+            Navigation.findNavController(it).navigate(action)
         }
     }
     private fun callBack(){

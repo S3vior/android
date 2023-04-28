@@ -13,7 +13,7 @@ object API {
         .callTimeout(10, TimeUnit.MINUTES)
         .connectTimeout(10, TimeUnit.MINUTES)
         .build()
-    private const val BASE_URL = "http://192.168.1.2:8000/api/"
+    private const val BASE_URL = "https://mafqoud-api.herokuapp.com/api/"
     private val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

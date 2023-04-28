@@ -1,5 +1,6 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
+import android.util.Log
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.domain.model.UserInfo
 import com.example.s3vior.networking.API
@@ -12,10 +13,12 @@ class PersonRepository {
 
     suspend fun getAllPersons() : Flow<State<List<Person>?>>{
 
-        return wrapWithFlow(API.apiService::getAllPersons)
+        return wrapWithFlow(function = API.apiService::getAllPersons)
+
     }
 
-    private fun <T> wrapWithFlow(function : suspend () -> Response< T> ):Flow<State<T?>>{
+
+    private fun <T> wrapWithFlow( function : suspend () -> Response< T> ):Flow<State<T?>>{
         return flow {
             emit(State.Loading)
             delay(500)
@@ -32,4 +35,17 @@ class PersonRepository {
             }
         }
     }
+
+    suspend fun searchForPerson(name:String): Flow<State<List<Person>?>>{
+        val result =  API.apiService.searchForPerson(name)
+        return if (result.isSuccessful){
+            flow {
+                emit(State.Success(result.body()))
+            }
+        }else {
+            flow {
+                emit(State.Error(result.message()))
+            }
+        }
+     }
 }

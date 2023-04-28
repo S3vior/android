@@ -57,6 +57,7 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -102,6 +103,9 @@
             app:popExitAnim="@anim/to_right"
             app:popUpTo="@id/announcementFragment"
             app:popUpToInclusive="false" />
+        <argument
+            android:name="mafqoudStatus"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"

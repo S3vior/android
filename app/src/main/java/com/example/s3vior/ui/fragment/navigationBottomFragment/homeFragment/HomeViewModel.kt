@@ -23,6 +23,7 @@ class PersonViewModel : ViewModel() {
 
     init {
         getAllPersons()
+
     }
 
     fun <T> searchFunctionality(searchWard: String, items: List<Person>?) {
@@ -38,6 +39,17 @@ class PersonViewModel : ViewModel() {
         viewModelScope.launch {
             repository.getAllPersons().collect {
                 _personsStateFlow.value = it
+                //  Log.d("ajbzoa",it.toString())
+            }
+        }
+    }
+
+
+     fun searchFoePerson(name:String) {
+        viewModelScope.launch {
+            repository.searchForPerson(name).collect {
+                _personsStateFlow.value = it
+                Log.d("ajbzoa", it.toString())
             }
         }
     }
