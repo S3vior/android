@@ -93,7 +93,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
                      //   uploadFile(uri)
 
                         // uploadToCloudinary(picturePath)
-                        Log.d("ajbcjabv", "onActivityResult: $picturePath\n ${data}")
+                        Log.d("ajbcjabv", "onActivityResult: $picturePath")
                     }
                 }
             }
@@ -147,11 +147,11 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
     private fun uploadFile(file: File) {
         lifecycleScope.launch {
             try {
-                val requestBody = RequestBody.create(MediaType.parse("image/*"), file)
+            //    val requestBody = RequestBody.create(MediaType.parse("image/*"), file)
                 val filePart = MultipartBody.Part.createFormData(
                     "image",
                     "test.jpg",
-                    requestBody
+             //       requestBody
                 )
 
             //    API.apiService.sendAllPersons("10",10,"10"  ,filePart)

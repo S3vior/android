@@ -5,6 +5,7 @@ import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.s3vior.R
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person
 import com.example.s3vior.ui.recyclerView.baseAdapter.BaseAdapter
@@ -39,8 +40,8 @@ fun <T> showWhenSuccess(view: View, state: State<T>?) {
 
 
 @BindingAdapter(value = ["app:imageUrl"])
-fun setImageFromUrl(view: ShapeableImageView, url: String) {
-    Glide.with(view).load(url).into(view)
+fun setImageFromUrl(view: ShapeableImageView, url: String? = "https://res.cloudinary.com/khaledelabady11/image/upload/v1676773144/ehr7jby7solo1dsfh77q.png") {
+    Glide.with(view).load(url).error(R.drawable.google).into(view)
 }
 
 @BindingAdapter(value = ["app:items"])
