@@ -7,7 +7,7 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
-interface PersonApi {
+interface MafqoudApi {
     @GET("persons")
     suspend fun getAllPersons(): Response<List<Person>>
 

@@ -33,11 +33,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions{
+    kotlinOptions {
         jvmTarget = '1.8'
     }
     buildFeatures {
-       dataBinding = true
+        dataBinding = true
     }
 
 
@@ -48,7 +48,7 @@ android {
 
 dependencies {
 
-    
+
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.8.0'
@@ -74,7 +74,7 @@ dependencies {
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
 
     //fragment
-    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    implementation 'androidx.fragment:fragment-ktx:1.5.7'
 
     //circle Image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -83,20 +83,24 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 
     //paging 3
-    implementation 'androidx.paging:paging-runtime:3.2.0-alpha03'
+    implementation 'androidx.paging:paging-runtime:3.2.0-alpha04'
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
-    // lottie animation
-    def lottieVersion = "3.4.0"
-    implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+
+    //lottie
+    implementation "com.airbnb.android:lottie:5.2.0"
 
     //room
-    implementation "androidx.room:room-runtime:2.5.0"
-    kapt "androidx.room:room-compiler:2.5.0"
-    implementation "androidx.room:room-ktx:2.5.0"
+    implementation "androidx.room:room-runtime:2.5.1"
+    kapt "androidx.room:room-compiler:2.5.1"
+    implementation "androidx.room:room-ktx:2.5.1"
 
     // country picker
     implementation 'com.hbb20:ccp:2.5.0'
@@ -106,26 +110,26 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
-    //cloudinary
-    implementation 'com.cloudinary:cloudinary-android:2.3.1'
-    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    //Okhttp
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     //hilt
-    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
-    implementation "com.google.dagger:hilt-android:2.38.1"
-    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
 
     //location
     implementation 'com.google.android.gms:play-services-location:21.0.1'
 
     //serialization
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
-// define a BOM and its version
+     // define a BOM and its version
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
 
-    // define any required OkHttp artifacts without version
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
 
 
+}
+kapt {
+    correctErrorTypes true
 }

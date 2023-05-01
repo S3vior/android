@@ -15,19 +15,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import com.cloudinary.android.MediaManager
-import com.cloudinary.android.callback.ErrorInfo
-import com.cloudinary.android.callback.UploadCallback
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentAddPhotoLocationBinding
-import com.example.s3vior.domain.model.UserInfo
-import com.example.s3vior.networking.API
 import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.utils.Constants
 import com.example.s3vior.viewModel.SharedViewModel
@@ -38,7 +31,6 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
 
 
 class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(

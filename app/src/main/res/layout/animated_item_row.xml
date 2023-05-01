@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person" />
+            type="com.example.s3vior.domain.model.MafqoudModel" />
         <variable
             name="listener"
             type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.RecyclerViewInteractionListener" />

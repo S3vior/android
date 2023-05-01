@@ -1,0 +1,37 @@
+package com.example.s3vior.data.source.remote.dataSource
+
+import com.example.s3vior.data.source.remote.endPoints.MafqoudApiService
+import com.example.s3vior.data.source.remote.responseModels.MafqoudResponseModel
+import com.example.s3vior.networking.api.BaseApiResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Response
+import javax.inject.Inject
+
+class MafqoudRemoteDataSource @Inject constructor(var mafqoudApiService: MafqoudApiService) {
+
+    suspend fun getAllPersons(): Response<BaseApiResponse<List<MafqoudResponseModel>>> =
+        withContext(Dispatchers.IO) {
+           mafqoudApiService.getAllPersons()
+        }
+
+
+    suspend fun uploadMafqoud(
+        token: String,
+        name: RequestBody,
+        age: RequestBody,
+        gender: RequestBody,
+        type: RequestBody,
+        description: RequestBody,
+        imageMultiPart: MultipartBody.Part
+    ) = withContext(Dispatchers.IO) {
+        mafqoudApiService.upLoadPerson(token, name, age, gender, type, description, imageMultiPart)
+    }
+
+    suspend fun searchForMafqoud(keyWord: String) = withContext(Dispatchers.IO) {
+        mafqoudApiService.searchForPerson(keyWord)
+    }
+
+}
