@@ -13,21 +13,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.cloudinary.android.MediaManager
-import com.cloudinary.android.callback.ErrorInfo
-import com.cloudinary.android.callback.UploadCallback
+
 import com.example.s3vior.databinding.BottomSheetFragmentBinding
 import com.example.s3vior.databinding.FragmentPersonDetailsBinding
 import com.example.s3vior.domain.model.UserInfo
-import com.example.s3vior.networking.API
 import com.example.s3vior.networking.UploadStreamRequestBody
 import com.example.s3vior.utils.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import java.io.File
 
 class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
@@ -45,10 +40,6 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
     ): View {
         binding = BottomSheetFragmentBinding.inflate(inflater)
         initButtons()
-        config.put("cloud_name", "khaledelabady11")
-        config.put("api_key", "772589215762873")
-        config.put("api_secret", "6EtKMojSfmrBn3t2UMH2wrAODCA")
-        MediaManager.init(requireActivity(), config)
 
         return binding.root
     }
@@ -107,42 +98,7 @@ class BottomSheetFragment(private val _binding: FragmentPersonDetailsBinding) :
         }
     }
 
-    fun uploadToCloudinary(filepath: String) {
-        MediaManager.get().upload(filepath).callback(object : UploadCallback {
-            override fun onSuccess(requestId: String?, resultData: MutableMap<Any?, Any?>?) {
-                Toast.makeText(requireContext(), "Task successful", Toast.LENGTH_SHORT).show()
-                Log.d("Aklbvaiugbavi", "onSuccess: ${resultData?.get("secure_url")}")
-                val userInfo = UserInfo(
-                    age = 21,
-                    description = " ميمي ",
-                    id = 5, "${resultData?.get("secure_url")}", "no message yet", " فرعون"
-                    )
 
-                lifecycleScope.launch {
-                    API.apiService.sendPersons(userInfo)
-                }
-            }
-
-            override fun onProgress(requestId: String?, bytes: Long, totalBytes: Long) {
-
-            }
-
-            override fun onReschedule(requestId: String?, error: ErrorInfo?) {
-
-            }
-
-            override fun onError(requestId: String?, error: ErrorInfo?) {
-
-                Toast.makeText(requireContext(), "Task Not successful$error", Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            override fun onStart(requestId: String?) {
-
-                Toast.makeText(requireContext(), "Start", Toast.LENGTH_SHORT).show()
-            }
-        }).dispatch()
-    }
 
     private fun uploadFile(file: File) {
         lifecycleScope.launch {
