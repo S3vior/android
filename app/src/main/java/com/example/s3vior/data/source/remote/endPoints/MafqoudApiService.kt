@@ -11,13 +11,13 @@ import retrofit2.http.*
 
 interface MafqoudApiService {
     @GET("persons")
-    suspend fun getAllPersons(): Response<BaseApiResponse<List<MafqoudResponseModel>>>
+    suspend fun getAllPersons(): Response<List<MafqoudResponseModel>>
 
 
     @GET("persons/search")
     suspend fun searchForPerson(
-        @Query("name") name: String?
-    ): Response<BaseApiResponse<List<MafqoudResponseModel>>>
+        @Query("name") name: String
+    ): Response<List<MafqoudResponseModel>>
 
 
     @POST("persons")

@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 interface MafqoudApi {
     @GET("persons")
-    suspend fun getAllPersons(): Response<List<Person>>
+    suspend fun getAllPerson(): Response<List<Person>>
 
 
     @POST("person")

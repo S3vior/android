@@ -24,7 +24,7 @@ class DatabaseModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://s3vior22.herokuapp.com/api/")
-            .client(okHttpClient)
+             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -60,16 +60,16 @@ class DatabaseModule {
         prefs: SharedPreferences
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addNetworkInterceptor { chain ->
-                var request = chain.request()
-                if (request.header("No-Authentication") == null) {
-                    var token: String = prefs.getString("token", null) ?: ""
-                    request = request.newBuilder()
-                        .addHeader("Authorization", prefs.getString("token", null) ?: "guest")
-                        .build();
-                }
-                chain.proceed(request)
-            }
+//            .addNetworkInterceptor { chain ->
+//                var request = chain.request()
+//                if (request.header("No-Authentication") == null) {
+//                    var token: String = prefs.getString("token", null) ?: ""
+//                    request = request.newBuilder()
+//                        .addHeader("Authorization", prefs.getString("token", null) ?: "guest")
+//                        .build();
+//                }
+//                chain.proceed(request)
+//            }
             .addInterceptor(interceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
