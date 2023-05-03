@@ -1,5 +1,6 @@
 package com.example.s3vior.data.source.remote.dataSource
 
+import android.util.Log
 import com.example.s3vior.data.source.remote.endPoints.MafqoudApiService
 import com.example.s3vior.data.source.remote.responseModels.MafqoudResponseModel
 import com.example.s3vior.networking.api.BaseApiResponse
@@ -12,9 +13,9 @@ import javax.inject.Inject
 
 class MafqoudRemoteDataSource @Inject constructor(var mafqoudApiService: MafqoudApiService) {
 
-    suspend fun getAllPersons(): Response<BaseApiResponse<List<MafqoudResponseModel>>> =
+    suspend fun getAllPersons(): Response<List<MafqoudResponseModel>> =
         withContext(Dispatchers.IO) {
-           mafqoudApiService.getAllPersons()
+            mafqoudApiService.getAllPersons()
         }
 
 
