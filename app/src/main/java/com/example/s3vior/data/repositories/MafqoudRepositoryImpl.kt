@@ -16,18 +16,18 @@ class MafqoudRepositoryImpl @Inject constructor(
 ) : MafqoudRepository {
     override suspend fun getAllPersons(): List<MafqoudModel> {
         val getPersonsResult = mafqoudRemoteDataSource.getAllPersons()
-        return getPersonsResult.body()!!.map {
-            it.toMafqoudModel()
-        }
-        //        return if (getPersonsResult.isSuccessful &&getPersonsResult.body()?.data != null && getPersonsResult.code() == 200) {
-//
-//            getPersonsResult.body()?.data!!.map {
-//                it.toMafqoudModel()
-//            }
-//        } else {
-//            getPersonsResult.errorBody()!!.string()
-//            throw Exception(JSONObject(getPersonsResult.errorBody()!!.string()).getString("message"))
+//        return getPersonsResult.body()!!.map {
+//            it.toMafqoudModel()
 //        }
+                return if (getPersonsResult.isSuccessful &&getPersonsResult.body() != null && getPersonsResult.code() == 200) {
+
+            getPersonsResult.body()!!.map {
+                it.toMafqoudModel()
+            }
+        } else {
+            getPersonsResult.errorBody()!!.string()
+            throw Exception(JSONObject(getPersonsResult.errorBody()!!.string()).getString("message"))
+        }
     }
 
     override suspend fun uploadPerson(
@@ -71,17 +71,14 @@ class MafqoudRepositoryImpl @Inject constructor(
 
     override suspend fun searchPerson(searchWord: String): List<MafqoudModel> {
         val getSearchResult = mafqoudRemoteDataSource.searchForMafqoud(searchWord)
-        return if (getSearchResult.isSuccessful && getSearchResult.body() != null && getSearchResult.code() == 200) {
+        return if ( getSearchResult.isSuccessful && getSearchResult.body() != null &&getSearchResult.code() == 200) {
             getSearchResult.body()!!.map {mafqoudSearch ->
                 mafqoudSearch.toMafqoudModel()
             }
         } else {
-            val errorBody = JSONObject(getSearchResult.errorBody()!!.string())
-            throw Exception(errorBody.getString("message"))
+              emptyList()
         }
-//        return  getSearchResult.body()!!.map {mafqoudSearch ->
-//            mafqoudSearch.toMafqoudModel()
-//        }
+
 
     }
 
