@@ -8,6 +8,9 @@ import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.domain.usecases.GetAllPersonsUseCase
 import com.example.s3vior.domain.usecases.SearchPersonUseCase
+import com.example.s3vior.room.Dao
+import com.example.s3vior.room.DatabaseRepo
+import com.example.s3vior.room.PersonEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,8 +20,9 @@ import javax.inject.Inject
 @HiltViewModel
 class PersonViewModel @Inject constructor(
     private val getAllPersonsUseCase: GetAllPersonsUseCase,
-    private val searchPersonUseCase: SearchPersonUseCase
-) : ViewModel() {
+    private val searchPersonUseCase: SearchPersonUseCase,
+    private val dbRepository: DatabaseRepo
+    ) : ViewModel() {
 
     private val _personsStateFlow =
         MutableStateFlow<State<List<MafqoudModel>>>(State.Loading)
@@ -28,6 +32,23 @@ class PersonViewModel @Inject constructor(
 
     init {
         getAllPersons()
+        setdata()
+    }
+
+    private fun setdata(){
+        viewModelScope.launch {
+            dbRepository.insertDataToRoom(
+                PersonEntity(
+                    id = 123,
+                    image = null,
+                    name = "Jarod",
+                    age = 627,
+                    gender = "Sigifredo",
+                    description = null,
+                    type = null
+                )
+            )
+        }
     }
 
 

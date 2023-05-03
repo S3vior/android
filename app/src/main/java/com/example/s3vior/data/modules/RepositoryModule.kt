@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 
-@Module(includes = [DatabaseModule::class])
+@Module(includes = [NetworkModule::class])
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {
 
