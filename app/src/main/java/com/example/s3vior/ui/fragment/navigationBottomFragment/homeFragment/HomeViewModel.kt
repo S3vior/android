@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.domain.usecases.GetAllPersonsUseCase
+import com.example.s3vior.domain.usecases.RoomUseCases
 import com.example.s3vior.domain.usecases.SearchPersonUseCase
-import com.example.s3vior.room.Dao
 import com.example.s3vior.room.DatabaseRepo
 import com.example.s3vior.room.PersonEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +21,9 @@ import javax.inject.Inject
 class PersonViewModel @Inject constructor(
     private val getAllPersonsUseCase: GetAllPersonsUseCase,
     private val searchPersonUseCase: SearchPersonUseCase,
-    private val dbRepository: DatabaseRepo
-    ) : ViewModel() {
+    private val roomUseCases: RoomUseCases
+) : ViewModel() {
+ 
 
     private val _personsStateFlow =
         MutableStateFlow<State<List<MafqoudModel>>>(State.Loading)
@@ -35,21 +36,22 @@ class PersonViewModel @Inject constructor(
         setdata()
     }
 
-    private fun setdata(){
+ 
+     private fun setdata() {
         viewModelScope.launch {
-            dbRepository.insertDataToRoom(
+            roomUseCases.roomInsertPersonUseCase.invoke(
                 PersonEntity(
-                    id = 123,
+                   
                     image = null,
-                    name = "Jarod",
+                    name = "khater",
                     age = 627,
                     gender = "Sigifredo",
                     description = null,
                     type = null
                 )
             )
+ 
         }
-    }
 
 
     @SuppressLint("SuspiciousIndentation")

@@ -3,7 +3,7 @@ package com.example.s3vior.data.modules
 import android.content.Context
 import androidx.room.Room
 import com.example.s3vior.room.PersonEntity
-import com.example.s3vior.room.PersonsDatabase
+import com.example.s3vior.data.source.local.MafqoudDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,8 @@ object DataBaseModule {
     @Singleton
     fun provideDB(@ApplicationContext context: Context) = Room.databaseBuilder(
         context,
-        PersonsDatabase::class.java,
+        MafqoudDatabase::class.java,
+
         "persons_database"
     )
         .fallbackToDestructiveMigration()
@@ -27,8 +28,10 @@ object DataBaseModule {
 
     @Provides
     @Singleton
-    fun provideDao(db: PersonsDatabase) = db.getDao()
+    fun provideDao(db: MafqoudDatabase) = db.getDao()
+ 
 
     @Provides
+    @Singleton
     fun provideEntity() = PersonEntity()
 }
