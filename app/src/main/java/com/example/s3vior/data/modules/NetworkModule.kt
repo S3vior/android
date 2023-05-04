@@ -18,13 +18,13 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+class NetworkModule {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://s3vior22.herokuapp.com/api/")
-            .client(okHttpClient)
+             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

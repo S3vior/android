@@ -48,6 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun callFunctions() {
         initViewModel()
         recyclerAdapter()
+
     }
 
     override fun <T> onClickItem(view: T) {

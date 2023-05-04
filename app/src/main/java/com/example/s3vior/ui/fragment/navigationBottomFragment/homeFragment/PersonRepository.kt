@@ -1,12 +1,13 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
+import android.util.Log
 import com.example.s3vior.data.source.remote.responseModels.MafqoudResponseModel
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.networking.API
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class PersonRepository   {
+class PersonRepository{
 
 //    suspend fun getAllPersons() : Flow<State<List<MafqoudResponseModel>?>>{
 //
@@ -34,6 +35,8 @@ class PersonRepository   {
 //    }
     suspend fun getAllPersons() : Flow<State<List<MafqoudResponseModel>?>>{
         val result =  API.apiService.getAllPersons()
+
+        Log.e("TAG",result.body().toString())
         return if (result.isSuccessful){
             flow {
                 emit(State.Success(result.body()))
