@@ -20,6 +20,7 @@ object DataBaseModule {
     fun provideDB(@ApplicationContext context: Context) = Room.databaseBuilder(
         context,
         MafqoudDatabase::class.java,
+
         "persons_database"
     )
         .fallbackToDestructiveMigration()
@@ -28,7 +29,9 @@ object DataBaseModule {
     @Provides
     @Singleton
     fun provideDao(db: MafqoudDatabase) = db.getDao()
+ 
 
     @Provides
+    @Singleton
     fun provideEntity() = PersonEntity()
 }

@@ -21,9 +21,9 @@ import javax.inject.Inject
 class PersonViewModel @Inject constructor(
     private val getAllPersonsUseCase: GetAllPersonsUseCase,
     private val searchPersonUseCase: SearchPersonUseCase,
-    private val dbRepository: DatabaseRepo,
     private val roomUseCases: RoomUseCases
 ) : ViewModel() {
+ 
 
     private val _personsStateFlow =
         MutableStateFlow<State<List<MafqoudModel>>>(State.Loading)
@@ -36,7 +36,8 @@ class PersonViewModel @Inject constructor(
         setdata()
     }
 
-    private fun setdata() {
+ 
+     private fun setdata() {
         viewModelScope.launch {
             roomUseCases.roomInsertPersonUseCase.invoke(
                 PersonEntity(
@@ -49,19 +50,8 @@ class PersonViewModel @Inject constructor(
                     type = null
                 )
             )
-//            dbRepository.insertDataToRoom(
-//                PersonEntity(
-//                    id = 123,
-//                    image = null,
-//                    name = "Jarod",
-//                    age = 627,
-//                    gender = "Sigifredo",
-//                    description = null,
-//                    type = null
-//                )
-//            )
+ 
         }
-    }
 
 
     @SuppressLint("SuspiciousIndentation")
