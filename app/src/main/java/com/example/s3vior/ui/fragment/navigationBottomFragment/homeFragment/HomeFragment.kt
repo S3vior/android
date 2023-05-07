@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentHomeBinding
+import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.room.Dao
 import com.example.s3vior.room.PersonEntity
 import com.example.s3vior.ui.fragment.base.BaseFragment
@@ -58,7 +59,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun <T> onClickItem(view: T) {
-        view as Person
+        view as MafqoudModel
         findNavController().navigate(R.id.action_homeFragment_to_allPersonInfo)
     }
 
