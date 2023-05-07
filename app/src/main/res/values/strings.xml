@@ -71,6 +71,7 @@
     <string name="age_text">العمر</string>
     <string name="notification">الاشعارات</string>
     <string name="change_notification_icon">Change notifcation icon</string>
+    <string name="first_person">الشخص الاول</string>
     <string-array name="countryCodes">
         <item>93,AF</item>
         <item>355,AL</item>
