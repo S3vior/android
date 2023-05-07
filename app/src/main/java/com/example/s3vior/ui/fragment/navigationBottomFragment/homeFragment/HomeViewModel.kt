@@ -40,9 +40,8 @@ class PersonViewModel @Inject constructor(
  
      private fun setdata() {
         viewModelScope.launch {
-            roomUseCases.roomInsertPersonUseCase.invoke(
+            dbRepository.insertDataToRoom(
                 PersonEntity(
- 
                     image = null,
                     name = "khater",
                     age = 627,
@@ -51,8 +50,7 @@ class PersonViewModel @Inject constructor(
                     type = null
                 )
             )
- 
-        }
+        }}
 
 
     @SuppressLint("SuspiciousIndentation")

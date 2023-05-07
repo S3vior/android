@@ -59,7 +59,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun <T> onClickItem(view: T) {
         view as Person
-        findNavController().navigate(R.id.action_homeFragment_to_allPersonInfo)
     }
 
 
