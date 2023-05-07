@@ -8,12 +8,6 @@ import javax.inject.Inject
 
 class RoomGetPersonsUseCase @Inject constructor(private val roomRepository: RoomRepository) {
 
-    suspend operator fun invoke(): Flow<List<PersonEntity>> {
 
-        return flow {
-            roomRepository.getPersons()
-        }
-
-    }
 
 }
