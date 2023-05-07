@@ -123,6 +123,9 @@
         <action
             android:id="@+id/action_moreFragment_to_FQAFragment"
             app:destination="@id/FQAFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_matchedPersonsFragment"
+            app:destination="@id/matchedPersonsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNameFragment"
@@ -185,4 +188,8 @@
         android:id="@+id/FQAFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.fqa.FQAFragment"
         android:label="FQAFragment" />
+    <fragment
+        android:id="@+id/matchedPersonsFragment"
+        android:name="com.example.s3vior.ui.fragment.matchedPersons.MatchedPersonsFragment"
+        android:label="MatchedPersonsFragment" />
 </navigation>

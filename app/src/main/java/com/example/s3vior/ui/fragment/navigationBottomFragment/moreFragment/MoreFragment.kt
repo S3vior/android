@@ -48,7 +48,11 @@ class MoreFragment :
 
             }
 
-            3 -> {}
+            3 -> {
+                Navigation.findNavController(requireView()).navigate(
+                    R.id.action_moreFragment_to_matchedPersonsFragment
+                )
+            }
             4 -> {
                 Navigation.findNavController(requireView())
                     .navigate(R.id.action_moreFragment_to_FQAFragment)
