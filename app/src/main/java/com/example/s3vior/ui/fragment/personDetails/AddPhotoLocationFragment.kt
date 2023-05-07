@@ -158,18 +158,18 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     }
 
      private fun openGalleryForPhotoPicker() {
-
-         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
-               pickSingleMediaLauncher.launch(
-                Intent(MediaStore.ACTION_PICK_IMAGES)
-                    .apply {
-                        type = "image/*"
-                    }
-            )
-            }else{
-                openGalleryForImage()
-                showSnackBar("Failed to pick image from")
-        }
+         openGalleryForImage()
+//         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+//               pickSingleMediaLauncher.launch(
+//                Intent(MediaStore.ACTION_PICK_IMAGES)
+//                    .apply {
+//                        type = "image/*"
+//                    }
+//            )
+//            }else{
+//                openGalleryForImage()
+//                showSnackBar("Failed to pick image from")
+//        }
     }
 
 

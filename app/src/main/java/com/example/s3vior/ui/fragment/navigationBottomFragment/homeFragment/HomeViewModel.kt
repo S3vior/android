@@ -21,8 +21,9 @@ import javax.inject.Inject
 class PersonViewModel @Inject constructor(
     private val getAllPersonsUseCase: GetAllPersonsUseCase,
     private val searchPersonUseCase: SearchPersonUseCase,
-    private val roomUseCases: RoomUseCases
-) : ViewModel() {
+ 
+    private val dbRepository: DatabaseRepo
+    ) : ViewModel() {
  
 
     private val _personsStateFlow =
@@ -41,7 +42,7 @@ class PersonViewModel @Inject constructor(
         viewModelScope.launch {
             roomUseCases.roomInsertPersonUseCase.invoke(
                 PersonEntity(
-                   
+ 
                     image = null,
                     name = "khater",
                     age = 627,
