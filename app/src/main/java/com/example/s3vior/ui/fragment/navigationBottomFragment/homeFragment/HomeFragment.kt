@@ -27,9 +27,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.viewModel = personViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.edSearch.setOnEditorActionListener { _, actionId, _ ->
+        binding.edSearch.setOnEditorActionListener { text, actionId, _ ->
             if (actionId != EditorInfo.IME_NULL) {
-                personViewModel.searchFoePerson(binding.edSearch.text.toString())
+                if (text.text.toString()  == ""){
+                    personViewModel.getAllPersons()
+                }
+                else{
+                    personViewModel.searchFoePerson(text.text.toString())
+                }
                 val imm =
                     context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view?.windowToken, 0)
