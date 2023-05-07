@@ -15,7 +15,7 @@ class DatabaseRepo @Inject constructor(private val dao: MafqoudDao) {
 //            emit(State.Success(dao.getAllPersons()))
 //        }
 //    }
-//
-//    suspend fun insertDataToRoom(personEntity: PersonEntity)=dao.insertPersons(personEntity)
- 
+
+    suspend fun insertDataToRoom(personEntity: PersonEntity)=dao.insertPersons(personEntity)
+
 }

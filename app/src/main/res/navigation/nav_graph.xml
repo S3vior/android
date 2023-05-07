@@ -72,6 +72,9 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_matchDetailsFragment"
+            app:destination="@id/matchDetailsFragment" />
 
     </fragment>
     <fragment
@@ -189,6 +192,7 @@
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.fqa.FQAFragment"
         android:label="FQAFragment" />
     <fragment
+
         android:id="@+id/matchedPersonsFragment"
         android:name="com.example.s3vior.ui.fragment.matchedPersons.MatchedPersonsFragment"
         android:label="MatchedPersonsFragment" />
