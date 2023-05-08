@@ -1,7 +1,7 @@
 package com.example.s3vior.networking
 
 import com.example.s3vior.data.source.remote.endPoints.MafqoudApiService
-import com.example.s3vior.networking.api.UserApi
+import com.example.s3vior.data.source.remote.endPoints.UserApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

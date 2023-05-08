@@ -19,14 +19,18 @@ class MafqoudRepositoryImpl @Inject constructor(
 //        return getPersonsResult.body()!!.map {
 //            it.toMafqoudModel()
 //        }
-                return if (getPersonsResult.isSuccessful &&getPersonsResult.body() != null && getPersonsResult.code() == 200) {
+        return if (getPersonsResult.isSuccessful && getPersonsResult.body() != null && getPersonsResult.code() == 200) {
 
             getPersonsResult.body()!!.map {
                 it.toMafqoudModel()
             }
         } else {
             getPersonsResult.errorBody()!!.string()
-            throw Exception(JSONObject(getPersonsResult.errorBody()!!.string()).getString("message"))
+            throw Exception(
+                JSONObject(
+                    getPersonsResult.errorBody()!!.string()
+                ).getString("message")
+            )
         }
     }
 
@@ -71,12 +75,12 @@ class MafqoudRepositoryImpl @Inject constructor(
 
     override suspend fun searchPerson(searchWord: String): List<MafqoudModel> {
         val getSearchResult = mafqoudRemoteDataSource.searchForMafqoud(searchWord)
-        return if ( getSearchResult.isSuccessful && getSearchResult.body() != null &&getSearchResult.code() == 200) {
-            getSearchResult.body()!!.map {mafqoudSearch ->
+        return if (getSearchResult.isSuccessful && getSearchResult.body() != null && getSearchResult.code() == 200) {
+            getSearchResult.body()!!.map { mafqoudSearch ->
                 mafqoudSearch.toMafqoudModel()
             }
         } else {
-              emptyList()
+            emptyList()
         }
 
 

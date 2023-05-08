@@ -3,7 +3,7 @@ package com.example.s3vior.data.modules
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.s3vior.data.source.remote.endPoints.MafqoudApiService
-import com.example.s3vior.networking.api.UserApi
+import com.example.s3vior.data.source.remote.endPoints.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
