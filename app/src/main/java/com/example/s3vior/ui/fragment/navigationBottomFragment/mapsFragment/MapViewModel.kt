@@ -17,13 +17,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PersonViewModel @Inject constructor(
+class MapViewModel @Inject constructor(
     private val getAllPersonsUseCase: GetAllPersonsUseCase,
-    private val searchPersonUseCase: SearchPersonUseCase,
- 
-    private val dbRepository: DatabaseRepo
+
     ) : ViewModel() {
- 
+
 
     private val _personsStateFlow =
         MutableStateFlow<State<List<MafqoudModel>>>(State.Loading)
@@ -33,23 +31,7 @@ class PersonViewModel @Inject constructor(
 
     init {
         getAllPersons()
-        setdata()
     }
-
- 
-     private fun setdata() {
-        viewModelScope.launch {
-            dbRepository.insertDataToRoom(
-                PersonEntity(
-                    image = null,
-                    name = "khater",
-                    age = 627,
-                    gender = "Sigifredo",
-                    description = null,
-                    type = null
-                )
-            )
-        }}
 
 
     @SuppressLint("SuspiciousIndentation")
@@ -67,17 +49,6 @@ class PersonViewModel @Inject constructor(
 
     }
 
-    fun searchFoePerson(name: String) {
-        try {
-            viewModelScope.launch {
-                searchPersonUseCase.invoke(name).collect {
-                    _personsStateFlow.value = it
-                }
-            }
-        } catch (e: Exception) {
-            _personsStateFlow.value = State.Error(e.message.toString())
-        }
 
-    }
 }
 

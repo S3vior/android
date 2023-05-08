@@ -1,7 +1,7 @@
 package com.example.s3vior.domain.usecases
 
-import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.model.State
+import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.repositories.MafqoudRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
