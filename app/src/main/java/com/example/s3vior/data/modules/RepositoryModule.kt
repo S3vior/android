@@ -2,10 +2,12 @@ package com.example.s3vior.data.modules
 
 import com.example.s3vior.data.repositories.MafqoudRepositoryImpl
 import com.example.s3vior.data.repositories.RoomRepositoryImpl
+import com.example.s3vior.data.repositories.UserRepositoryImpl
 import com.example.s3vior.data.source.local.MafqoudDao
 import com.example.s3vior.data.source.local.MafqoudDatabase
 import com.example.s3vior.domain.repositories.MafqoudRepository
 import com.example.s3vior.domain.repositories.RoomRepository
+import com.example.s3vior.domain.repositories.UserRepository
 import com.example.s3vior.domain.usecases.RoomGetPersonsUseCase
 import com.example.s3vior.domain.usecases.RoomInsertPersonUseCase
 import com.example.s3vior.domain.usecases.RoomUseCases
@@ -25,6 +27,14 @@ class RepositoryModule {
     fun provideMafqoudRepository(mafqoudRepositoryImpl: MafqoudRepositoryImpl): MafqoudRepository {
         return mafqoudRepositoryImpl
     }
+
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository {
+        return userRepositoryImpl
+    }
+
 
     @Singleton
     @Provides
