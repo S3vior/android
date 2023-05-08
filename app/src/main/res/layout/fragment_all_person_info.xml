@@ -11,129 +11,362 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/person_photo"
+        <TextView
+            android:id="@+id/text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:text="معلومات عن الشخض"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="اذا عثرت علي هذا الشخص اضغط علي الزار في اسفل الشاشة لكي نأخذ منك البيانات"
+            android:textSize="@dimen/_8ssp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/text_tv"
+            app:layout_constraintTop_toBottomOf="@+id/text_tv" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
-            android:src="@drawable/testimage"
-            android:scaleType="centerCrop"
-            android:layout_alignParentStart="true"
-            android:transitionName="photoTransition"
-            android:layout_centerVertical="true"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_tv2"
+            app:cardElevation="1dp"
+            tools:layout_editor_absoluteY="228dp">
 
-        <TextView
-            android:id="@+id/person_name"
-            android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_publisher1_name">
+
+                    <ImageView
+                        android:id="@+id/publisher1_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="241dp"
+                        android:background="@drawable/corner_shape"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/person_image_orange"
+                        tools:layout_editor_absoluteX="-7dp" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tv_publisher1_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="اسم الناشر"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_publish_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:text="2023/4/8"
+                    android:textSize="@dimen/_7ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="اسم المفقود :"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView5"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView5" />
+
+                <TextView
+                    android:id="@+id/mafqoud1_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="5dp"
+                    android:text="اسلام احمد"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/text_1"
+                    app:layout_constraintTop_toTopOf="@+id/text_1" />
+
+                <TextView
+                    android:id="@+id/text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="تاريخ الفقد :"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView5"
+                    app:layout_constraintTop_toBottomOf="@+id/text_1" />
+
+                <TextView
+                    android:id="@+id/mafqoud1_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="5dp"
+                    android:text="2023/4/8"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/text_2"
+                    app:layout_constraintTop_toTopOf="@+id/text_2" />
+
+                <TextView
+                    android:id="@+id/text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="موقع الفقد :"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView5"
+                    app:layout_constraintTop_toBottomOf="@+id/text_2" />
+
+                <TextView
+                    android:id="@+id/mafqoud1_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="5dp"
+                    android:text="شبرا-قاهرة"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/text_3"
+                    app:layout_constraintTop_toTopOf="@+id/text_3" />
+
+                <TextView
+                    android:id="@+id/text_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="الوصف :"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView5"
+                    app:layout_constraintTop_toBottomOf="@+id/text_3" />
+
+                <TextView
+                    android:id="@+id/mafqoud1_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:lines="2"
+                    android:text="شاب طويل ونحيف قليلا يرتدي قميص ابيض اخر
+مكان له شارع فيصل  "
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/text_4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btn_finded"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/person_photo"
-            android:text="John Doe"
-            android:textSize="18sp"
-            android:layout_marginEnd="@dimen/_30sdp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/textView32"
-            app:layout_constraintTop_toTopOf="@+id/textView32" />
-
-        <TextView
-            android:id="@+id/person_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/person_name"
-            android:layout_toEndOf="@id/person_photo"
-            android:text=" العنوان"
-            android:textSize="18sp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textStyle="bold"
-             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/person_name" />
-
-        <TextView
-            android:id="@+id/date_of_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/person_location"
-            android:layout_toEndOf="@id/person_photo"
-            android:text="التاريخ"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_10sdp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/person_location" />
-
-        <TextView
-
-            android:id="@+id/textView32"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_toEndOf="@id/person_photo"
-            android:text="الاسم:"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/person_photo" />
-
-        <TextView
-            android:id="@+id/textView35"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/person_name"
-            android:layout_toEndOf="@id/person_photo"
-            android:text="New York, USA"
-            android:textSize="18sp"
-            android:layout_marginTop="@dimen/_10sdp"
-
-            app:layout_constraintEnd_toEndOf="@+id/person_name"
-            app:layout_constraintTop_toBottomOf="@id/person_name" />
-
-        <TextView
-            android:id="@+id/textView36"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/person_location"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_toEndOf="@id/person_photo"
-            android:text="February 13, 2023"
-
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView35"
-            app:layout_constraintTop_toBottomOf="@id/person_location" />
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:background="@color/black"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/back_ground_buttons"
+            android:enabled="true"
+            android:text="عثرت عليه ؟"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView36" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
-        <TextView
-            android:id="@+id/textView37"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_back_to_home"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="المواصفات"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="@+id/date_of_day"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-        <TextView
-            android:id="@+id/textView38"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="هنا توجد مواصفات المفقود"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/back_ground_buttons"
+            android:enabled="true"
+            android:text="عودة"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView37" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_finded" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+
+<!--<ImageView-->
+<!--android:id="@+id/person_photo"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="@dimen/_200sdp"-->
+<!--android:src="@drawable/testimage"-->
+<!--android:scaleType="centerCrop"-->
+<!--android:layout_alignParentStart="true"-->
+<!--android:transitionName="photoTransition"-->
+<!--android:layout_centerVertical="true"-->
+<!--app:layout_constraintTop_toTopOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--    />-->
+
+<!--<TextView-->
+<!--android:id="@+id/person_name"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_toEndOf="@id/person_photo"-->
+<!--android:text="John Doe"-->
+<!--android:textSize="18sp"-->
+<!--android:layout_marginEnd="@dimen/_30sdp"-->
+<!--android:textStyle="bold"-->
+<!--app:layout_constraintEnd_toStartOf="@+id/textView32"-->
+<!--app:layout_constraintTop_toTopOf="@+id/textView32" />-->
+
+<!--<TextView-->
+<!--android:id="@+id/person_location"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@id/person_name"-->
+<!--android:layout_toEndOf="@id/person_photo"-->
+<!--android:text=" العنوان"-->
+<!--android:textSize="18sp"-->
+<!--android:layout_marginTop="@dimen/_10sdp"-->
+<!--android:textStyle="bold"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@id/person_name" />-->
+
+<!--<TextView-->
+<!--android:id="@+id/date_of_day"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@id/person_location"-->
+<!--android:layout_toEndOf="@id/person_photo"-->
+<!--android:text="التاريخ"-->
+<!--android:textSize="18sp"-->
+<!--android:textStyle="bold"-->
+<!--android:layout_marginTop="@dimen/_10sdp"-->
+
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@id/person_location" />-->
+
+<!--<TextView-->
+
+<!--android:id="@+id/textView32"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginTop="16dp"-->
+<!--android:layout_toEndOf="@id/person_photo"-->
+<!--android:text="الاسم:"-->
+<!--android:textSize="18sp"-->
+<!--android:textStyle="bold"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@id/person_photo" />-->
+
+<!--<TextView-->
+<!--android:id="@+id/textView35"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@id/person_name"-->
+<!--android:layout_toEndOf="@id/person_photo"-->
+<!--android:text="New York, USA"-->
+<!--android:textSize="18sp"-->
+<!--android:layout_marginTop="@dimen/_10sdp"-->
+
+<!--app:layout_constraintEnd_toEndOf="@+id/person_name"-->
+<!--app:layout_constraintTop_toBottomOf="@id/person_name" />-->
+
+<!--<TextView-->
+<!--android:id="@+id/textView36"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@id/person_location"-->
+<!--android:layout_marginTop="@dimen/_10sdp"-->
+<!--android:layout_toEndOf="@id/person_photo"-->
+<!--android:text="February 13, 2023"-->
+
+<!--android:textSize="18sp"-->
+<!--app:layout_constraintEnd_toEndOf="@+id/textView35"-->
+<!--app:layout_constraintTop_toBottomOf="@id/person_location" />-->
+
+<!--<View-->
+<!--android:id="@+id/view3"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="1dp"-->
+<!--android:layout_marginHorizontal="@dimen/_20sdp"-->
+<!--android:background="@color/black"-->
+<!--android:layout_marginTop="@dimen/_20sdp"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@+id/textView36" />-->
+
+<!--<TextView-->
+<!--android:id="@+id/textView37"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:text="المواصفات"-->
+<!--android:textSize="18sp"-->
+<!--android:textStyle="bold"-->
+<!--android:layout_marginTop="@dimen/_10sdp"-->
+<!--app:layout_constraintEnd_toEndOf="@+id/date_of_day"-->
+<!--app:layout_constraintTop_toBottomOf="@+id/view3" />-->
+
+<!--<TextView-->
+<!--android:id="@+id/textView38"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="0dp"-->
+<!--android:text="هنا توجد مواصفات المفقود"-->
+<!--app:layout_constraintBottom_toBottomOf="parent"-->
+<!--android:gravity="center"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@+id/textView37" />-->

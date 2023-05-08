@@ -1,5 +1,6 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -30,10 +31,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         binding.edSearch.setOnEditorActionListener { text, actionId, _ ->
             if (actionId != EditorInfo.IME_NULL) {
-                if (text.text.toString()  == ""){
+                if (text.text.toString() == "") {
                     personViewModel.getAllPersons()
-                }
-                else{
+                } else {
                     personViewModel.searchFoePerson(text.text.toString())
                 }
                 val imm =
@@ -44,14 +44,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun recyclerAdapter() {
-
-        val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = HomeItemAdapter(mutableListOf(), this)
-
-    }
-
     override fun callFunctions() {
         initViewModel()
         recyclerAdapter()
@@ -59,9 +51,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun <T> onClickItem(view: T) {
-
         view as MafqoudModel
         findNavController().navigate(R.id.action_homeFragment_to_allPersonInfo)
+    }
+
+    private fun recyclerAdapter() {
+
+        val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = HomeItemAdapter(mutableListOf(), this)
+
     }
 
 
