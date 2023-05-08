@@ -1,7 +1,6 @@
 package com.example.s3vior.domain.repositories
 
 import com.example.s3vior.domain.model.MafqoudModel
-import com.example.s3vior.domain.model.State
 
 interface MafqoudRepository {
 

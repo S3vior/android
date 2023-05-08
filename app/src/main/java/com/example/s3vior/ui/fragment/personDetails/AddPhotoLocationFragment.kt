@@ -97,6 +97,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
                 val latitude = lastLocation?.latitude
                 val longitude = lastLocation?.longitude
                 Toast.makeText(requireContext(), longitude.toString()+" lat "+latitude.toString(), Toast.LENGTH_SHORT).show()
+                Log.e("TAG","lat :$latitude  long : $longitude")
             }
         }
         if (hasLocationPermission()) {
@@ -159,6 +160,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
 
      private fun openGalleryForPhotoPicker() {
          openGalleryForImage()
+
 //         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
 //               pickSingleMediaLauncher.launch(
 //                Intent(MediaStore.ACTION_PICK_IMAGES)

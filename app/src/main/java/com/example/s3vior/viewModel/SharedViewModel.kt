@@ -1,5 +1,6 @@
 package com.example.s3vior.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -39,7 +40,7 @@ class SharedViewModel @Inject constructor(
 
     fun getDataFromGalleryFragment(newDetails: ThirdDetails) {
         _thirdDetails.value?.imageUri = newDetails.imageUri
-    }
+        Log.e("TAG",newDetails.imageUri.toString())    }
 
     fun getDataFromNameFragment(newDetails: FirstDetails) {
         val result = useCase(newDetails.name)
