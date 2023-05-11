@@ -46,8 +46,7 @@ class ChangePasswordFragment :
             ) {
                 lifecycleScope.launch {
                     val a = changePasswordViewModel.changePasswordUseCase.invoke(
-                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MzU1NDc4MiwianRpIjoiYTc5ZDEyMjItYzEzYi00NmRmLWFmOWMtODViZGVkY2FjMzZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NSwibmJmIjoxNjgzNTU0NzgyLCJleHAiOjE2ODM1NzI3ODJ9.PkY-ItQK3TMr4YhSmiBVJPQVvsBBMK8xGyAWz1p5zU4",
-                        binding.oldpassword.text.toString(),
+"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MzU1NDEwMSwianRpIjoiNzE2Mzc4MjAtYzM2MC00OTlhLTg4YzktNDAxZGVlZjRlMGEwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjgzNTU0MTAxLCJleHAiOjE2ODM1NzIxMDF9.fCq392PlTGXPTLPFyAfrrHsQOvqaHkZzs_MmYTucnUc",                        binding.oldpassword.text.toString(),
                         binding.newpassword.text.toString(),
                         binding.confirmnewpassword.text.toString()
                     )

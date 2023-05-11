@@ -13,6 +13,8 @@ interface MafqoudRepository {
         gender: String,
         type: String,
         description: String,
+        latitude :String,
+        longitude:String,
         imageAsByte: ByteArray,
         extension: String
     ): String

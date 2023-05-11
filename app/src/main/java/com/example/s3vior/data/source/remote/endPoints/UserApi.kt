@@ -3,12 +3,15 @@ package com.example.s3vior.data.source.remote.endPoints
 import com.example.s3vior.domain.model.Profile
 import com.example.s3vior.domain.model.User
 import com.example.s3vior.networking.api.BaseApiResponse
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface UserApi {
@@ -22,11 +25,12 @@ interface UserApi {
     fun userProfile(@Header("TOKEN") token: String): Call<Profile>
 
     @POST("change_password")
-   suspend fun changeUserPassword(
+    @Multipart
+     suspend fun changeUserPassword(
         @Header("token") token: String,
-        @Query("old_password") oldPassword: String,
-        @Query("new_password") newPassword: String,
-        @Query("confirm_password") confirmPassword: String,
+        @Part("old_password") oldPassword: RequestBody,
+        @Part("new_password") newPassword: RequestBody,
+        @Part("confirm_password") confirmPassword: RequestBody,
     ): Response<String>
 
 }

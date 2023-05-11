@@ -24,9 +24,21 @@ class MafqoudRemoteDataSource @Inject constructor(private var mafqoudApiService:
         gender: RequestBody,
         type: RequestBody,
         description: RequestBody,
+        latitude: RequestBody,
+        longitude: RequestBody,
         imageMultiPart: MultipartBody.Part
     ) = withContext(Dispatchers.IO) {
-        mafqoudApiService.upLoadPerson(token, name, age, gender, type, description, imageMultiPart)
+        mafqoudApiService.upLoadPerson(
+           token =  token,
+            name = name,
+            age = age,
+            gender = gender,
+            type = type,
+            description = description,
+            latitude = latitude,
+            longitude = longitude,
+            image = imageMultiPart
+        )
     }
 
     suspend fun searchForMafqoud(keyWord: String) = withContext(Dispatchers.IO) {

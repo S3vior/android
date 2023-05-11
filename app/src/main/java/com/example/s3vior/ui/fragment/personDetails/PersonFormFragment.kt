@@ -1,19 +1,16 @@
 package com.example.s3vior.ui.fragment.personDetails
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.s3vior.databinding.FragmentPersonFormBinding
-import com.example.s3vior.networking.API
 import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.viewModel.SharedViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.toRequestBody
+import kotlinx.coroutines.withContext
 
 
 class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
@@ -22,7 +19,7 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
 
-    lateinit var status: String
+    private lateinit var status: String
 
     @SuppressLint("UseRequireInsteadOfGet", "SetTextI18n")
 
@@ -37,6 +34,7 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
 
         sharedViewModel.mafqoudStatus.observe(viewLifecycleOwner) {
             status = it
+            Log.d("STATUS", it)
         }
 
         sharedViewModel.secondDetails.observe(viewLifecycleOwner) {
@@ -58,52 +56,24 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
         try {
             val imageUri = sharedViewModel.thirdDetails.value?.imageUri
 
-            val imageAsByte = context?.contentResolver?.openInputStream(imageUri!!)?.buffered()
-                ?.use { it.readBytes() }
-            val imageType = context?.contentResolver?.getType(imageUri!!)
-            val extension = imageType!!.substring(imageType.indexOf("/") + 1)
-
             lifecycleScope.launch(Dispatchers.IO) {
-                sharedViewModel.uploadPersonUseCase(
-                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MjkzNDUxNSwianRpIjoiZjFiOTcwNDgtZTNlMy00NzhhLThlNjYtNTFkMjA2NGE5YjgwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjgyOTM0NTE1LCJleHAiOjE2ODI5NTI1MTV9.cC_Cop872cwxCrBnllDXJhG9V2NuwpB9uEUwt33rVsc",
+
+                val result = sharedViewModel.uploadPersonUseCase.invoke(
+                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MzY0NjE2NSwianRpIjoiMDk0ODI0YzctMjdlZi00ODUwLWJkN2EtNzIwMGZiOTZlZjBmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NSwibmJmIjoxNjgzNjQ2MTY1LCJleHAiOjE2ODM2NjQxNjV9.l8wnvyhkr2Z_qEdRxHRYey3cnIFHu3OvkdADtY39S9g",
                     name = binding.personName.text.toString(),
-                    age = binding.personAge.text.toString().toInt() ,
+                    age = binding.personAge.text.toString().toInt(),
                     gender = binding.personGender.text.toString(),
                     description = binding.personDescription.text.toString(),
-                    type = binding.personGender.text.toString(),
+                    type = status,
+                    latitude = "30.4666648",
+                    longitude = "31.1833326",
                     imageUri = imageUri!!
                 )
-//                val uploadImageResult = API.apiService.upLoadPerson(
-//
-//                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4Mjg2MjIwMywianRpIjoiYTMxNTNhNDItNDVmMS00ZTdlLTlhYjUtYTQ2MjZhMGEyOWY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjgyODYyMjAzLCJleHAiOjE2ODI4ODAyMDN9.Zetpd0krB14G-NE82lMZ_NLf5BCMvhjypENyTV7yMKM",
-//                    name = binding.personName.text.toString()
-//                        .toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-//                    age = binding.personAge.text.toString()
-//                        .toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-//                    gender = binding.personGender.text.toString()
-//                        .toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-//                    description = binding.personDescription.text.toString()
-//                        .toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-//                    type = binding.personGender.text.toString()
-//                        .toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-//                    image = MultipartBody.Part.createFormData(
-//                        "image",
-//                        "image.$extension",
-//                        imageAsByte!!.toRequestBody("*/*".toMediaType())
-//                    )
-//
-//                )
-//                if (uploadImageResult.isSuccessful) {
-//                    lifecycleScope.launch(Dispatchers.Main) {
-//
-//                        Toast.makeText(
-//                            context,
-//                            uploadImageResult.body()!!.message,
-//                            Toast.LENGTH_LONG
-//                        ).show()
-//
-                //                 }
-                //             }
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                }
+
             }
 
         } catch (e: Exception) {
@@ -121,28 +91,5 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
         }
     }
 
-//    image = "${resultData?.get("secure_url")}",
-//    name = binding.personName.text.toString(),
-//    age = binding.personAge.text.toString().toInt(),
-//    gender = binding.personGender.text.toString(),
-//    description = binding.personDescription.text.toString(),
-//    type = binding.personGender.text.toString(),
-
-
-//    private fun uploadFile(file: File) {
-//        lifecycleScope.launch {
-//            try {
-//                val requestBody = RequestBody.create(MediaType.parse("image/*"), file)
-//                val filePart = MultipartBody.Part.createFormData(
-//                    "image",
-//                    "test.jpg",
-//                    requestBody
-//                )
-//            } catch (e: Exception) {
-//                println("!!! Handle Exception $e")
-//            }
-//
-//        }
-//    }
 
 }

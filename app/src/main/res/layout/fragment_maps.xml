@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.MapViewModel" />
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.mapsFragment.MapViewModel" />
     </data>
 
     <androidx.fragment.app.FragmentContainerView

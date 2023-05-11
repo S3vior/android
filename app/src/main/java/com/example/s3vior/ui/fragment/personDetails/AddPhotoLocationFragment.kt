@@ -2,6 +2,7 @@ package com.example.s3vior.ui.fragment.personDetails
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -15,8 +16,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.s3vior.R
@@ -31,6 +34,9 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
@@ -46,10 +52,11 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
                     Toast.makeText(context, "Failed picking media.", Toast.LENGTH_SHORT).show()
                 } else {
                     uri = it.data?.data!!
-                    showSnackBar("SUCCESS: ${uri .path}")
+                    showSnackBar("تم اضافة الصورة")
                 }
             }
     }
+
     companion object {
         private val PERMISSIONS_REQUEST_CODE = 123
     }
@@ -63,6 +70,8 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     private lateinit var uri: Uri
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun callFunctions() {
         initButtons()
         callBack()
@@ -96,8 +105,12 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
                 val lastLocation = p0.lastLocation
                 val latitude = lastLocation?.latitude
                 val longitude = lastLocation?.longitude
-                Toast.makeText(requireContext(), longitude.toString()+" lat "+latitude.toString(), Toast.LENGTH_SHORT).show()
-                Log.e("TAG","lat :$latitude  long : $longitude")
+                Toast.makeText(
+                    requireContext(),
+                    longitude.toString() + " lat " + latitude.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e("TAG", "lat :$latitude  long : $longitude")
             }
         }
         if (hasLocationPermission()) {
@@ -127,6 +140,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun initButtons() {
         binding.photoFromGallery.setOnClickListener { galleryIntent() }
         binding.photoFromCamera.setOnClickListener { cameraIntent() }
@@ -146,32 +160,34 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
                     .navigate(R.id.action_addPhotoLocationFragment_to_personFormFragment)
 
             } catch (e: Exception) {
-                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                showSnackBar("من فضلك اضف صورة للمفقود")
             }
 
 
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun galleryIntent() {
-       // openGalleryForImage()
+        // openGalleryForImage()
         openGalleryForPhotoPicker()
     }
 
-     private fun openGalleryForPhotoPicker() {
-         openGalleryForImage()
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun openGalleryForPhotoPicker() {
+        //  openGalleryForImage()
 
-//         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
-//               pickSingleMediaLauncher.launch(
-//                Intent(MediaStore.ACTION_PICK_IMAGES)
-//                    .apply {
-//                        type = "image/*"
-//                    }
-//            )
-//            }else{
-//                openGalleryForImage()
-//                showSnackBar("Failed to pick image from")
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            pickSingleMediaLauncher.launch(
+                Intent(MediaStore.ACTION_PICK_IMAGES)
+                    .apply {
+                        type = "image/*"
+                    }
+            )
+        } else {
+            openGalleryForImage()
+            showSnackBar("Failed to pick image from")
+        }
     }
 
 
@@ -191,45 +207,63 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
 
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_GALLERY && data != null) {
 
+            try {
 
-           uri = data.data!!
-
-
-            data.data?.let { _uri ->
-                context?.contentResolver?.query(_uri, null, null, null, null)?.use {
-                    if (it.moveToFirst()) {
-                        val picturePath = it.getString(it.getColumnIndex(MediaStore.MediaColumns.DATA))
-                     //  uri = Uri.parse(picturePath)
-
-
-
-              //          Toast.makeText(context,"$uri",Toast.LENGTH_SHORT).show()
-
-                        // uploadToCloudinary(picturePath)
-                        Log.d("ajbcjabv", "onActivityResult: $uri ")
-                    }
-                }
+                uri = data.data!!
+            } catch (e: Exception) {
+                Log.e("GalleryERROR", e.message.toString())
             }
+
 
         }
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_CAMERA && data != null) {
-            val bitMab = data.extras?.get("data") as Bitmap
+            try {
+                val bitMap = data.extras?.get("data") as Bitmap
+                val file: File? = bitmapToFile(requireContext(), bitMap)
+                val uriFromBitmap = FileProvider.getUriForFile(
+                    requireContext(),
+                    this.activity?.packageName + ".provider",
+                    file!!
+                )
+                uri = uriFromBitmap
+
+
+            } catch (e: Exception) {
+
+                Log.e("CameraERROR", e.message.toString())
+
+            }
 
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
+    private fun bitmapToFile(context: Context, bitmap: Bitmap): File? {
+        val file = File(context.getExternalFilesDir(null), "photo.jpg")
+        return try {
+            val outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+            file
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
 
     private fun showSnackBar(message: String) {
         val snackBar = Snackbar.make(
             requireActivity().findViewById(android.R.id.content),
             message,
             Snackbar.LENGTH_LONG,
-        )
+
+            )
         // Set the max lines of SnackBar
         snackBar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).maxLines =
             10
+
         snackBar.show()
     }
 }

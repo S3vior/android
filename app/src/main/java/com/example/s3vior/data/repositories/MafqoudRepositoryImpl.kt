@@ -1,5 +1,6 @@
 package com.example.s3vior.data.repositories
 
+import android.util.Log
 import com.example.s3vior.data.source.remote.dataSource.MafqoudRemoteDataSource
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.repositories.MafqoudRepository
@@ -41,37 +42,38 @@ class MafqoudRepositoryImpl @Inject constructor(
         gender: String,
         type: String,
         description: String,
+        latitude:String,
+        longitude:String,
         imageAsByte: ByteArray, extension: String
     ): String {
         val uploadPersonResult =
             mafqoudRemoteDataSource.uploadMafqoud(
                 token,
-                name.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-                age.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-                gender.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-                type.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-                description.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+                name .toRequestBody("text/plain".toMediaTypeOrNull())  ,
+                age.toString().toRequestBody("text/plain".toMediaTypeOrNull()),
+                gender .toRequestBody("text/plain".toMediaTypeOrNull()),
+                type .toRequestBody("text/plain".toMediaTypeOrNull()),
+                description .toRequestBody("text/plain".toMediaTypeOrNull()),
+                latitude.toRequestBody("text/plain".toMediaTypeOrNull()),
+                longitude.toRequestBody("text/plain".toMediaTypeOrNull()),
                 MultipartBody.Part.createFormData(
                     "image",
                     "image.$extension",
                     imageAsByte.toRequestBody("*/*".toMediaType())
                 )
             )
-        return if (uploadPersonResult.isSuccessful && uploadPersonResult.body()?.data != null && uploadPersonResult.code() == 200) {
-//            Log.d("POSTResponse", "if" + uploadPersonResult.body()?.data.toString())
-//            Log.d("POSTResponse", "if" + uploadPersonResult.body().toString())
-            uploadPersonResult.body()?.data.toString()
+
+        return if (uploadPersonResult.isSuccessful ) {
+             Log.d("POSTResponse", "if" + uploadPersonResult.body().toString())
+             Log.d("POSTResponse", "if" + uploadPersonResult.body().toString())
+            "Person uploaded"
         } else {
-//            Log.d("POSTResponse", uploadPersonResult.body()?.data.toString())
-//            Log.d("POSTResponse", uploadPersonResult.body().toString())
-
-            uploadPersonResult.body()!!.message
-//            val errorBody = JSONObject(uploadPersonResult.errorBody()!!.string())
-//            throw Exception(errorBody.getString("message"))
+            "Person not uploaded"
         }
-
-
     }
+
+
+
 
     override suspend fun searchPerson(searchWord: String): List<MafqoudModel> {
         val getSearchResult = mafqoudRemoteDataSource.searchForMafqoud(searchWord)
