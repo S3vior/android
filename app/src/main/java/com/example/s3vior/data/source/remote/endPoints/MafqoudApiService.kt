@@ -3,6 +3,7 @@ package com.example.s3vior.data.source.remote.endPoints
 import com.example.s3vior.data.source.remote.responseModels.MafqoudResponseModel
 import com.example.s3vior.networking.api.BaseApiResponse
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person
+import com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.model.MatchedPersonsResponseModelItem
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -34,6 +35,11 @@ interface MafqoudApiService {
         @Part("longitude") longitude:RequestBody,
         @Part image: MultipartBody.Part
     ):  Response<ResponseBody>
+
+
+    @GET("matches")
+   suspend fun getMatchedPersons(): Response<List<MatchedPersonsResponseModelItem>>
+
 
 }
 

@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.s3vior.ui.fragment.matchedPersons.model.MatchedPersonsResponseModelItem" />
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.model.MatchedPersonsResponseModelItem" />
 
         <variable
             name="listener"
@@ -21,8 +21,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_8sdp"
             android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
             android:backgroundTint="@color/white"
             app:cardCornerRadius="@dimen/_13sdp"
             app:cardElevation="@dimen/_4sdp"
@@ -39,11 +39,11 @@
                     android:id="@+id/photo1"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
-                    app:imageUrl="@{item.found_person.image}"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:src="@drawable/testimage"
+                    app:imageUrl="@{item.found_person.image}"
                     app:layout_constraintEnd_toStartOf="@id/match_icon"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -56,8 +56,8 @@
                     android:gravity="center"
                     android:paddingTop="8dp"
                     android:text="@{item.found_person.name}"
-                    android:textSize="12sp"
                     android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="@id/photo1"
                     app:layout_constraintStart_toStartOf="@id/photo1"
                     app:layout_constraintTop_toBottomOf="@id/photo1" />
@@ -66,6 +66,7 @@
                     android:id="@+id/match_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/matchedicon"
                     android:src="@drawable/matches_icon"
                     app:layout_constraintBottom_toBottomOf="@id/photo1"
                     app:layout_constraintEnd_toStartOf="@id/photo2"
@@ -77,11 +78,11 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_marginStart="8dp"
-                    android:scaleType="centerCrop"
                     android:layout_marginTop="@dimen/_5sdp"
-                    app:imageUrl="@{item.missed_person.image}"
-
+                    android:scaleType="centerCrop"
                     android:src="@drawable/testimage"
+
+                    app:imageUrl="@{item.missed_person.image}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/match_icon"
                     app:layout_constraintTop_toTopOf="parent"
@@ -94,8 +95,8 @@
                     android:gravity="center"
                     android:paddingTop="8dp"
                     android:text="@{item.missed_person.name}"
-                    android:textSize="12sp"
                     android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="@id/photo2"
                     app:layout_constraintStart_toStartOf="@id/photo2"
                     app:layout_constraintTop_toBottomOf="@id/photo2" />
@@ -104,9 +105,9 @@
                     android:id="@+id/match_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/_10sdp"
                     android:paddingStart="@dimen/_10sdp"
-                    android:text="Matched on May 7, 2023 at 3:14 PM"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:text="@{item.missed_person.created_at}"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

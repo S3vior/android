@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.s3vior.data.source.remote.dataSource.MafqoudRemoteDataSource
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.repositories.MafqoudRepository
+import com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.model.MatchedPersonsResponseModelItem
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -30,6 +31,20 @@ class MafqoudRepositoryImpl @Inject constructor(
             throw Exception(
                 JSONObject(
                     getPersonsResult.errorBody()!!.string()
+                ).getString("message")
+            )
+        }
+    }
+
+    override suspend fun getMatchedPersons(): List<MatchedPersonsResponseModelItem> {
+         val getMatchedPersonsResult = mafqoudRemoteDataSource.getMatchedPersons()
+        return if (getMatchedPersonsResult.isSuccessful&& getMatchedPersonsResult.body() != null && getMatchedPersonsResult.code() == 200){
+            getMatchedPersonsResult.body()!!
+        }else{
+            getMatchedPersonsResult.errorBody()!!.string()
+            throw Exception(
+                JSONObject(
+                    getMatchedPersonsResult.errorBody()!!.string()
                 ).getString("message")
             )
         }

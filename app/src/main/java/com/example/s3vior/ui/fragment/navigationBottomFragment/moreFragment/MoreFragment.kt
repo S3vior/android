@@ -1,8 +1,5 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment
 
-import android.view.View
-import android.widget.Toast
-import androidx.databinding.adapters.ToolbarBindingAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,17 +13,18 @@ class MoreFragment :
     RecyclerViewInteractionListener {
 
     private val settingViewModel: SettingViewModel by activityViewModels()
-    fun initViewModel() {
+    private fun initViewModel() {
         binding.viewModel = settingViewModel
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
-    fun recyclerAdapter() {
+    private fun recyclerAdapter() {
         val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerSetting.layoutManager = layoutManager
 
         binding.recyclerSetting.adapter = SettingItemAdapter(mutableListOf(), this)
     }
+
 
     override fun callFunctions() {
         initViewModel()
@@ -48,11 +46,7 @@ class MoreFragment :
 
             }
 
-            3 -> {
-                Navigation.findNavController(requireView()).navigate(
-                    R.id.action_moreFragment_to_matchedPersonsFragment
-                )
-            }
+            3 -> {}
             4 -> {
                 Navigation.findNavController(requireView())
                     .navigate(R.id.action_moreFragment_to_FQAFragment)

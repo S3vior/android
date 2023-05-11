@@ -192,6 +192,6 @@
     <fragment
 
         android:id="@+id/matchedPersonsFragment"
-        android:name="com.example.s3vior.ui.fragment.matchedPersons.MatchedPersonsFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.MatchedPersonsFragment"
         android:label="MatchedPersonsFragment" />
 </navigation>

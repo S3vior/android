@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.mapsFragment -> showBottomNav()
                 R.id.moreFragment -> showBottomNav()
                 R.id.announcementFragment -> showBottomNav()
+                R.id.matchedPersonsFragment -> showBottomNav()
                 else -> hideBottomNav()
             }
         }

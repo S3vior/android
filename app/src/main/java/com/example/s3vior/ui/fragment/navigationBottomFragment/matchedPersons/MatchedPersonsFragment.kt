@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment.matchedPersons
+package com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,7 +14,9 @@ import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.HomeItemAdapter
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.PersonViewModel
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.RecyclerViewInteractionListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MatchedPersonsFragment :
     BaseFragment<FragmentMatchedPersonsBinding>(FragmentMatchedPersonsBinding::inflate),
     RecyclerViewInteractionListener {
