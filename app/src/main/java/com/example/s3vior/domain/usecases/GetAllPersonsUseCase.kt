@@ -14,7 +14,7 @@ class GetAllPersonsUseCase @Inject constructor(private val mafqoudRepository: Ma
     suspend operator fun invoke(): Flow<State<List<MafqoudModel>>> {
         return flow {
             emit(State.Loading)
-            delay(500)
+
             allPersons = mafqoudRepository.getAllPersons()
             emit(State.Success(allPersons))
         }

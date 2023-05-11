@@ -5,6 +5,7 @@ import com.example.s3vior.networking.api.BaseApiResponse
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -29,8 +30,10 @@ interface MafqoudApiService {
         @Part("gender")   gender: RequestBody,
         @Part("type")   type: RequestBody,
         @Part("description")   description: RequestBody,
+        @Part("latitude") latitude:RequestBody,
+        @Part("longitude") longitude:RequestBody,
         @Part image: MultipartBody.Part
-    ): Response<BaseApiResponse<String>>
+    ):  Response<ResponseBody>
 
 }
 

@@ -5,11 +5,10 @@ import android.net.Uri
 import android.util.Log
 import com.example.s3vior.domain.repositories.MafqoudRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
-import okhttp3.internal.addHeaderLenient
 import javax.inject.Inject
 
 class UploadPersonUseCase @Inject constructor(
-    var mafqoudRepository: MafqoudRepository,
+    private var mafqoudRepository: MafqoudRepository,
     @ApplicationContext var context: Context
 ) {
     suspend operator fun invoke(
@@ -18,24 +17,29 @@ class UploadPersonUseCase @Inject constructor(
         age: Int,
         gender: String,
         type: String,
-        description: String, imageUri: Uri
-    ): String? {
-        var imageAsByte =
+        description: String,
+        latitude:String,
+        longitude:String,
+        imageUri: Uri
+    ): String {
+        val imageAsByte =
             context.contentResolver.openInputStream(imageUri)?.buffered()?.use { it.readBytes() }
 
         val imageType = context.contentResolver.getType(imageUri)
         val extension = imageType!!.substring(imageType.indexOf("/") + 1)
-        var x = mafqoudRepository.uploadPerson(
-            token,
-            name,
-            age,
-            gender,
-            type,
-            description,
-            imageAsByte!!,
-            extension
+        val x = mafqoudRepository.uploadPerson(
+          token =   token,
+            name =name,
+            age = age,
+            gender = gender,
+            type = type,
+            description = description,
+            latitude = latitude,
+            longitude = longitude,
+            imageAsByte = imageAsByte!!,
+            extension = extension
         )
         Log.d("uriImage", imageUri.toString())
-        return x;
+        return x
     }
 }
