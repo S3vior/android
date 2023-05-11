@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment.matchedPersons.model
+package com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.model
 
 data class FoundPerson(
     val age: String,

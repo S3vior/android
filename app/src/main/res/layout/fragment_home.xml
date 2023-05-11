@@ -21,10 +21,10 @@
         <EditText
             android:id="@+id/ed_search"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_marginHorizontal="@dimen/_6sdp"
             android:layout_marginTop="12dp"
-            android:background="@drawable/ed_style"
+            android:background="@drawable/ed_style_search"
             android:drawableStart="@drawable/search"
             android:fontFamily="@font/font_cairo"
             android:hint="@string/ed_search"
@@ -38,7 +38,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
@@ -46,47 +45,53 @@
             android:layout_margin="@dimen/_6sdp"
             android:background="@drawable/ed_style"
             android:layoutAnimation="@anim/layout_animation"
+            android:transitionGroup="true"
             app:items="@{viewModel.personsStateFlow.toData()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:transitionGroup="true"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ed_search"
             app:layout_constraintVertical_bias="1.0"
             app:showWhenSuccess="@{viewModel.personsStateFlow}" />
 
-        <ProgressBar
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/image_error"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="error_robot.json"
+            app:lottie_loop="true"
+            app:showWhenError="@{viewModel.personsStateFlow}" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/progress_loading"
-            style="?android:attr/progressBarStyle"
+            style="@style/SpinKitView.Large.Pulse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:SpinKit_Color="@color/main_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:showWhenLoading="@{viewModel.personsStateFlow}" />
 
-        <ImageView
-            android:id="@+id/image_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:showWhenError="@{viewModel.personsStateFlow}"
-            app:srcCompat="@drawable/baseline_error_24" />
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="@dimen/_60sdp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/back_ground_buttons"
+            android:maxLines="1"
             android:onClick="@{() -> viewModel.getAllPersons()}"
-            android:text="@string/retry"
+            android:text="@string/try_again"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/progress_loading"
             app:layout_constraintStart_toStartOf="@+id/progress_loading"
             app:layout_constraintTop_toBottomOf="@+id/progress_loading"

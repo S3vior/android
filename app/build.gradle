@@ -127,7 +127,8 @@ dependencies {
      // define a BOM and its version
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
 
-
+    //progress bar
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
 }
 kapt {

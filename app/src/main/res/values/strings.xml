@@ -26,7 +26,7 @@
     <string name="announcement" translatable="false">announcement</string>
     <string name="map" translatable="false">map\n</string>
     <string name="more" translatable="false">more</string>
-    <string name="ed_search" translatable="false">    Search</string>
+    <string name="ed_search" translatable="false">     Search</string>
     <string name="mafqoud_name" translatable="false">mafqoud_name</string>
     <string name="mafqoud_location" translatable="false">mafqoud_location</string>
     <string name="state" translatable="false">state</string>
@@ -72,6 +72,9 @@
     <string name="notification">الاشعارات</string>
     <string name="change_notification_icon">Change notifcation icon</string>
     <string name="first_person">الشخص الاول</string>
+    <string name="matched_persons">متشابهون</string>
+    <string name="matchedicon">matchedIcon</string>
+    <string name="try_again">اعادة المحاولة</string>
     <string-array name="countryCodes">
         <item>93,AF</item>
         <item>355,AL</item>

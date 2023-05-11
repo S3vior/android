@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import java.security.DigestOutputStream
 import javax.inject.Inject
 
 class MafqoudRemoteDataSource @Inject constructor(private var mafqoudApiService: MafqoudApiService) {
@@ -43,6 +44,9 @@ class MafqoudRemoteDataSource @Inject constructor(private var mafqoudApiService:
 
     suspend fun searchForMafqoud(keyWord: String) = withContext(Dispatchers.IO) {
         mafqoudApiService.searchForPerson(keyWord)
+    }
+    suspend fun getMatchedPersons() = withContext(Dispatchers.IO){
+        mafqoudApiService.getMatchedPersons()
     }
 
 }

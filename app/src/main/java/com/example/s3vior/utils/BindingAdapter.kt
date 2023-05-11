@@ -1,8 +1,10 @@
 package com.example.s3vior.utils
 
 import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.example.s3vior.R
 import com.example.s3vior.domain.model.State
@@ -27,6 +29,16 @@ fun <T> showWhenError(view: View, state: State<T>?) {
     }
 }
 
+
+
+@BindingAdapter(value = ["app:hideLottieOnError"])
+fun  <T> hideLottieOnError(lottieAnimationView: LottieAnimationView, state: State<T>?) {
+    if (state is State.Error) {
+        lottieAnimationView.visibility = View.GONE
+    } else {
+        lottieAnimationView.visibility = View.VISIBLE
+    }
+}
 @BindingAdapter(value = ["app:showWhenSuccess"])
 fun <T> showWhenSuccess(view: View, state: State<T>?) {
     if (state is State.Success) {

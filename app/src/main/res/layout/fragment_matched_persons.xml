@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.s3vior.ui.fragment.matchedPersons.MatchedPersonsViewModel" />
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.MatchedPersonsViewModel" />
 
     </data>
 
