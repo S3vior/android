@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.s3vior.domain.model.Location
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.domain.usecases.GetAllMapsUseCase
@@ -32,7 +33,23 @@ class MapViewModel @Inject constructor(
     val filter = MutableLiveData<String>()
 
     private val _personsDetailsStateFlow =
-        MutableStateFlow<State<MafqoudModel>>(State.Loading)
+        MutableStateFlow<State<MafqoudModel>>(State.Success(
+            MafqoudModel(
+                age = "50",
+                createdAt = "213",
+                description = "null",
+                gender = "null",
+                id = 100,
+                image = "null",
+                location = Location(
+                    latitude = 29.4574515,
+                    longitude = 30.1319497,
+                    address = "Maurio"
+                ),
+                name = "null",
+                type = "null"
+            )
+        ))
     val personsDetailsStateFlow: StateFlow<State<MafqoudModel>> = _personsDetailsStateFlow
 
 
