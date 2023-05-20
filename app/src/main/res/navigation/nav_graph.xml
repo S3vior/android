@@ -37,7 +37,7 @@
     </fragment>
    <fragment
         android:id="@+id/personDetailsFragment"
-        android:name="com.example.s3vior.ui.fragment.personDetails.PersonDetailsFragment"
+        android:name="com.example.s3vior.ui.fragment.addPersonDetails.PersonDetailsFragment"
         android:label="PersonDetailsFragment" />
     <fragment
         android:id="@+id/announcementFragment"
@@ -73,11 +73,10 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
 
-
     </fragment>
     <fragment
         android:id="@+id/morePersonDetailFragment"
-        android:name="com.example.s3vior.ui.fragment.personDetails.MorePersonDetailFragment"
+        android:name="com.example.s3vior.ui.fragment.addPersonDetails.MorePersonDetailFragment"
         android:label="MorePersonDetailFragment" />
     <fragment
         android:id="@+id/mapsFragment"
@@ -130,7 +129,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNameFragment"
-        android:name="com.example.s3vior.ui.fragment.personDetails.AddNameFragment"
+        android:name="com.example.s3vior.ui.fragment.addPersonDetails.AddNameFragment"
         android:label="AddNameFragment" >
         <action
             android:id="@+id/action_addNameFragment_to_addAgeGenderDateFragment"
@@ -142,7 +141,7 @@
     </fragment>
     <fragment
         android:id="@+id/addAgeGenderDateFragment"
-        android:name="com.example.s3vior.ui.fragment.personDetails.AddAgeGenderDateFragment"
+        android:name="com.example.s3vior.ui.fragment.addPersonDetails.AddAgeGenderDateFragment"
         android:label="AddAgeGenderDateFragment" >
         <action
             android:id="@+id/action_addAgeGenderDateFragment_to_addPhotoLocationFragment"
@@ -154,11 +153,11 @@
     </fragment>
     <fragment
         android:id="@+id/personFormFragment"
-        android:name="com.example.s3vior.ui.fragment.personDetails.PersonFormFragment"
+        android:name="com.example.s3vior.ui.fragment.addPersonDetails.PersonFormFragment"
         android:label="PersonFormFragment" />
     <fragment
         android:id="@+id/addPhotoLocationFragment"
-        android:name="com.example.s3vior.ui.fragment.personDetails.AddPhotoLocationFragment"
+        android:name="com.example.s3vior.ui.fragment.addPersonDetails.AddPhotoLocationFragment"
         android:label="AddPhotoLocationFragment" >
         <action
             android:id="@+id/action_addPhotoLocationFragment_to_personFormFragment"
@@ -170,9 +169,13 @@
     </fragment>
     <fragment
         android:id="@+id/allPersonInfo"
-        android:name="com.example.s3vior.ui.fragment.AllPersonInfo"
+        android:name="com.example.s3vior.ui.fragment.addPersonDetails.personDetails.AllPersonInfoFragment"
         android:label="AllPersonInfo"
-        tools:layout="@layout/fragment_all_person_info"/>
+        tools:layout="@layout/fragment_all_person_info">
+        <argument
+            android:name="person_id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.password.ChangePasswordFragment"

@@ -2,8 +2,9 @@ package com.example.s3vior.data.source.remote.endPoints
 
 import com.example.s3vior.domain.model.Profile
 import com.example.s3vior.domain.model.User
-import com.example.s3vior.networking.api.BaseApiResponse
+import com.google.gson.annotations.SerializedName
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -25,12 +26,35 @@ interface UserApi {
     fun userProfile(@Header("TOKEN") token: String): Call<Profile>
 
     @POST("change_password")
-    @Multipart
-     suspend fun changeUserPassword(
+    suspend fun changeUserPassword(
         @Header("token") token: String,
-        @Part("old_password") oldPassword: RequestBody,
-        @Part("new_password") newPassword: RequestBody,
-        @Part("confirm_password") confirmPassword: RequestBody,
-    ): Response<String>
+        @Body request: PasswordChangeRequest
+    ): Response<ResponseBody>
+
+
+    @POST("contact_us")
+    suspend fun contactUs(
+        @Header("token") token: String,
+        @Body request: ContactUs
+    ): Response<ResponseBody>
 
 }
+
+data class ContactUs(
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("email")
+    val email: String,
+    @SerializedName("problem")
+    val problem: String
+
+)
+
+data class PasswordChangeRequest(
+    @SerializedName("old_password")
+    val oldPassword: String,
+    @SerializedName("new_password")
+    val newPassword: String,
+    @SerializedName("confirm_password")
+    val confirmPassword: String
+)

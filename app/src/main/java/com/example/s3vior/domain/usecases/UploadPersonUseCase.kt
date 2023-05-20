@@ -27,19 +27,24 @@ class UploadPersonUseCase @Inject constructor(
 
         val imageType = context.contentResolver.getType(imageUri)
         val extension = imageType!!.substring(imageType.indexOf("/") + 1)
-        val x = mafqoudRepository.uploadPerson(
-          token =   token,
-            name =name,
-            age = age,
-            gender = gender,
-            type = type,
-            description = description,
-            latitude = latitude,
-            longitude = longitude,
-            imageAsByte = imageAsByte!!,
-            extension = extension
-        )
-        Log.d("uriImage", imageUri.toString())
-        return x
+       return try {
+
+            val x = mafqoudRepository.uploadPerson(
+                token =   token,
+                name =name,
+                age = age,
+                gender = gender,
+                type = type,
+                description = description,
+                latitude = latitude,
+                longitude = longitude,
+                imageAsByte = imageAsByte!!,
+                extension = extension
+            )
+            Log.d("uriImage", imageUri.toString())
+            return x
+        } catch (e:Exception){
+           "something wrong"
+        }
     }
 }

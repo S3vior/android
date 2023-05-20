@@ -11,7 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.activity.MainActivity">
+        tools:context=".ui.activity.MainActivity"
+        >
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"
@@ -29,12 +30,13 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:elevation="10dp"
+             android:elevation="10dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
+
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav"
@@ -46,7 +48,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:menu="@menu/main_menu_navigation" />
+
         </androidx.cardview.widget.CardView>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment
+package com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

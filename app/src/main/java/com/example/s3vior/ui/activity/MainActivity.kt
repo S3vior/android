@@ -2,20 +2,26 @@ package com.example.s3vior.ui.activity
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.s3vior.R
 import com.example.s3vior.databinding.ActivityMainBinding
-import com.example.s3vior.domain.model.UserInfo
-import com.example.s3vior.networking.API
-import com.example.s3vior.networking.RestApiService
+import com.example.s3vior.ui.fragment.navigationBottomFragment.announcementFragment.AnnouncementFragment
+import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.HomeFragment
+import com.example.s3vior.ui.fragment.navigationBottomFragment.mapsFragment.MapsFragment
+import com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.MatchedPersonsFragment
+import com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.MoreFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import nl.joery.animatedbottombar.AnimatedBottomBar
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -25,29 +31,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         startUp()
-    //   addDummyUser()
 
     }
 
-    fun addDummyUser() {
-        val apiService = RestApiService()
-        val userInfo = UserInfo(  age = 400,
-        description = "hello",
-            id = 5,"https://res.cloudinary.com/khaledelabady11/image/upload/v1670713957/vvlmmoldoeufe2uljixj.jpg","nomsg","ahmed")
 
-        lifecycleScope.launch {
-        //    API.apiService.sendPersons(userInfo)
-        }
-
-        apiService.addUser(userInfo) {
-            if (it?.id != null) {
-                // it = newly added user parsed as response
-                // it?.id = newly added user ID
-            } else {
-
-            }
-        }
-    }
     private fun startUp() {
         navigationSetup()
         bottomNavigationAnimation()
@@ -57,11 +44,16 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        findViewById<BottomNavigationView>(R.id.bottom_nav)
+       val navController=    navHostFragment.navController
+        findViewById <BottomNavigationView>(R.id.bottom_nav)
             .setupWithNavController(navController)
+//
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+
+
+
+         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.homeFragment -> showBottomNav()
                 R.id.mapsFragment -> showBottomNav()
@@ -78,9 +70,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showBottomNav() {
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             delay(100)
-            animator(0f)
+                animator(0f)
             binding.bottomNav.visibility = View.VISIBLE
         }
 
@@ -98,5 +90,6 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.visibility = View.GONE
 
     }
+
 
 }

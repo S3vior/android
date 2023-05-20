@@ -25,22 +25,25 @@ interface MafqoudApiService {
     @POST("persons")
     @Multipart
     suspend fun upLoadPerson(
-        @Header("token")   token: String,
-        @Part("name")   name: RequestBody,
-        @Part("age")   age: RequestBody,
-        @Part("gender")   gender: RequestBody,
-        @Part("type")   type: RequestBody,
-        @Part("description")   description: RequestBody,
-        @Part("latitude") latitude:RequestBody,
-        @Part("longitude") longitude:RequestBody,
+        @Header("token") token: String,
+        @Part("name") name: RequestBody,
+        @Part("age") age: RequestBody,
+        @Part("gender") gender: RequestBody,
+        @Part("type") type: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
         @Part image: MultipartBody.Part
-    ):  Response<ResponseBody>
+    ): Response<ResponseBody>
 
 
     @GET("matches")
-   suspend fun getMatchedPersons(): Response<List<MatchedPersonsResponseModelItem>>
+    suspend fun getMatchedPersons(): Response<List<MatchedPersonsResponseModelItem>>
 
-
+    @GET("persons/{id}")
+    suspend fun getPersonDetails(
+        @Path("id") id: Int
+    ):Response<MafqoudResponseModel>
 }
 
 

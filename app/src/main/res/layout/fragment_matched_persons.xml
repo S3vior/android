@@ -27,6 +27,47 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/image_error"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="error_robot.json"
+            app:lottie_loop="true"
+            app:showWhenError="@{viewModel.matchedPersonsStateFlow}" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/progress_loading"
+            style="@style/SpinKitView.Large.Pulse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:SpinKit_Color="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.matchedPersonsStateFlow}" />
+
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/back_ground_buttons"
+            android:maxLines="1"
+            android:onClick="@{() -> viewModel.getMatchedPersons()}"
+            android:text="@string/try_again"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/progress_loading"
+            app:layout_constraintStart_toStartOf="@+id/progress_loading"
+            app:layout_constraintTop_toBottomOf="@+id/progress_loading"
+            app:showWhenError="@{viewModel.matchedPersonsStateFlow}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

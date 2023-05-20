@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment.personDetails
+package com.example.s3vior.ui.fragment.addPersonDetails
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -169,8 +169,8 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun galleryIntent() {
-        // openGalleryForImage()
-        openGalleryForPhotoPicker()
+         openGalleryForImage()
+//        openGalleryForPhotoPicker()
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)

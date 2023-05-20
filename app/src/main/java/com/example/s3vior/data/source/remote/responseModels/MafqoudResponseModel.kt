@@ -12,7 +12,7 @@ data class MafqoudResponseModel(
     val description: String?,
     val image: String?,
     val type: String?,
-    val created_at:String?,
+    val created_at: String?,
     val location: Location
 ) {
     fun toMafqoudModel() = MafqoudModel(
@@ -21,10 +21,15 @@ data class MafqoudResponseModel(
         age = age,
         gender = gender,
         description = description,
-        type = type, createdAt = null, id = null, location = Location(
+        type = type,
+        createdAt = created_at,
+        id = id,
+        location = Location(
             latitude = location.latitude,
-            longitude = location.longitude
+            longitude = location.longitude,
+            address = location.address
         )
+
 
     )
 }

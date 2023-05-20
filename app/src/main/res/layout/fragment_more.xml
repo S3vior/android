@@ -14,6 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.fragment.navigationBottomFragment.moreFragment.MoreFragment">
 
         <androidx.appcompat.widget.Toolbar
@@ -24,23 +25,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/setting"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_17sdp"
-                android:textStyle="bold" />
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/missing_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@drawable/setting_item_style_arrow"
+                android:drawablePadding="@dimen/_3sdp"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:src="@drawable/matches_icon"
+                android:text="الدعم"
+                android:textColor="#1B54DA"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/support_setting" />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:background="@drawable/setting_item_style_arrow"
+                android:src="@drawable/notification_setting" />
 
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/account_background"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
@@ -49,6 +70,7 @@
                 android:id="@+id/account_image"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="@dimen/_45sdp"
+                android:layout_gravity="center"
                 android:scaleType="fitXY"
                 android:src="@drawable/testimage"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -62,38 +84,59 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:fontFamily="@font/tajawal_bold"
-                android:text="@string/username"
-                android:textColor="@color/black"
+                android:text="Ahmed Khater"
+                android:textColor="#1B54DA"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/account_image"
                 app:layout_constraintTop_toTopOf="@+id/account_image" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:text="@string/email_edit"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="#SOBkaasco151ac"
+                android:textAlignment="center"
                 android:textColor="#1B54DA"
-                android:textSize="@dimen/_8sdp"
+                android:textSize="@dimen/_12sdp"
+                app:drawableStartCompat="@drawable/outline_content_copy_24"
                 app:layout_constraintEnd_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
             android:id="@+id/recycler_setting"
-            android:layout_height="wrap_content"
-            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+             android:clickable="true"
             android:focusable="true"
-            android:layout_marginTop="@dimen/_30sdp"
-            app:showWhenSuccess="@{viewModel.itemSettingData}"
             app:items="@{viewModel.itemSettingData.toData()}"
+            app:layout_constraintBottom_toTopOf="@id/logout"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/setting_item_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+            app:showWhenSuccess="@{viewModel.itemSettingData}" />
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:text="تسجيل الخروج"
+            android:textSize="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:textStyle="bold"
+            android:textColor="#C62828"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:drawableEndCompat="@drawable/log_out_setting">
+
+        </TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
