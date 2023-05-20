@@ -7,18 +7,21 @@ import androidx.lifecycle.viewModelScope
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.domain.usecases.GetAllPersonsUseCase
+import com.example.s3vior.domain.usecases.GetPersonDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MapViewModel @Inject constructor(
     private val getAllPersonsUseCase: GetAllPersonsUseCase,
+    private val getPersonDetailsUseCase: GetPersonDetailsUseCase
 
-    ) : ViewModel() {
+) : ViewModel() {
 
 
     private val _personsStateFlow =
@@ -27,16 +30,31 @@ class MapViewModel @Inject constructor(
 
     val filter = MutableLiveData<String>()
 
+    private val _personsDetailsStateFlow =
+        MutableStateFlow<State<MafqoudModel>>(State.Loading)
+    val personsDetailsStateFlow: StateFlow<State<MafqoudModel>> = _personsDetailsStateFlow
+
+
+    suspend fun getPersonDetails(id: Int) {
+        viewModelScope.launch {
+            try {
+                _personsDetailsStateFlow.value =
+                    State.Success(getPersonDetailsUseCase.invoke(id)).toData()!!
+            } catch (e: Exception) {
+                _personsDetailsStateFlow.value = State.Error(e.message.toString())
+            }
+        }
+    }
+
     init {
         getAllPersons()
     }
 
 
-    @SuppressLint("SuspiciousIndentation")
     fun getAllPersons() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                getAllPersonsUseCase.invoke().collect {
+                getAllPersonsUseCase.invoke().collectLatest {
                     _personsStateFlow.value = it
                 }
             } catch (e: Exception) {

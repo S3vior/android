@@ -242,14 +242,14 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/btn_finded"
+            android:id="@+id/btn_showonmap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="40dp"
             android:background="@drawable/back_ground_buttons"
             android:enabled="true"
-            android:text="عثرت عليه ؟"
+            android:text="عرض علي الخريطة"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -270,7 +270,7 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_finded" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_showonmap" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
