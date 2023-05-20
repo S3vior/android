@@ -6,6 +6,7 @@ import com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.mo
 interface MafqoudRepository {
 
     suspend fun getAllPersons():  List<MafqoudModel>
+    suspend fun getAllMaps():  List<MafqoudModel>
 
     suspend fun getMatchedPersons(): List<MatchedPersonsResponseModelItem>
     suspend fun uploadPerson(

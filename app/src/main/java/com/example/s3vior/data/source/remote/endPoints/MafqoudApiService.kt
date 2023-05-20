@@ -15,6 +15,9 @@ interface MafqoudApiService {
     @GET("persons")
     suspend fun getAllPersons(): Response<List<MafqoudResponseModel>>
 
+    @GET("persons")
+    suspend fun getAllPersonsMap(): Response<List<MafqoudResponseModel>>
+
 
     @GET("persons/search")
     suspend fun searchForPerson(
