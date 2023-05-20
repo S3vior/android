@@ -20,7 +20,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun initViewModel() {
         binding.viewModel = personViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+    }
 
+    override fun callFunctions() {
+        initViewModel()
+        recyclerAdapter()
+        searchFunction()
+    }
+
+    override fun <T> onClickItem(view: T) {
+
+        view as MafqoudModel
+
+        val action = HomeFragmentDirections.actionHomeFragmentToAllPersonInfo(view.id!!)
+        Navigation.findNavController(requireView()).navigate(action)
+    }
+
+    private fun recyclerAdapter() {
+        val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = HomeItemAdapter(mutableListOf(), this)
+    }
+
+    private fun searchFunction() {
         binding.edSearch.setOnEditorActionListener { text, actionId, _ ->
             if (actionId != EditorInfo.IME_NULL) {
                 if (text.text.toString() == "") {
@@ -34,28 +56,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
             true
         }
-    }
-
-    override fun callFunctions() {
-        initViewModel()
-        recyclerAdapter()
-
-    }
-
-    override fun <T> onClickItem(view: T) {
-
-        view as MafqoudModel
-
-        val action = HomeFragmentDirections.actionHomeFragmentToAllPersonInfo(view.id!!)
-        Navigation.findNavController(requireView()).navigate(action)
-    }
-
-    private fun recyclerAdapter() {
-
-        val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = HomeItemAdapter(mutableListOf(), this)
-
     }
 
 

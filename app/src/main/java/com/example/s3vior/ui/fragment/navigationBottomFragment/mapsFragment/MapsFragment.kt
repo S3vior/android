@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentMapsBinding
@@ -30,7 +31,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,12 +40,15 @@ import java.net.URL
 @AndroidEntryPoint
 class MapsFragment : Fragment(), OnMapReadyCallback {
 
+    private val args: MapsFragmentArgs by navArgs()
+
     private lateinit var binding: FragmentMapsBinding
-    private val personViewModel: MapViewModel by activityViewModels()
+    private val mapViewModel: MapViewModel by activityViewModels()
     private var latlongList: List<MafqoudModel>? = null
     private lateinit var mGoogleMap: GoogleMap
 
     private val callback = OnMapReadyCallback { googleMap ->
+
         lifecycleScope.launch(Dispatchers.IO) {
             latlongList?.forEach {
                 Log.e("TAG", "${it.location.latitude}, ${it.location.longitude}")
@@ -77,19 +80,26 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                     }
                     mGoogleMap = googleMap;
 
-                    val sydney = LatLng(29.4574515, 30.1319497)
+                        val sydney = LatLng(29.4574515, 30.1319497)
 //        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
-                    val zoomLevel = 5f // specify the desired zoom level
-                    val cameraUpdate = CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel)
-                    mGoogleMap.animateCamera(cameraUpdate)
+                        val zoomLevel = 5f // specify the desired zoom level
+                        val cameraUpdate = CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel)
+                        mGoogleMap.animateCamera(cameraUpdate)
+
                 }
             }
         }
 
     }
 
+    private fun getPersonDetails() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            mapViewModel.getPersonDetails(args.personId)
+        }
+
+    }
 
     private fun urlToBitmap(url: String): Bitmap? {
         var bitmap: Bitmap? = null
@@ -127,6 +137,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMapsBinding.inflate(layoutInflater)
+        binding.lifecycleOwner=this
+
         return binding.root
     }
 
@@ -135,14 +147,15 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
 
         lifecycleScope.launch(Dispatchers.IO) {
-            personViewModel.personsStateFlow.collect {
+            mapViewModel.personsStateFlow.collect {
                 latlongList = it.toData()
-
             }
 
         }
         mapFragment?.getMapAsync(callback)
     }
+
+
 
 
     override fun onMapReady(googleMap: GoogleMap) {

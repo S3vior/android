@@ -42,10 +42,6 @@ android {
     }
 
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-}
 
 dependencies {
 
@@ -125,7 +121,7 @@ dependencies {
 
     //serialization
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
-     // define a BOM and its version
+    // define a BOM and its version
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
 
     //progress bar
