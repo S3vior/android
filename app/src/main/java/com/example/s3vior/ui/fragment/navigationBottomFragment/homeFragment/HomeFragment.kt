@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.s3vior.databinding.FragmentHomeBinding
@@ -15,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
     RecyclerViewInteractionListener {
 
-    private val personViewModel: PersonViewModel by activityViewModels()
+    private val personViewModel: PersonViewModel by viewModels()
     private fun initViewModel() {
         binding.viewModel = personViewModel
         binding.lifecycleOwner = viewLifecycleOwner
