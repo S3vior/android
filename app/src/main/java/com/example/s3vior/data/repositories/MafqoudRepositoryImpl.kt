@@ -37,6 +37,22 @@ class MafqoudRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getAllMaps(): List<MafqoudModel> {
+         val result = mafqoudRemoteDataSource.getAllMaps()
+        return if (result.isSuccessful){
+            result.body()!!.map {
+                it.toMafqoudModel()
+            }
+        }else{
+            result.errorBody()!!.string()
+            throw Exception(
+                JSONObject(
+                    result.errorBody()!!.string()
+                ).getString("message")
+            )
+        }
+    }
+
     override suspend fun getMatchedPersons(): List<MatchedPersonsResponseModelItem> {
          val getMatchedPersonsResult = mafqoudRemoteDataSource.getMatchedPersons()
         return if (getMatchedPersonsResult.isSuccessful&& getMatchedPersonsResult.body() != null && getMatchedPersonsResult.code() == 200){

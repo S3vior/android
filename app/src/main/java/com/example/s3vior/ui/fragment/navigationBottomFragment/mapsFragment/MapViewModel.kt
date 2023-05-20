@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.model.State
+import com.example.s3vior.domain.usecases.GetAllMapsUseCase
 import com.example.s3vior.domain.usecases.GetAllPersonsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,8 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MapViewModel @Inject constructor(
-    private val getAllPersonsUseCase: GetAllPersonsUseCase,
-
+    private val getAllPersonsUseCase: GetAllMapsUseCase
     ) : ViewModel() {
 
 

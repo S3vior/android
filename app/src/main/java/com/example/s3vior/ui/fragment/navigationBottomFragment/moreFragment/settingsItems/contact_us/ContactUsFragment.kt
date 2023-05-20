@@ -30,8 +30,6 @@ class ContactUsFragment :
 
 
         binding.sendProblem.setOnClickListener {
-
-
             if (binding.name.text.isBlank()) {
                 showDefaultDialog("من فضلك ادخل اسمك")
             }
@@ -43,8 +41,7 @@ class ContactUsFragment :
             }
 
             if (binding.issueMessage.text.isNotBlank() && binding.gmail.text.isNotBlank() && binding.issueMessage.text.isNotBlank()) {
-                binding.sendProblem.visibility = View.GONE
-                binding.progressBar.visibility = View.VISIBLE
+
 
                 try {
 
@@ -59,8 +56,7 @@ class ContactUsFragment :
                         )
                         withContext(Dispatchers.Main) {
                             if (result == "problem send successfully" || result == "something error") {
-                                binding.sendProblem.visibility = View.VISIBLE
-                                binding.progressBar.visibility = View.GONE
+
                             }
                             showDefaultDialog(result)
 

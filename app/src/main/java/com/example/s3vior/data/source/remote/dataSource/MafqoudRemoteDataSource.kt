@@ -17,6 +17,10 @@ class MafqoudRemoteDataSource @Inject constructor(private var mafqoudApiService:
             mafqoudApiService.getAllPersons()
         }
 
+    suspend fun getAllMaps() = withContext(Dispatchers.IO){
+        mafqoudApiService.getAllPersonsMap()
+    }
+
 
     suspend fun uploadMafqoud(
         token: String,
