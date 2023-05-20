@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,11 +33,10 @@ class MapViewModel @Inject constructor(
     }
 
 
-    @SuppressLint("SuspiciousIndentation")
-    fun getAllPersons() {
+     fun getAllPersons() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                getAllPersonsUseCase.invoke().collect {
+                getAllPersonsUseCase.invoke().collectLatest {
                     _personsStateFlow.value = it
                 }
             } catch (e: Exception) {

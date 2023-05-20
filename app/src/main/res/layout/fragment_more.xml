@@ -33,6 +33,7 @@
                 android:src="@drawable/missing_logo" />
 
             <TextView
+                android:id="@+id/support"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -48,6 +49,7 @@
                 app:drawableEndCompat="@drawable/support_setting" />
 
             <ImageView
+                android:id="@+id/notification"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_20sdp"
@@ -111,12 +113,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_setting"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
-             android:clickable="true"
+            android:clickable="true"
             android:focusable="true"
             app:items="@{viewModel.itemSettingData.toData()}"
-            app:layout_constraintBottom_toTopOf="@id/logout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
@@ -125,17 +126,16 @@
         <TextView
             android:id="@+id/logout"
             android:layout_width="wrap_content"
-            android:text="تسجيل الخروج"
-            android:textSize="@dimen/_10sdp"
             android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_30sdp"
-            android:textStyle="bold"
-            android:textColor="#C62828"
             android:layout_marginEnd="@dimen/_20sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:drawablePadding="@dimen/_5sdp"
+            android:text="تسجيل الخروج"
+            android:textColor="#C62828"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            app:drawableEndCompat="@drawable/log_out_setting"
             app:layout_constraintEnd_toEndOf="parent"
-            app:drawableEndCompat="@drawable/log_out_setting">
+            app:layout_constraintTop_toBottomOf="@+id/recycler_setting">
 
         </TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>

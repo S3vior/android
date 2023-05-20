@@ -66,7 +66,7 @@ class MafqoudRepositoryImpl @Inject constructor(
             val uploadPersonResult =
                 mafqoudRemoteDataSource.uploadMafqoud(
                     token,
-                    name .toRequestBody("text/plain".toMediaTypeOrNull())  ,
+                    name .toRequestBody("text/plain".toMediaTypeOrNull()),
                     age.toString().toRequestBody("text/plain".toMediaTypeOrNull()),
                     gender .toRequestBody("text/plain".toMediaTypeOrNull()),
                     type .toRequestBody("text/plain".toMediaTypeOrNull()),

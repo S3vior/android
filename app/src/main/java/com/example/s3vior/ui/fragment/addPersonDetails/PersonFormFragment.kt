@@ -1,11 +1,18 @@
 package com.example.s3vior.ui.fragment.addPersonDetails
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
 import android.util.Log
+import android.view.View
+import android.view.Window
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
+import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentPersonFormBinding
 import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.viewModel.SharedViewModel
@@ -57,7 +64,8 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
 
         try {
             val imageUri = sharedViewModel.thirdDetails.value?.imageUri
-
+            binding.progressBar.visibility = View.VISIBLE
+            binding.button4.visibility = View.GONE
             lifecycleScope.launch(Dispatchers.IO) {
 
                 val result = sharedViewModel.uploadPersonUseCase.invoke(
@@ -73,21 +81,57 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
                 )
 
                 withContext(Dispatchers.Main) {
-                    showSnackBar(result)
+                    //     showSnackBar(result)
+                    showDefaultDialog(result)
+                    if (result == "Person uploaded" || result == "Person not uploaded") {
+                        binding.progressBar.visibility = View.GONE
+                        binding.button4.visibility = View.VISIBLE
+                    }
+
                 }
 
             }
 
         } catch (e: Exception) {
-            showSnackBar(e.message.toString())
+
+            showDefaultDialog(e.message.toString())
         }
 
 
     }
 
+    private fun showDefaultDialog(message: String) {
+        val alertDialogBuilder = AlertDialog.Builder(context)
+
+        alertDialogBuilder.setTitle("Dialog Title")
+        alertDialogBuilder.setMessage(message)
+
+        alertDialogBuilder.setPositiveButton("تم") { dialog, which ->
+            dialog.dismiss()
+           Navigation.findNavController(requireView()).navigate(R.id.action_personFormFragment_to_announcementFragment)
+
+        }
+
+        alertDialogBuilder.setNegativeButton("ارسال من جديد") { dialog, which ->
+
+            dialog.dismiss()
+            Navigation.findNavController(requireView()).navigate(R.id.action_personFormFragment_to_addNameFragment)
+
+        }
+
+        alertDialogBuilder.setOnCancelListener {
+            // Handle dialog cancellation
+            // You can perform an action here or dismiss the dialog
+        }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
+
     override fun callFunctions() {
 
         observeDataFromViewModel()
+        binding.progressBar.visibility = View.GONE
         binding.button4.setOnClickListener {
             sendPersonData()
         }
