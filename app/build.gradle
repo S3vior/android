@@ -27,6 +27,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
@@ -34,7 +35,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '18'
     }
     buildFeatures {
         dataBinding = true
@@ -42,7 +43,7 @@ android {
 
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '18'
     }
 }
 
@@ -129,6 +130,11 @@ dependencies {
 
     //progress bar
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    //new bottom navigation bar
+    implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
+    implementation 'nl.joery.animatedbottombar:library:1.0.9'
+
 
 }
 kapt {

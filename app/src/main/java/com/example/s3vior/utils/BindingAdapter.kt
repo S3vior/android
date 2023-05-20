@@ -1,6 +1,11 @@
 package com.example.s3vior.utils
 
+import android.location.Address
+import android.location.Geocoder
+import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +15,8 @@ import com.example.s3vior.R
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.ui.recyclerView.baseAdapter.BaseAdapter
 import com.google.android.material.imageview.ShapeableImageView
+import java.io.IOException
+import java.util.Locale
 
 @BindingAdapter(value = ["app:showWhenLoading"])
 fun <T> showWhenLoading(view: View, state: State<T>?) {
@@ -30,15 +37,15 @@ fun <T> showWhenError(view: View, state: State<T>?) {
 }
 
 
-
 @BindingAdapter(value = ["app:hideLottieOnError"])
-fun  <T> hideLottieOnError(lottieAnimationView: LottieAnimationView, state: State<T>?) {
+fun <T> hideLottieOnError(lottieAnimationView: LottieAnimationView, state: State<T>?) {
     if (state is State.Error) {
         lottieAnimationView.visibility = View.GONE
     } else {
         lottieAnimationView.visibility = View.VISIBLE
     }
 }
+
 @BindingAdapter(value = ["app:showWhenSuccess"])
 fun <T> showWhenSuccess(view: View, state: State<T>?) {
     if (state is State.Success) {
@@ -50,9 +57,14 @@ fun <T> showWhenSuccess(view: View, state: State<T>?) {
 
 
 @BindingAdapter(value = ["app:imageUrl"])
-fun setImageFromUrl(view: ShapeableImageView, url: String? = "https://res.cloudinary.com/khaledelabady11/image/upload/v1676773144/ehr7jby7solo1dsfh77q.png") {
+fun setImageFromUrl(
+    view: ImageView,
+    url: String? = "https://res.cloudinary.com/khaledelabady11/image/upload/v1676773144/ehr7jby7solo1dsfh77q.png"
+) {
     Glide.with(view).load(url).error(R.drawable.google).into(view)
 }
+
+
 
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
@@ -64,3 +76,4 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
     }
 
 }
+

@@ -1,31 +1,35 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.password
 
-import android.widget.Toast
-import androidx.fragment.app.viewModels
+import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.s3vior.data.source.remote.endPoints.PasswordChangeRequest
 import com.example.s3vior.databinding.FragmentChangePasswordBinding
 import com.example.s3vior.domain.usecases.VALID_PASSWORD_REGEX
 import com.example.s3vior.ui.fragment.base.BaseFragment
-import dagger.hilt.android.AndroidEntryPoint
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-@AndroidEntryPoint
+
 class ChangePasswordFragment :
     BaseFragment<FragmentChangePasswordBinding>(FragmentChangePasswordBinding::inflate) {
 
-    private val changePasswordViewModel: ChangePasswordViewModel by viewModels()
+    private val changePasswordViewModel: ChangePasswordViewModel by activityViewModels()
     override fun callFunctions() {
-        binding.lifecycleOwner = viewLifecycleOwner
 
 
         binding.changePassword.setOnClickListener {
+
+
             if (binding.oldpassword.text.isBlank()) {
-                Toast.makeText(context, "please, enter old password", Toast.LENGTH_LONG).show()
+                showSnackBar("please, enter old password")
             }
 
             if (binding.newpassword.text.toString() != binding.confirmnewpassword.text.toString()) {
-                Toast.makeText(context, "your password is not matched", Toast.LENGTH_LONG)
-                    .show()
+
+                showSnackBar("your password is not matched")
 
             }
 
@@ -33,41 +37,44 @@ class ChangePasswordFragment :
                     VALID_PASSWORD_REGEX
                 ) && !binding.confirmnewpassword.text.matches(VALID_PASSWORD_REGEX)
             ) {
-                Toast.makeText(context, "please, enter valid password", Toast.LENGTH_LONG)
-                    .show()
-
+                showSnackBar("please, enter valid password")
             }
 
             if (binding.oldpassword.text.isNotBlank() && binding.newpassword.text.toString() == binding.confirmnewpassword.text.toString()
-//                &&
-//                binding.newpassword.text.matches(
-//                    VALID_PASSWORD_REGEX
-//                ) && binding.confirmnewpassword.text.matches(VALID_PASSWORD_REGEX)
+                && binding.newpassword.text.matches(
+                    VALID_PASSWORD_REGEX
+                ) && binding.confirmnewpassword.text.matches(VALID_PASSWORD_REGEX)
             ) {
-                lifecycleScope.launch {
+                lifecycleScope.launch(Dispatchers.IO) {
                     val a = changePasswordViewModel.changePasswordUseCase.invoke(
-"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MzU1NDEwMSwianRpIjoiNzE2Mzc4MjAtYzM2MC00OTlhLTg4YzktNDAxZGVlZjRlMGEwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjgzNTU0MTAxLCJleHAiOjE2ODM1NzIxMDF9.fCq392PlTGXPTLPFyAfrrHsQOvqaHkZzs_MmYTucnUc",                        binding.oldpassword.text.toString(),
-                        binding.newpassword.text.toString(),
-                        binding.confirmnewpassword.text.toString()
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQyNzA1NSwianRpIjoiOTdmN2ZmNTctMWU2Ny00MWQxLTkxZDEtNWI3YWMxMDYzZjhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjg0NDI3MDU1LCJleHAiOjE2ODQ0NDUwNTV9.hVXgCf_X1sFOTUVxzSqh4E3lqoiy6ayuHKCy6EYEKWM",
+                        PasswordChangeRequest(
+                            binding.oldpassword.text.toString(),
+                            binding.newpassword.text.toString(),
+                            binding.confirmnewpassword.text.toString()
+                        )
                     )
-                    if (a == "Old password is incorrect.") {
-                        Toast.makeText(context, "Old password is incorrect.", Toast.LENGTH_LONG).show()
+                    withContext(Dispatchers.Main) {
+                        showSnackBar(a)
                     }
-                    if (a == "New password and confirmation do not match.") {
-                        Toast.makeText(context, "New password and confirmation do not match.", Toast.LENGTH_LONG).show()
-                    }
-                    if (a == "Password updated successfully.") {
-                        Toast.makeText(context, "Password updated successfully.", Toast.LENGTH_LONG).show()
-                    }
+
                 }
             }
 
-
         }
-
     }
 
-
+    private fun showSnackBar(message: String) {
+        val snackBar = Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_LONG,
+        )
+        // Set the max lines of SnackBar
+        snackBar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).maxLines =
+            10
+        snackBar.show()
+    }
 }
 
 

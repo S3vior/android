@@ -32,7 +32,7 @@ class MatchedPersonsViewModel @Inject constructor(
         getMatchedPersons()
     }
 
-    private fun getMatchedPersons() {
+      fun getMatchedPersons() {
         viewModelScope.launch(Dispatchers.IO)  {
             try {
                 matchedPersonUseCase.invoke().collect{

@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChangePasswordViewModel @Inject constructor(
-      val changePasswordUseCase: ChangePasswordUseCase
+      var changePasswordUseCase: ChangePasswordUseCase
 ) : ViewModel() {
 
 }

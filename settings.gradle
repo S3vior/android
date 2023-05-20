@@ -2,6 +2,8 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
+        jcenter()
+
         mavenCentral()
     }
 }
@@ -10,6 +12,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
         maven { url "https://jitpack.io" }}
 }
 rootProject.name = "S3vior"

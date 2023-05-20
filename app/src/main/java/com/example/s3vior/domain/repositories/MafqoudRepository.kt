@@ -22,4 +22,6 @@ interface MafqoudRepository {
     ): String
 
     suspend fun searchPerson(searchWord: String): List<MafqoudModel>
+
+    suspend fun getPersonDetails(id:Int) : MafqoudModel
 }

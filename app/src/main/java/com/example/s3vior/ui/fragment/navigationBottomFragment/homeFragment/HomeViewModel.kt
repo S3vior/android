@@ -1,6 +1,7 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,10 +32,13 @@ class PersonViewModel @Inject constructor(
 
     val filter = MutableLiveData<String>()
 
+
+
     init {
         getAllPersons()
         setdata()
     }
+
 
  
      private fun setdata() {

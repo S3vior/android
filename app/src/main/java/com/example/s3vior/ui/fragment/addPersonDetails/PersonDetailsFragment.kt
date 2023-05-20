@@ -1,4 +1,4 @@
-package com.example.s3vior.ui.fragment.personDetails
+package com.example.s3vior.ui.fragment.addPersonDetails
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog

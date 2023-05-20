@@ -1,13 +1,15 @@
-package com.example.s3vior.ui.fragment.personDetails
+package com.example.s3vior.ui.fragment.addPersonDetails
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.s3vior.databinding.FragmentPersonFormBinding
 import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.viewModel.SharedViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -59,7 +61,7 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
             lifecycleScope.launch(Dispatchers.IO) {
 
                 val result = sharedViewModel.uploadPersonUseCase.invoke(
-                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MzY0NjE2NSwianRpIjoiMDk0ODI0YzctMjdlZi00ODUwLWJkN2EtNzIwMGZiOTZlZjBmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NSwibmJmIjoxNjgzNjQ2MTY1LCJleHAiOjE2ODM2NjQxNjV9.l8wnvyhkr2Z_qEdRxHRYey3cnIFHu3OvkdADtY39S9g",
+                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDU3NjI5MiwianRpIjoiYmE2OGNmZDktYTQ4NC00YTE3LWE1OTUtNGI5Y2E4MGY0MWY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjg0NTc2MjkyLCJleHAiOjE2ODQ1OTQyOTJ9.B00MpP9tuEZWXBLkyCqjDvO8Byxwe2ohadrYz--UqlQ",
                     name = binding.personName.text.toString(),
                     age = binding.personAge.text.toString().toInt(),
                     gender = binding.personGender.text.toString(),
@@ -71,13 +73,13 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
                 )
 
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                    showSnackBar(result)
                 }
 
             }
 
         } catch (e: Exception) {
-            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+            showSnackBar(e.message.toString())
         }
 
 
@@ -89,6 +91,18 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
         binding.button4.setOnClickListener {
             sendPersonData()
         }
+    }
+
+    private fun showSnackBar(message: String) {
+        val snackBar = Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_LONG,
+        )
+        // Set the max lines of SnackBar
+        snackBar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).maxLines =
+            10
+        snackBar.show()
     }
 
 

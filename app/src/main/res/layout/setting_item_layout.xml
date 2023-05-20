@@ -4,53 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.SettingData" />
+
         <variable
             name="listener"
             type="com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.RecyclerViewInteractionListener" />
     </data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/account_background"
+        android:onClick="@{() -> listener.onClickItem(item)}"
+        android:padding="@dimen/_7sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/settin_item_image"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginEnd="4dp"
+            android:scaleType="fitXY"
+            app:imageResource="@{item.icon}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@null"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/item_setting_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:onClick="@{() -> listener.onClickItem(item)}"
-            android:padding="@dimen/_7sdp">
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:text="@{item.name}"
+            app:layout_constraintBottom_toBottomOf="@+id/settin_item_image"
+            app:layout_constraintEnd_toStartOf="@+id/settin_item_image"
+            app:layout_constraintTop_toTopOf="@+id/settin_item_image" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/settin_item_image"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginEnd="4dp"
-                 android:scaleType="fitXY"
-                app:imageResource="@{item.icon}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.023"
-                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                app:strokeColor="@null"
-                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-
-            <TextView
-                android:id="@+id/item_setting_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{item.name}"
-                android:layout_marginEnd="@dimen/_7sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/settin_item_image"
-                app:layout_constraintEnd_toStartOf="@+id/settin_item_image"
-                app:layout_constraintTop_toTopOf="@+id/settin_item_image" />
-
-            <ImageView
-                android:id="@+id/imageView_arrow_setting"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/settin_item_image"
-                app:imageResource="@{item.im}"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
- </layout>
+        <ImageView
+            android:id="@+id/imageView_arrow_setting"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            app:imageResource="@{item.im}"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,6 +1,7 @@
 package com.example.s3vior.data.repositories
 
 import android.util.Log
+import android.widget.Toast
 import com.example.s3vior.data.source.remote.dataSource.MafqoudRemoteDataSource
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.repositories.MafqoudRepository
@@ -61,33 +62,30 @@ class MafqoudRepositoryImpl @Inject constructor(
         longitude:String,
         imageAsByte: ByteArray, extension: String
     ): String {
-        val uploadPersonResult =
-            mafqoudRemoteDataSource.uploadMafqoud(
-                token,
-                name .toRequestBody("text/plain".toMediaTypeOrNull())  ,
-                age.toString().toRequestBody("text/plain".toMediaTypeOrNull()),
-                gender .toRequestBody("text/plain".toMediaTypeOrNull()),
-                type .toRequestBody("text/plain".toMediaTypeOrNull()),
-                description .toRequestBody("text/plain".toMediaTypeOrNull()),
-                latitude.toRequestBody("text/plain".toMediaTypeOrNull()),
-                longitude.toRequestBody("text/plain".toMediaTypeOrNull()),
-                MultipartBody.Part.createFormData(
-                    "image",
-                    "image.$extension",
-                    imageAsByte.toRequestBody("*/*".toMediaType())
+
+            val uploadPersonResult =
+                mafqoudRemoteDataSource.uploadMafqoud(
+                    token,
+                    name .toRequestBody("text/plain".toMediaTypeOrNull())  ,
+                    age.toString().toRequestBody("text/plain".toMediaTypeOrNull()),
+                    gender .toRequestBody("text/plain".toMediaTypeOrNull()),
+                    type .toRequestBody("text/plain".toMediaTypeOrNull()),
+                    description .toRequestBody("text/plain".toMediaTypeOrNull()),
+                    latitude.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    longitude.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    MultipartBody.Part.createFormData(
+                        "image",
+                        "image.$extension",
+                        imageAsByte.toRequestBody("*/*".toMediaType())
+                    )
                 )
-            )
 
-        return if (uploadPersonResult.isSuccessful ) {
-             Log.d("POSTResponse", "if" + uploadPersonResult.body().toString())
-             Log.d("POSTResponse", "if" + uploadPersonResult.body().toString())
-            "Person uploaded"
-        } else {
-            "Person not uploaded"
+            return if (uploadPersonResult.isSuccessful&& uploadPersonResult.body() != null ) {
+                "Person uploaded"
+            } else {
+                "Person not uploaded"
+            }
         }
-    }
-
-
 
 
     override suspend fun searchPerson(searchWord: String): List<MafqoudModel> {
@@ -101,6 +99,21 @@ class MafqoudRepositoryImpl @Inject constructor(
         }
 
 
+    }
+
+    override suspend fun getPersonDetails(id: Int): MafqoudModel {
+         val getPersonDetailsResult = mafqoudRemoteDataSource.getPersonDetails(id)
+        return if (getPersonDetailsResult.isSuccessful && getPersonDetailsResult.body() != null && getPersonDetailsResult.code() == 200){
+            getPersonDetailsResult.body()!!.toMafqoudModel()
+
+        }else{
+            getPersonDetailsResult.errorBody()!!.string()
+            throw Exception(
+                JSONObject(
+                    getPersonDetailsResult.errorBody()!!.string()
+                ).getString("message")
+            )
+        }
     }
 
 }

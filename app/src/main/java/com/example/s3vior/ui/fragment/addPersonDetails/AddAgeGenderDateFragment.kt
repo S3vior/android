@@ -1,9 +1,8 @@
-package com.example.s3vior.ui.fragment.personDetails
+package com.example.s3vior.ui.fragment.addPersonDetails
 
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.s3vior.R
