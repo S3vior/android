@@ -1,5 +1,7 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.contact_us
 
+import android.app.AlertDialog
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -19,25 +21,32 @@ class ContactUsFragment :
 
     private val contactUsViewModel: ContactUsViewModel by viewModels()
     override fun callFunctions() {
+        binding.progressBar.visibility = View.GONE
+        binding.sendProblem.visibility = View.VISIBLE
         sendProblem()
     }
 
     private fun sendProblem() {
+
+
         binding.sendProblem.setOnClickListener {
             if (binding.name.text.isBlank()) {
-                showSnackBar("من فضلك ادخل اسمك")
+                showDefaultDialog("من فضلك ادخل اسمك")
             }
             if (binding.gmail.text.isBlank()) {
-                showSnackBar("من فضلك ادخل  البريد الالكتروني")
+                showDefaultDialog("من فضلك ادخل  البريد الالكتروني")
             }
             if (binding.issueMessage.text.isBlank()) {
-                showSnackBar("من فضلك ادخل المشكلة")
+                showDefaultDialog("من فضلك ادخل المشكلة")
             }
 
             if (binding.issueMessage.text.isNotBlank() && binding.gmail.text.isNotBlank() && binding.issueMessage.text.isNotBlank()) {
+
+
                 try {
+
                     lifecycleScope.launch(Dispatchers.IO) {
-                       val result =  contactUsViewModel.contactUsUseCase.invoke(
+                        val result = contactUsViewModel.contactUsUseCase.invoke(
                             token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDU3NjI5MiwianRpIjoiYmE2OGNmZDktYTQ4NC00YTE3LWE1OTUtNGI5Y2E4MGY0MWY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjg0NTc2MjkyLCJleHAiOjE2ODQ1OTQyOTJ9.B00MpP9tuEZWXBLkyCqjDvO8Byxwe2ohadrYz--UqlQ",
                             ContactUs(
                                 name = binding.name.text.toString(),
@@ -45,8 +54,12 @@ class ContactUsFragment :
                                 problem = binding.issueMessage.text.toString()
                             )
                         )
-                        withContext(Dispatchers.Main){
-                            showSnackBar(result)
+                        withContext(Dispatchers.Main) {
+                            if (result == "problem send successfully" || result == "something error") {
+
+                            }
+                            showDefaultDialog(result)
+
                         }
                     }
                 } catch (e: Exception) {
@@ -55,6 +68,34 @@ class ContactUsFragment :
 
             }
         }
+    }
+
+    private fun showDefaultDialog(message: String) {
+        val alertDialogBuilder = AlertDialog.Builder(context)
+
+        alertDialogBuilder.setTitle("contact us")
+        alertDialogBuilder.setMessage(message)
+
+        alertDialogBuilder.setPositiveButton("تم") { dialog, which ->
+            dialog.dismiss()
+//            Navigation.findNavController(requireView()).navigate(R.id.action_personFormFragment_to_announcementFragment)
+
+        }
+
+        alertDialogBuilder.setNegativeButton("ارسال من جديد") { dialog, which ->
+
+            dialog.dismiss()
+//            Navigation.findNavController(requireView()).navigate(R.id.action_personFormFragment_to_addNameFragment)
+
+        }
+
+        alertDialogBuilder.setOnCancelListener {
+            // Handle dialog cancellation
+            // You can perform an action here or dismiss the dialog
+        }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 
     private fun showSnackBar(message: String) {

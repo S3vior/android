@@ -29,6 +29,15 @@ class MoreFragment :
     override fun callFunctions() {
         initViewModel()
         recyclerAdapter()
+
+        binding.support.setOnClickListener {
+            Navigation.findNavController(requireView())
+                .navigate(R.id.action_moreFragment_to_contactUsFragment)
+        }
+        binding.notification.setOnClickListener {
+            Navigation.findNavController(requireView())
+                .navigate(R.id.action_moreFragment_to_notificationsFragment)
+        }
     }
 
     override fun <T> onClickItem(view: T) {
@@ -41,24 +50,18 @@ class MoreFragment :
             }
 
             2 -> {
-                Navigation.findNavController(requireView())
-                    .navigate(R.id.action_moreFragment_to_notificationsFragment)
 
             }
 
-            3 -> {}
-            4 -> {
+            3 -> {
                 Navigation.findNavController(requireView())
                     .navigate(R.id.action_moreFragment_to_FQAFragment)
             }
 
-            5 -> {
-                Navigation.findNavController(requireView())
-                    .navigate(R.id.action_moreFragment_to_contactUsFragment)
+            4 -> {
+
             }
 
-            6 -> {}
-            7 -> {}
 
         }
     }
