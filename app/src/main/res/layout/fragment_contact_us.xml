@@ -10,10 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/_10sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:orientation="vertical"
-        tools:context=".ui.fragment.navigationBottomFragment.moreFragment.settingsItems.ChangePawwordFragment">
+        android:padding="@dimen/_10sdp"
+        tools:context=".ui.fragment.navigationBottomFragment.moreFragment.settingsItems.contact_us.ContactUsFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,97 +29,180 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:text="تواصل معنا"
                 android:textColor="@color/light_black"
-                android:textStyle="bold"
                 android:textSize="@dimen/_18sdp"
-                android:layout_marginVertical="@dimen/_10sdp" />
+                android:textStyle="bold" />
         </LinearLayout>
-        <TextView
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="الاسم"
-            android:layout_gravity="end"/>
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:inputType="text"
-            android:textAlignment="viewEnd"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/ed_style"
-            android:hint="اسمك"
-            android:textSize="@dimen/_15sdp"/>
+        <!--        <TextView-->
+        <!--            android:layout_marginBottom="@dimen/_5sdp"-->
+        <!--            android:layout_marginStart="@dimen/_5sdp"-->
+        <!--            android:layout_marginTop="@dimen/_30sdp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="الاسم"-->
+        <!--            android:layout_gravity="end"/>-->
+        <!--        <EditText-->
+        <!--            android:id="@+id/name"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:inputType="text"-->
+        <!--            android:textAlignment="viewEnd"-->
+        <!--            android:layout_height="@dimen/_40sdp"-->
+        <!--            android:background="@drawable/ed_style"-->
+        <!--            android:hint="اسمك"-->
+        <!--            android:textSize="@dimen/_15sdp"/>-->
 
-        <TextView
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="البريد الالكتروني"
-            android:layout_gravity="end"/>
-        <EditText
-            android:id="@+id/gmail"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:inputType="text"
-            android:textAlignment="viewEnd"
-            android:background="@drawable/ed_style"
-            android:hint="you@gmail.com"
-            android:textSize="@dimen/_15sdp"/>
+        <!--        <TextView-->
+        <!--            android:layout_marginBottom="@dimen/_5sdp"-->
+        <!--            android:layout_marginStart="@dimen/_5sdp"-->
+        <!--            android:layout_marginTop="@dimen/_10sdp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="البريد الالكتروني"-->
+        <!--            android:layout_gravity="end"/>-->
+        <!--        <EditText-->
+        <!--            android:id="@+id/gmail"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="@dimen/_40sdp"-->
+        <!--            android:inputType="text"-->
+        <!--            android:textAlignment="viewEnd"-->
+        <!--            android:background="@drawable/ed_style"-->
+        <!--            android:hint="you@gmail.com"-->
+        <!--            android:textSize="@dimen/_15sdp"/>-->
 
-        <TextView
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="كيف يمكننا المساعدة"
-            android:layout_gravity="end"/>
-        <EditText
-            android:id="@+id/issue_message"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
-             android:background="@drawable/ed_style"
-             android:gravity="top"
-            android:hint="اخبرنا ماهي مشكلتك"
-            android:textSize="@dimen/_15sdp"/>
+        <!--        <TextView-->
+        <!--            android:layout_marginBottom="@dimen/_5sdp"-->
+        <!--            android:layout_marginStart="@dimen/_5sdp"-->
+        <!--            android:layout_marginTop="@dimen/_10sdp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="كيف يمكننا المساعدة"-->
+        <!--            android:layout_gravity="end"/>-->
+        <!--        <EditText-->
+        <!--            android:id="@+id/issue_message"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="@dimen/_1sdp"-->
+        <!--             android:background="@drawable/ed_style"-->
+        <!--             android:gravity="top"-->
+        <!--            android:hint="اخبرنا ماهي مشكلتك"-->
+        <!--            android:textSize="@dimen/_15sdp"/>-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
             android:layout_marginTop="@dimen/_20sdp">
 
-            <Button
-                android:id="@+id/sendProblem"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:background="@drawable/back_ground_buttons"
-                android:text="ارسال"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/ed_style_search"
+                app:counterEnabled="true"
+                app:counterMaxLength="16"
+                app:helperText="required"
+                app:helperTextTextColor="@android:color/holo_red_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/progressBar" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <com.github.ybq.android.spinkit.SpinKitView
-                android:id="@+id/progressBar"
-                style="@style/SpinKitView.Large.ThreeBounce"
-                android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="اسمك"
+                    android:inputType="textPersonName"
+                    android:lines="1"
+                    android:maxLength="16" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:SpinKit_Color="@color/main_color"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/ed_style_search"
+                app:helperText="required"
+                app:helperTextTextColor="@android:color/holo_red_dark"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordContainer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/gmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="البريد الالكتروني"
+                    android:inputType="textEmailAddress"
+                    android:lines="1" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneContainer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/ed_style_search"
+                app:helperText="required"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailContainer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/issue_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    android:hint="اخبرنا ماهي مشكلتك"
+                    android:inputType="text"
+                    android:maxLines="5"
+                    android:maxLength="200"/>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--            <Button-->
+            <!--                android:id="@+id/sendProblem"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                 android:background="@drawable/back_ground_buttons"-->
+            <!--                android:text="ارسال"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:textSize="@dimen/_15sdp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="@+id/progressBar" />-->
+
+            <!--            <com.github.ybq.android.spinkit.SpinKitView-->
+            <!--                android:id="@+id/progressBar"-->
+            <!--                style="@style/SpinKitView.Large.ThreeBounce"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                app:SpinKit_Color="@color/main_color"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <include
+            android:id="@+id/activity_main_btn"
+            layout="@layout/btn_loading_layout"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp" />
     </LinearLayout>
 </layout>
