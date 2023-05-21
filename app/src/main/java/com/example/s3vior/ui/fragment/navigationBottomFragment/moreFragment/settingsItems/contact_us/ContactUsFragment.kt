@@ -1,6 +1,8 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.contact_us
 
 import android.app.AlertDialog
+import android.os.Handler
+import android.util.Patterns
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -8,46 +10,53 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.s3vior.data.source.remote.endPoints.ContactUs
 import com.example.s3vior.databinding.FragmentContactUsBinding
+import com.example.s3vior.domain.usecases.VALID_PASSWORD_REGEX
 import com.example.s3vior.ui.fragment.base.BaseFragment
+import com.example.s3vior.utils.BtnLoadingProgressbar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class ContactUsFragment :
     BaseFragment<FragmentContactUsBinding>(FragmentContactUsBinding::inflate) {
+    private val handler = Handler()
 
     private val contactUsViewModel: ContactUsViewModel by viewModels()
     override fun callFunctions() {
-        binding.progressBar.visibility = View.GONE
-        binding.sendProblem.visibility = View.VISIBLE
+
         sendProblem()
     }
 
     private fun sendProblem() {
-
-
-        binding.sendProblem.setOnClickListener {
-            if (binding.name.text.isBlank()) {
+        emailFocusListener()
+        binding.activityMainBtn.setOnClickListener {
+            if (binding.name.text!!.isBlank()) {
                 showDefaultDialog("من فضلك ادخل اسمك")
             }
-            if (binding.gmail.text.isBlank()) {
+            if (binding.gmail.text!!.isBlank()) {
                 showDefaultDialog("من فضلك ادخل  البريد الالكتروني")
             }
-            if (binding.issueMessage.text.isBlank()) {
+            if (binding.issueMessage.text!!.isBlank()) {
                 showDefaultDialog("من فضلك ادخل المشكلة")
             }
 
-            if (binding.issueMessage.text.isNotBlank() && binding.gmail.text.isNotBlank() && binding.issueMessage.text.isNotBlank()) {
 
+            if (binding.issueMessage.text!!.isNotBlank() && binding.gmail.text!!.isNotBlank() && isValidGmailAddress(
+                    binding.gmail.text.toString().trim()
+                ) && binding.issueMessage.text!!.isNotBlank()
+            ) {
+                val progressbar = BtnLoadingProgressbar(it) // `it` is view of button
+                progressbar.setLoading()
 
                 try {
 
                     lifecycleScope.launch(Dispatchers.IO) {
                         val result = contactUsViewModel.contactUsUseCase.invoke(
-                            token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDU3NjI5MiwianRpIjoiYmE2OGNmZDktYTQ4NC00YTE3LWE1OTUtNGI5Y2E4MGY0MWY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjg0NTc2MjkyLCJleHAiOjE2ODQ1OTQyOTJ9.B00MpP9tuEZWXBLkyCqjDvO8Byxwe2ohadrYz--UqlQ",
+                            token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDY2MzI0MywianRpIjoiNDQ4ZGM4YmEtMWMwMy00NGEzLWJlMjQtZDEyNGRmMmYxZjViIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjg0NjYzMjQzLCJsb2dnZWRfb3V0IjpmYWxzZX0.WYQ2RGpVCvtkPatmB_fVkIz2XEkJYIZfkfXkVScJmlY",
                             ContactUs(
                                 name = binding.name.text.toString(),
                                 email = binding.gmail.text.toString(),
@@ -55,10 +64,22 @@ class ContactUsFragment :
                             )
                         )
                         withContext(Dispatchers.Main) {
-                            if (result == "problem send successfully" || result == "something error") {
+                            if (result == "problem send successfully" /*|| result == "something error"*/) {
+
+                                progressbar.setState(true) {
+                                    lifecycleScope.launch {
+                                        delay(800)
+                                    }
+                                    progressbar.reset()
+                                }// executed after animation end
+
 
                             }
-                            showDefaultDialog(result)
+                            if (result == "something wrong") {
+                                startError(progressbar)
+
+                            }
+                        //   showDefaultDialog(result)
 
                         }
                     }
@@ -73,7 +94,7 @@ class ContactUsFragment :
     private fun showDefaultDialog(message: String) {
         val alertDialogBuilder = AlertDialog.Builder(context)
 
-        alertDialogBuilder.setTitle("contact us")
+        alertDialogBuilder.setTitle("تواصل معنا")
         alertDialogBuilder.setMessage(message)
 
         alertDialogBuilder.setPositiveButton("تم") { dialog, which ->
@@ -98,6 +119,29 @@ class ContactUsFragment :
         alertDialog.show()
     }
 
+    private fun startError(progressbar: BtnLoadingProgressbar) {
+        progressbar.reset()
+        handler.postDelayed({
+            progressbar.setLoading()
+            handler.postDelayed({
+                progressbar.setState(false) { // executed after animation end
+                    handler.postDelayed({
+                        progressbar.reset()
+                    }, 1500)
+                }
+            }, 2000)
+        }, 600)
+    }
+
+    private fun isValidGmailAddress(email: String): Boolean {
+        val gmailPattern = Patterns.EMAIL_ADDRESS // Built-in pattern for email validation
+
+        // Additional regex pattern for Gmail address validation
+        val gmailRegex = Regex("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@gmail\\.com$")
+
+        return gmailPattern.matcher(email).matches() && gmailRegex.matches(email)
+    }
+
     private fun showSnackBar(message: String) {
         val snackBar = Snackbar.make(
             requireActivity().findViewById(android.R.id.content),
@@ -108,5 +152,46 @@ class ContactUsFragment :
         snackBar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).maxLines =
             10
         snackBar.show()
+    }
+
+    private fun emailFocusListener() {
+        binding.gmail.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.emailContainer.helperText = validEmail()
+            }
+        }
+        binding.name.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.passwordContainer.helperText = validName()
+            }
+        }
+        binding.issueMessage.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.phoneContainer.helperText =validProblem()
+            }
+        }
+    }
+
+    private fun validEmail(): String? {
+        val emailText = binding.gmail.text.toString()
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+            return "Invalid Email Address"
+        }
+        return null
+    }
+
+    private fun validName(): String? {
+        val emailText = binding.name.text.toString()
+        if (emailText.length<3) {
+            return "Invalid Name"
+        }
+        return null
+    }
+    private fun validProblem(): String? {
+        val emailText = binding.issueMessage.text.toString()
+        if (emailText.length<30) {
+            return "Problem must be more than 30 characters"
+        }
+        return null
     }
 }

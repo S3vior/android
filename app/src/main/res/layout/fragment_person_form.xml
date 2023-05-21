@@ -237,27 +237,26 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
+        <include
             android:id="@+id/button4"
-            android:layout_width="wrap_content"
+            layout="@layout/btn_loading_layout"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
-            android:background="@drawable/back_ground_buttons"
-            android:text="@string/send"
-            android:textColor="@color/white"
+            android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7" />
 
-        <com.github.ybq.android.spinkit.SpinKitView
-            android:id="@+id/progressBar"
-            style="@style/SpinKitView.Large.ThreeBounce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:SpinKit_Color="@color/main_color"
-            app:layout_constraintBottom_toBottomOf="@+id/button4"
-            app:layout_constraintEnd_toEndOf="@+id/button4"
-            app:layout_constraintStart_toStartOf="@+id/button4" />
+<!--        <com.github.ybq.android.spinkit.SpinKitView-->
+<!--            android:id="@+id/progressBar"-->
+<!--            style="@style/SpinKitView.Large.ThreeBounce"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:SpinKit_Color="@color/main_color"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/button4"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/button4"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/button4" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
