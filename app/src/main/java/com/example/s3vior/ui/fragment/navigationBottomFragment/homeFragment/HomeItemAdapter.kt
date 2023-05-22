@@ -10,7 +10,7 @@ class HomeItemAdapter(
     clickListener: BaseInterfaceListener
 ) :  BaseAdapter<MafqoudModel>(list,clickListener){
 
-    override val layoutId: Int = R.layout.animated_item_row
+    override val layoutId: Int = R.layout.home_recyclerview_item
 }
 
 
