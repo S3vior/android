@@ -130,6 +130,9 @@
         <action
             android:id="@+id/action_moreFragment_to_matchedPersonsFragment"
             app:destination="@id/matchedPersonsFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_conditionFragment"
+            app:destination="@id/conditionFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNameFragment"
@@ -219,4 +222,14 @@
         android:id="@+id/matchedPersonsFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.MatchedPersonsFragment"
         android:label="MatchedPersonsFragment" />
+    <fragment
+        android:id="@+id/conditionFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.condition.ConditionFragment"
+        android:label="ConditionFragment" >
+        <action
+            android:id="@+id/action_conditionFragment_to_moreFragment"
+            app:destination="@id/moreFragment"
+            app:popUpTo="@id/moreFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

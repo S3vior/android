@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_color"
+        android:background="@color/white"
         tools:context=".ui.fragment.addPersonDetails.AddAgeGenderDateFragment">
 
 
@@ -18,35 +18,35 @@
             android:id="@+id/tV18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:text="@string/mafqoud"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView17"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/add_data_text"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tV18"
             app:layout_constraintTop_toBottomOf="@+id/tV18" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_250sdp"
-            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_50sdp"
             android:background="@drawable/constrain_add_data"
-            android:padding="@dimen/_17sdp"
+            android:paddingVertical="@dimen/_17sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -55,97 +55,181 @@
             app:layout_constraintVertical_bias="0.013">
 
             <TextView
+                android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="تاريخ العثو "
-                android:layout_marginEnd="@dimen/_7sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                android:text="The date the missing person was found"
+                app:layout_constraintStart_toStartOf="@+id/linear_layout_date"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                app:layout_constraintBottom_toTopOf="@+id/linear_layout_date"
-                app:layout_constraintEnd_toEndOf="@+id/linear_layout_date" />
             <LinearLayout
                 android:id="@+id/linear_layout_date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_17sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginHorizontal="@dimen/_5sdp"
                 android:orientation="horizontal"
-                android:padding="@dimen/_7sdp"
+                android:paddingVertical="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/textView18">
 
-                <EditText
-                    android:id="@+id/edDay"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dayContainer"
                     android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/ed_style"
-                    android:gravity="center"
-                    android:hint="@string/day_text"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:textColorHint="@color/black" />
+                    android:background="@drawable/ed_style_search"
+                    app:helperText="required"
+                    app:helperTextTextColor="@android:color/holo_red_dark">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="@string/day_text"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="2"
+                        android:textColorHint="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--                <EditText-->
+                <!--                    android:id="@+id/edDay"-->
+                <!--                    android:layout_width="@dimen/_40sdp"-->
+                <!--                    android:layout_height="@dimen/_50sdp"-->
+                <!--                    android:layout_marginEnd="@dimen/_7sdp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="@drawable/ed_style_search"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:hint="@string/day_text"-->
+                <!--                    android:inputType="number"-->
+                <!--                    android:maxLength="2"-->
+                <!--                    android:textColorHint="@color/black" />-->
 
                 <Spinner
                     android:id="@+id/spinnerMonth"
                     android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/ed_style"
+                    android:background="@drawable/ed_style_search"
                     android:gravity="center" />
 
-                <EditText
-                    android:id="@+id/year"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/yearContainer"
                     android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/ed_style"
-                    android:gravity="center"
-                    android:hint="@string/year_text"
-                    android:inputType="number"
-                    android:maxLength="4"
-                    android:textColorHint="@color/black" />
+                    android:background="@drawable/ed_style_search"
+                    app:helperText="required"
+                    app:helperTextTextColor="@android:color/holo_red_dark">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="@string/year_text"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="4"
+                        android:textColorHint="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--                <EditText-->
+                <!--                    android:id="@+id/year"-->
+                <!--                    android:layout_width="@dimen/_40sdp"-->
+                <!--                    android:layout_height="@dimen/_50sdp"-->
+                <!--                    android:layout_marginEnd="@dimen/_7sdp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="@drawable/ed_style"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:hint="@string/year_text"-->
+                <!--                    android:inputType="number"-->
+                <!--                    android:maxLength="4"-->
+                <!--                    android:textColorHint="@color/black" />-->
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/edAge"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ageContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_9sdp"
-                android:background="@drawable/ed_style"
-                android:hint="@string/age_text"
-                android:inputType="number"
-                android:textColorHint="@color/black"
+                android:layout_weight="1"
+                 android:background="@drawable/ed_style_search"
+                app:counterEnabled="true"
+                app:helperText="required"
+                android:layout_marginVertical="@dimen/_9sdp"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                app:helperTextTextColor="@android:color/holo_red_dark"
                 app:layout_constraintEnd_toEndOf="@+id/linear_layout_date"
                 app:layout_constraintStart_toStartOf="@+id/linear_layout_date"
-                app:layout_constraintTop_toBottomOf="@+id/linear_layout_date" />
+                app:layout_constraintTop_toBottomOf="@+id/linear_layout_date"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/age_text"
+                    android:inputType="number"
+                    android:textSize="@dimen/_12sdp"
+                    android:lines="1"
+                    android:gravity="start"
+                    android:maxLength="2"
+                    android:textColorHint="@color/black"
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <EditText-->
+<!--                android:id="@+id/edAge"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="@dimen/_9sdp"-->
+<!--                android:background="@drawable/ed_style"-->
+<!--                android:hint="@string/age_text"-->
+<!--                android:inputType="number"-->
+<!--                android:textColorHint="@color/black"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/linear_layout_date"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/linear_layout_date"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/linear_layout_date" />-->
 
             <Spinner
                 android:id="@+id/spinnerGender"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:layout_margin="@dimen/_9sdp"
-                android:background="@drawable/ed_style"
+                android:layout_marginVertical="@dimen/_9sdp"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:background="@drawable/ed_style_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/linear_layout_date"
                 app:layout_constraintStart_toStartOf="@+id/linear_layout_date"
-                app:layout_constraintTop_toBottomOf="@id/edAge" />
+                app:layout_constraintTop_toBottomOf="@id/ageContainer" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/nextAddDate"
             android:layout_width="109dp"
             android:layout_height="57dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/ed_style"
+            android:background="@drawable/ed_style_search"
             android:gravity="center"
             android:text="@string/next"
             android:textColor="@color/black"
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

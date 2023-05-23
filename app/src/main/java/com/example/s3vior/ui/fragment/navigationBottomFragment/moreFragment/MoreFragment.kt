@@ -1,5 +1,6 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment
 
+import android.content.Intent
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +26,17 @@ class MoreFragment :
         binding.recyclerSetting.adapter = SettingItemAdapter(mutableListOf(), this)
     }
 
+    private fun shareApp(){
+        val msg = "Discover our powerful app utilizing facial recognition technology to locate missing individuals. Join us in this groundbreaking effort by downloading the app today. " +
+                "Together, we can leverage the power of facial recognition to bring missing people back to their loved ones. Make a difference and help us reunite families! " +
+                "https://play.google.com/store/apps/details?id=${requireContext().packageName}"
+
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_TEXT,msg)
+        intent.type = "text/plain"
+        startActivity(intent)
+    }
 
     override fun callFunctions() {
         initViewModel()
@@ -50,7 +62,7 @@ class MoreFragment :
             }
 
             2 -> {
-
+                shareApp()
             }
 
             3 -> {
@@ -59,7 +71,8 @@ class MoreFragment :
             }
 
             4 -> {
-
+                Navigation.findNavController(requireView())
+                    .navigate(R.id.action_moreFragment_to_conditionFragment)
             }
 
 

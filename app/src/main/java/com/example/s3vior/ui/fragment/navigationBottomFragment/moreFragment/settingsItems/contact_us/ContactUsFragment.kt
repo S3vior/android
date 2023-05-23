@@ -34,20 +34,11 @@ class ContactUsFragment :
     private fun sendProblem() {
         emailFocusListener()
         binding.activityMainBtn.setOnClickListener {
-            if (binding.name.text!!.isBlank()) {
-                showDefaultDialog("من فضلك ادخل اسمك")
-            }
-            if (binding.gmail.text!!.isBlank()) {
-                showDefaultDialog("من فضلك ادخل  البريد الالكتروني")
-            }
-            if (binding.issueMessage.text!!.isBlank()) {
-                showDefaultDialog("من فضلك ادخل المشكلة")
-            }
 
 
             if (binding.issueMessage.text!!.isNotBlank() && binding.gmail.text!!.isNotBlank() && isValidGmailAddress(
                     binding.gmail.text.toString().trim()
-                ) && binding.issueMessage.text!!.isNotBlank()
+                ) && binding.issueMessage.text!!.isNotBlank() && binding.issueMessage.text!!.length >= 30
             ) {
                 val progressbar = BtnLoadingProgressbar(it) // `it` is view of button
                 progressbar.setLoading()
@@ -79,7 +70,7 @@ class ContactUsFragment :
                                 startError(progressbar)
 
                             }
-                        //   showDefaultDialog(result)
+                            //   showDefaultDialog(result)
 
                         }
                     }
@@ -167,7 +158,7 @@ class ContactUsFragment :
         }
         binding.issueMessage.setOnFocusChangeListener { _, focused ->
             if (!focused) {
-                binding.phoneContainer.helperText =validProblem()
+                binding.phoneContainer.helperText = validProblem()
             }
         }
     }
@@ -182,16 +173,18 @@ class ContactUsFragment :
 
     private fun validName(): String? {
         val emailText = binding.name.text.toString()
-        if (emailText.length<3) {
+        if (emailText.length < 3) {
             return "Invalid Name"
         }
         return null
     }
+
     private fun validProblem(): String? {
         val emailText = binding.issueMessage.text.toString()
-        if (emailText.length<30) {
-            return "Problem must be more than 30 characters"
+        return if (emailText.length < 30) {
+            "Problem must be more than 30 characters"
+        } else {
+            ""
         }
-        return null
     }
 }

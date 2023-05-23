@@ -47,7 +47,7 @@
     <string name="_home" translatable="false">الرئيسية</string>
     <string name="how_to_use" translatable="false">طريقة استخدام الخاصية</string>
     <string name="guide_one_text" translatable="false">اولا عليك ان تملئ كل المعلومات الكافية عن المفقود لتسهيل الوصول اليه في صفحة المعلومات</string>
-    <string name="next" translatable="false">التالي</string>
+    <string name="next" translatable="false">next</string>
     <string name="guide_two_text" translatable="false">يمكنك بكل سهولة ان تستخدم الكاميرا مباشرة من التطبيق واخذ صورة للمفقود وهذه الخاصية تسهل علينا</string>
     <string name="finish" translatable="false">انهاء</string>
     <string name="guide_three_text" translatable="false">يمكنك استخدام الصور من المعرض في حالة وجود صور للمفقود فيها</string>
@@ -63,12 +63,12 @@
     <string name="setting">الاعدادات</string>
     <string name="username">اسم المستخدم</string>
     <string name="email_edit">تعديل الايميل</string>
-    <string name="add_data_text">برجاء ادخال البيانات التالية \n كي نستطيع مساعدتك في العثور علي الشخص المفقود</string>
+    <string name="add_data_text">Please enter the following data so that we can help you find the missing person</string>
     <string name="name" translatable="false">الاسم</string>
-    <string name="mafqoud">مفقود</string>
-    <string name="day_text">اليوم</string>
-    <string name="year_text">سنة</string>
-    <string name="age_text">العمر</string>
+    <string name="mafqoud">mafqoud</string>
+    <string name="day_text">day</string>
+    <string name="year_text">year</string>
+    <string name="age_text">mafqoud age</string>
     <string name="notification">الاشعارات</string>
     <string name="change_notification_icon">Change notifcation icon</string>
     <string name="first_person">الشخص الاول</string>
@@ -76,6 +76,33 @@
     <string name="matchedicon">matchedIcon</string>
     <string name="try_again">اعادة المحاولة</string>
     <string name="send">ارسال</string>
+    <string name="condition">Principles and Conditions
+
+Thank you for choosing our app dedicated to finding missing people using facial recognition technology. Before you proceed, please carefully read and acknowledge the following principles and conditions:
+
+1. Privacy and Data Protection:
+   - Our app values and respects user privacy. We adhere to strict data protection standards to ensure the confidentiality and security of personal information.
+   - Facial recognition data collected will only be used for the purpose of locating missing individuals and will not be shared with any third parties without explicit consent.
+
+2. Consent and Compliance:
+   - By using this app, you acknowledge that you have the legal authority to search for missing persons and agree to comply with all applicable laws and regulations in your jurisdiction.
+   - You understand that any misuse or unauthorized access to the app\'s features may result in legal consequences.
+
+3. Responsible Usage:
+   - The app\'s facial recognition technology is a powerful tool for locating missing people. However, it is crucial to use it responsibly and ethically.
+   - You agree not to misuse the app or its features for any unlawful purposes, including but not limited to stalking, harassment, or invasion of privacy.
+
+4. Accuracy and Limitations:
+   - While our app utilizes advanced facial recognition algorithms, please note that no technology is 100% accurate.
+   - Results obtained through the app should be considered as potential leads and should be verified and confirmed by authorized personnel or law enforcement agencies.
+
+5. User Safety and Security:
+   - The app is designed to facilitate the search for missing individuals. However, it is essential to prioritize personal safety and exercise caution when engaging in any related activities.
+   - If you come across any sensitive information or have concerns about a particular case, please report it to the appropriate authorities.
+
+By continuing to use this app, you indicate that you have read and understood the principles and conditions outlined above. You agree to abide by them and acknowledge that any violation may result in the termination of your access to the app.
+
+Thank you for your commitment to helping find missing people and contributing to the betterment of society.</string>
     <string-array name="countryCodes">
         <item>93,AF</item>
         <item>355,AL</item>
