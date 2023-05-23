@@ -18,17 +18,19 @@ class AddNameFragment :
 
     private fun callBack() {
 
-
+        validateFocusListener()
         binding.nextAddName.setOnClickListener {
-            if (binding.edCaseName.text.isBlank()) {
+            if (binding.edCaseName.text!!.isBlank()) {
 
                 showSnackBar("من فضلك ادخل اسم المفقود")
             }
-            if (binding.editTextTextPersonName3.text.isBlank()) {
+            if (binding.editTextTextPersonName3.text!!.isBlank()) {
 
                 showSnackBar("من فضلك ادخل مواصفات المفقود")
             }
-            if (binding.editTextTextPersonName3.text.isNotBlank() && binding.edCaseName.text.isNotBlank()) {
+            if (binding.editTextTextPersonName3.text!!.isNotBlank() && binding.edCaseName.text!!.isNotBlank()
+                && binding.editTextTextPersonName3.text!!.length >= 20 && binding.edCaseName.text!!.length >= 2
+            ) {
                 try {
                     sharedViewModel.getDataFromNameFragment(
                         FirstDetails(
@@ -48,9 +50,43 @@ class AddNameFragment :
 
     }
 
+    private fun validateFocusListener() {
+        binding.edCaseName.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.nameContainer.helperText = validName()
+            }
+        }
+        binding.editTextTextPersonName3.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.descContainer.helperText = validDesc()
+            }
+        }
+
+    }
+
+    private fun validName(): String? {
+        val name = binding.edCaseName.text.toString()
+        if (name.length < 2) {
+            return "Invalid Name"
+        }
+        return null
+    }
+
+    private fun validDesc(): String {
+        val desc = binding.editTextTextPersonName3.text.toString()
+        return if (desc.length < 20) {
+            "description must be more than 20 characters"
+        } else {
+            ""
+        }
+    }
+
+
+
     override fun callFunctions() {
         callBack()
     }
+
     private fun showSnackBar(message: String) {
         val snackBar = Snackbar.make(
             requireActivity().findViewById(android.R.id.content),

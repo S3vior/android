@@ -6,19 +6,19 @@ object Constants {
         var age = arrayOf("10-20", "20-30")
 
         var month = arrayOf(
-            "يناير",
-            "فبراير",
-            "مارس",
-            "ابريل",
-            "مايو",
-            "يونيو",
-            "يوليو",
-            "اكتوبر",
-            "نوفمبر",
-            "ديسمبر"
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "October",
+            "November",
+            "December"
         )
 
-        var gender= arrayOf("ذكر","انثي")
+        var gender= arrayOf("Male", "Female")
     }
 
     object UploadImage {
