@@ -84,7 +84,12 @@
         android:id="@+id/mapsFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.mapsFragment.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="personId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.s3vior.ui.onBoarding.ViewPagerFragment"
@@ -191,6 +196,13 @@
         <argument
             android:name="person_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_allPersonInfo_to_mapsFragment"
+            app:destination="@id/mapsFragment"
+            app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_allPersonInfo_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
