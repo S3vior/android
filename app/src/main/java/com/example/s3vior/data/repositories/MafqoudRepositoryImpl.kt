@@ -3,6 +3,7 @@ package com.example.s3vior.data.repositories
 import android.util.Log
 import android.widget.Toast
 import com.example.s3vior.data.source.remote.dataSource.MafqoudRemoteDataSource
+import com.example.s3vior.data.source.remote.responseModels.ScrapedPersonsResponseItem
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.repositories.MafqoudRepository
 import com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.model.MatchedPersonsResponseModelItem
@@ -27,6 +28,64 @@ class MafqoudRepositoryImpl @Inject constructor(
             getPersonsResult.body()!!.map {
                 it.toMafqoudModel()
             }
+        } else {
+            getPersonsResult.errorBody()!!.string()
+            throw Exception(
+                JSONObject(
+                    getPersonsResult.errorBody()!!.string()
+                ).getString("message")
+            )
+        }
+    }
+
+    override suspend fun getMissedPersons(): List<MafqoudModel> {
+        val getPersonsResult = mafqoudRemoteDataSource.getMissedPersons()
+//        return getPersonsResult.body()!!.map {
+//            it.toMafqoudModel()
+//        }
+        return if (getPersonsResult.isSuccessful && getPersonsResult.body() != null && getPersonsResult.code() == 200) {
+
+            getPersonsResult.body()!!.map {
+                it.toMafqoudModel()
+            }
+        } else {
+            getPersonsResult.errorBody()!!.string()
+            throw Exception(
+                JSONObject(
+                    getPersonsResult.errorBody()!!.string()
+                ).getString("message")
+            )
+        }
+    }
+
+    override suspend fun getFoundedPersons(): List<MafqoudModel> {
+        val getPersonsResult = mafqoudRemoteDataSource.getFoundedPersons()
+//        return getPersonsResult.body()!!.map {
+//            it.toMafqoudModel()
+//        }
+        return if (getPersonsResult.isSuccessful && getPersonsResult.body() != null && getPersonsResult.code() == 200) {
+
+            getPersonsResult.body()!!.map {
+                it.toMafqoudModel()
+            }
+        } else {
+            getPersonsResult.errorBody()!!.string()
+            throw Exception(
+                JSONObject(
+                    getPersonsResult.errorBody()!!.string()
+                ).getString("message")
+            )
+        }
+    }
+
+    override suspend fun getScrapedPersons(): List<ScrapedPersonsResponseItem> {
+        val getPersonsResult = mafqoudRemoteDataSource.getScrapedPersons()
+//        return getPersonsResult.body()!!.map {
+//            it.toMafqoudModel()
+//        }
+        return if (getPersonsResult.isSuccessful && getPersonsResult.body() != null && getPersonsResult.code() == 200) {
+
+            getPersonsResult.body()!!
         } else {
             getPersonsResult.errorBody()!!.string()
             throw Exception(

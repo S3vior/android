@@ -1,6 +1,7 @@
 package com.example.s3vior.data.source.remote.endPoints
 
 import com.example.s3vior.data.source.remote.responseModels.MafqoudResponseModel
+import com.example.s3vior.data.source.remote.responseModels.ScrapedPersonsResponseItem
 import com.example.s3vior.networking.api.BaseApiResponse
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.Person
 import com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.model.MatchedPersonsResponseModelItem
@@ -14,6 +15,15 @@ import retrofit2.http.*
 interface MafqoudApiService {
     @GET("persons")
     suspend fun getAllPersons(): Response<List<MafqoudResponseModel>>
+
+    @GET("founded_persons")
+    suspend fun getFoundedPersons():Response<List<MafqoudResponseModel>>
+
+    @GET("missing_persons")
+    suspend fun getMissedPersons():Response<List<MafqoudResponseModel>>
+
+    @GET("scrapedpersons")
+    suspend fun getScrapedPersons():Response<List<ScrapedPersonsResponseItem>>
 
     @GET("persons")
     suspend fun getAllPersonsMap(): Response<List<MafqoudResponseModel>>

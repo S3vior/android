@@ -20,6 +20,14 @@ object Constants {
 
         var gender= arrayOf("Male", "Female")
     }
+    object StateFilter{
+        var state = arrayOf(
+            "All persons",
+            "Missed",
+            "Founded",
+            "Scraped persons"
+        )
+    }
 
     object UploadImage {
         const val REQUEST_CODE_GALLERY = 100
