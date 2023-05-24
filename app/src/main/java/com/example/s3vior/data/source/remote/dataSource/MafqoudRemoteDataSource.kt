@@ -2,6 +2,7 @@ package com.example.s3vior.data.source.remote.dataSource
 
 import com.example.s3vior.data.source.remote.endPoints.MafqoudApiService
 import com.example.s3vior.data.source.remote.responseModels.MafqoudResponseModel
+import com.example.s3vior.data.source.remote.responseModels.ScrapedPersonsResponseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
@@ -15,6 +16,20 @@ class MafqoudRemoteDataSource @Inject constructor(private var mafqoudApiService:
     suspend fun getAllPersons(): Response<List<MafqoudResponseModel>> =
         withContext(Dispatchers.IO) {
             mafqoudApiService.getAllPersons()
+        }
+
+    suspend fun getFoundedPersons(): Response<List<MafqoudResponseModel>> =
+        withContext(Dispatchers.IO) {
+            mafqoudApiService.getFoundedPersons()
+        }
+
+    suspend fun getMissedPersons(): Response<List<MafqoudResponseModel>> =
+        withContext(Dispatchers.IO) {
+            mafqoudApiService.getMissedPersons()
+        }
+    suspend fun getScrapedPersons(): Response<List<ScrapedPersonsResponseItem>> =
+        withContext(Dispatchers.IO) {
+            mafqoudApiService.getScrapedPersons()
         }
 
     suspend fun getAllMaps() = withContext(Dispatchers.IO){

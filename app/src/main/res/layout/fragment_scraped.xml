@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.s3vior.ui.fragment.scrapedPersons.ScrapedViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.scrapedPersons.ScrapedFragment">
+
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text="List of scraped persons"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layoutAnimation="@anim/layout_animation"
+            android:transitionGroup="true"
+            app:items="@{viewModel.personsStateFlow.toData()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_title"
+            app:showWhenSuccess="@{viewModel.personsStateFlow}" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/image_error"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            app:layout_constraintBottom_toTopOf="@+id/progress_loading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_title"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="error_robot.json"
+            app:lottie_loop="true"
+            app:showWhenError="@{viewModel.personsStateFlow}" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/progress_loading"
+            style="@style/SpinKitView.Large.Pulse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:SpinKit_Color="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.personsStateFlow}" />
+
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/back_ground_buttons"
+            android:maxLines="1"
+            android:onClick="@{() -> viewModel.getScrapedPersons()}"
+            android:text="@string/try_again"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/progress_loading"
+            app:layout_constraintStart_toStartOf="@+id/progress_loading"
+            app:layout_constraintTop_toBottomOf="@+id/progress_loading"
+            app:showWhenError="@{viewModel.personsStateFlow}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

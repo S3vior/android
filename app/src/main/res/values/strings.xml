@@ -41,10 +41,10 @@
     <string name="name_example" translatable="false">مثل اسلام احمد</string>
     <string name="add_photo_button" translatable="false">add Photo</string>
     <string name="select_photo_from" translatable="false">select photo from</string>
-    <string name="_more" translatable="false">المزيد</string>
-    <string name="maps" translatable="false">الخريطة</string>
+    <string name="_more" translatable="false">More</string>
+    <string name="maps" translatable="false">Maps</string>
     <string name="_announcement" translatable="false">ابلاغ</string>
-    <string name="_home" translatable="false">الرئيسية</string>
+    <string name="_home" translatable="false">Home</string>
     <string name="how_to_use" translatable="false">طريقة استخدام الخاصية</string>
     <string name="guide_one_text" translatable="false">اولا عليك ان تملئ كل المعلومات الكافية عن المفقود لتسهيل الوصول اليه في صفحة المعلومات</string>
     <string name="next" translatable="false">next</string>
@@ -72,7 +72,7 @@
     <string name="notification">الاشعارات</string>
     <string name="change_notification_icon">Change notifcation icon</string>
     <string name="first_person">الشخص الاول</string>
-    <string name="matched_persons">متشابهون</string>
+    <string name="matched_persons">Similar</string>
     <string name="matchedicon">matchedIcon</string>
     <string name="try_again">اعادة المحاولة</string>
     <string name="send">ارسال</string>
@@ -103,6 +103,7 @@ Thank you for choosing our app dedicated to finding missing people using facial 
 By continuing to use this app, you indicate that you have read and understood the principles and conditions outlined above. You agree to abide by them and acknowledge that any violation may result in the termination of your access to the app.
 
 Thank you for your commitment to helping find missing people and contributing to the betterment of society.</string>
+    <string name="scraped">scraped</string>
     <string-array name="countryCodes">
         <item>93,AF</item>
         <item>355,AL</item>

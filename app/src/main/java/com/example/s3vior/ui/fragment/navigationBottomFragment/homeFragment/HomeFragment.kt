@@ -1,8 +1,13 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment
 
+import android.R
 import android.content.Context
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -11,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.s3vior.databinding.FragmentHomeBinding
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.ui.fragment.base.BaseFragment
+import com.example.s3vior.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,9 +43,54 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
+    private fun initSpinner() {
+        spinner(Constants.StateFilter.state, binding.spinner)
+    }
+
+    private fun spinner(array: Array<String>, spinner: Spinner) {
+        val arrayAdapter =
+            ArrayAdapter(requireActivity(), R.layout.simple_spinner_item, array.toList())
+        arrayAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = arrayAdapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
+                    0 -> personViewModel.getAllPersons()
+                    1 -> personViewModel.getMissedPersons()
+                    2 -> personViewModel.getFoundedPersons()
+
+
+                }
+
+            }
+
+        }
+
+//        when (spinner.selectedItem.toString()) {
+//            Constants.StateFilter.state[0] -> personViewModel.getMissedPersons()
+//            Constants.StateFilter.state[1] -> personViewModel.getFoundedPersons()
+//            Constants.StateFilter.state[2] -> personViewModel.getScrapedPersons()
+//        }
+    }
+
     override fun callFunctions() {
         initViewModel()
         recyclerAdapter()
+        initSpinner()
+        binding.profile.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(com.example.s3vior.R.id.action_homeFragment_to_moreFragment)
+         }
 
     }
 
