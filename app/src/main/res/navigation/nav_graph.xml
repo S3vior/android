@@ -131,9 +131,6 @@
             android:id="@+id/action_moreFragment_to_FQAFragment"
             app:destination="@id/FQAFragment" />
         <action
-            android:id="@+id/action_moreFragment_to_matchedPersonsFragment"
-            app:destination="@id/matchedPersonsFragment" />
-        <action
             android:id="@+id/action_moreFragment_to_conditionFragment"
             app:destination="@id/conditionFragment" />
     </fragment>
@@ -224,7 +221,11 @@
 
         android:id="@+id/matchedPersonsFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.MatchedPersonsFragment"
-        android:label="MatchedPersonsFragment" />
+        android:label="MatchedPersonsFragment" >
+        <action
+            android:id="@+id/action_matchedPersonsFragment_to_matchDetailsFragment"
+            app:destination="@id/matchDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/conditionFragment"
         android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.moreFragment.settingsItems.condition.ConditionFragment"
@@ -239,4 +240,12 @@
         android:id="@+id/scrapedFragment"
         android:name="com.example.s3vior.ui.fragment.scrapedPersons.ScrapedFragment"
         android:label="ScrapedFragment" />
+    <fragment
+        android:id="@+id/matchDetailsFragment"
+        android:name="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.details.MatchDetailsFragment"
+        android:label="MatchDetailsFragment" >
+        <argument
+            android:name="matchId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

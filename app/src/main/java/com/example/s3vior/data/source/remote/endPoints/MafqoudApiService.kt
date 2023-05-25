@@ -57,6 +57,11 @@ interface MafqoudApiService {
     suspend fun getPersonDetails(
         @Path("id") id: Int
     ):Response<MafqoudResponseModel>
+
+    @GET("matches/{id}")
+    suspend fun getMatchDetails(
+        @Path("id") id: Int
+    ):Response<MatchedPersonsResponseModelItem>
 }
 
 

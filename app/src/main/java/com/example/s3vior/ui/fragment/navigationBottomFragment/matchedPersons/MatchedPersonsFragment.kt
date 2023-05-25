@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentMatchedPersonsBinding
@@ -14,6 +15,7 @@ import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.HomeItemAdapter
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.PersonViewModel
 import com.example.s3vior.ui.fragment.navigationBottomFragment.homeFragment.RecyclerViewInteractionListener
+import com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.model.MatchedPersonsResponseModelItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +32,9 @@ class MatchedPersonsFragment :
     }
 
     override fun <T> onClickItem(view: T) {
-
+        view as MatchedPersonsResponseModelItem
+        val action  = MatchedPersonsFragmentDirections.actionMatchedPersonsFragmentToMatchDetailsFragment(view.id)
+        Navigation.findNavController(requireView()).navigate(action)
     }
     private fun recyclerAdapter() {
 

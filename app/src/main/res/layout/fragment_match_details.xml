@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+<variable
+    name="viewModel"
+    type="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.details.MatchDetailsViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -88,6 +90,7 @@
                             android:layout_height="241dp"
                             android:background="@drawable/corner_shape"
                             android:scaleType="centerCrop"
+                            app:imageUrl="@{viewModel.personsStateFlow.toData().missed_person.image}"
                             android:src="@drawable/person_image_orange"
                             tools:layout_editor_absoluteX="-7dp" />
                     </androidx.cardview.widget.CardView>
@@ -98,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="20dp"
-                        android:text="اسم الناشر"
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.user}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +114,7 @@
                         android:layout_gravity="end"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="12dp"
-                        android:text="2023/4/8"
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.created_at}"
                         android:textSize="@dimen/_7ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -137,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:text="اسلام احمد"
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.name}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toStartOf="@+id/text_1"
@@ -163,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:text="2023/4/8"
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.created_at}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toStartOf="@+id/text_2"
@@ -189,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:text="شبرا-قاهرة"
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.location.address}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toStartOf="@+id/text_3"
@@ -217,8 +220,8 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:lines="2"
-                        android:text="شاب طويل ونحيف قليلا يرتدي قميص ابيض اخر
-مكان له شارع فيصل  "
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.description}"
+
                         android:textColor="@color/black"
 
                         android:textSize="@dimen/_8ssp"
@@ -265,6 +268,7 @@
                             android:layout_height="241dp"
                             android:background="@drawable/corner_shape"
                             android:scaleType="centerCrop"
+                            app:imageUrl="@{viewModel.personsStateFlow.toData().found_person.image}"
                             android:src="@drawable/person_image_orange"
                             tools:layout_editor_absoluteX="-7dp" />
                     </androidx.cardview.widget.CardView>
@@ -275,7 +279,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="20dp"
-                        android:text="اسم الناشر"
+                        android:text="@{viewModel.personsStateFlow.toData().found_person.user}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -288,7 +292,7 @@
                         android:layout_gravity="end"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="12dp"
-                        android:text="2023/4/8"
+                        android:text="@{viewModel.personsStateFlow.toData().found_person.created_at}"
                         android:textSize="@dimen/_7ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -314,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:text="اسلام احمد"
+                        android:text="@{viewModel.personsStateFlow.toData().found_person.name}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toStartOf="@+id/text_5"
@@ -340,7 +344,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:text="2023/4/8"
+                        android:text="@{viewModel.personsStateFlow.toData().found_person.created_at}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toStartOf="@+id/text_6"
@@ -366,7 +370,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:text="شبرا-قاهرة"
+                        android:text="@{viewModel.personsStateFlow.toData().found_person.location.address}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toStartOf="@+id/text_7"
@@ -394,8 +398,8 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:lines="2"
-                        android:text="شاب طويل ونحيف قليلا يرتدي قميص ابيض اخر
-مكان له شارع فيصل  "
+                        android:text="@{viewModel.personsStateFlow.toData().found_person.description}"
+
                         android:textColor="@color/black"
 
                         android:textSize="@dimen/_8ssp"

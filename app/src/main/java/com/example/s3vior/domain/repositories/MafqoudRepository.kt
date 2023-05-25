@@ -11,6 +11,7 @@ interface MafqoudRepository {
     suspend fun getFoundedPersons():  List<MafqoudModel>
     suspend fun getScrapedPersons():  List<ScrapedPersonsResponseItem>
 
+
     suspend fun getAllMaps():  List<MafqoudModel>
 
     suspend fun getMatchedPersons(): List<MatchedPersonsResponseModelItem>
@@ -30,4 +31,6 @@ interface MafqoudRepository {
     suspend fun searchPerson(searchWord: String): List<MafqoudModel>
 
     suspend fun getPersonDetails(id:Int) : MafqoudModel
+
+    suspend fun getMatchDetailsById(id: Int):MatchedPersonsResponseModelItem
 }

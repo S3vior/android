@@ -51,7 +51,6 @@ class AllPersonInfoFragment : BaseFragment<FragmentAllPersonInfoBinding>(
         lifecycleScope.launch(Dispatchers.IO) {
             viewModel.getPersonDetails(args.personId)
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

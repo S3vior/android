@@ -25,6 +25,7 @@
             android:layout_marginVertical="@dimen/_8sdp"
             android:backgroundTint="@color/white"
             app:cardCornerRadius="@dimen/_13sdp"
+            android:onClick="@{() -> listener.onClickItem(item)}"
             app:cardElevation="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
