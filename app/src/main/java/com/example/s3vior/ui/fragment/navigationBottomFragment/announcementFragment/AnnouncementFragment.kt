@@ -13,18 +13,24 @@ class AnnouncementFragment :
 
     override fun callFunctions() {
         binding.button2.setOnClickListener {
-            val action =  AnnouncementFragmentDirections.actionAnnouncementFragmentToViewPagerFragment(MafqoudStatus.MISSED_PERSON.toString())
+            val action =
+                AnnouncementFragmentDirections.actionAnnouncementFragmentToViewPagerFragment(
+                    "missed"
+                )
             Navigation.findNavController(it).navigate(action)
         }
         binding.button.setOnClickListener {
-            val action =  AnnouncementFragmentDirections.actionAnnouncementFragmentToViewPagerFragment(MafqoudStatus.FOUNDED_PERSON.toString())
+            val action =
+                AnnouncementFragmentDirections.actionAnnouncementFragmentToViewPagerFragment(
+                    "founded"
+                )
             Navigation.findNavController(it).navigate(action)
         }
     }
-    private fun callBack(){
+
+    private fun callBack() {
 
     }
-
 
 
 }

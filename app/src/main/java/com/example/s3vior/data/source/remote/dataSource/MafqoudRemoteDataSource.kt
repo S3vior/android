@@ -72,4 +72,8 @@ class MafqoudRemoteDataSource @Inject constructor(private var mafqoudApiService:
     suspend fun getPersonDetails(id:Int) = withContext(Dispatchers.IO){
         mafqoudApiService.getPersonDetails(id)
     }
+
+    suspend fun getMatchDetailsById(id:Int) = withContext(Dispatchers.IO){
+        mafqoudApiService.getMatchDetails(id)
+    }
 }

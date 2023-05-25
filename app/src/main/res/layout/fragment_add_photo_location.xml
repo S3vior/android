@@ -16,10 +16,10 @@
             android:id="@+id/tV18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="@string/mafqoud"
             android:textColor="@color/black"
-            android:layout_marginStart="@dimen/_20sdp"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,6 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/add_data_text"
             android:textColor="@color/black"
-            android:lines="3"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tV18"
@@ -43,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/constrain_add_data"
             android:paddingVertical="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +55,7 @@
                 android:id="@+id/button5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:background="@drawable/background_buttons"
                 android:drawableEnd="@drawable/outline_add_location_alt_24"
@@ -72,33 +71,29 @@
             <Button
                 android:id="@+id/photoFromGallery"
                 android:layout_width="@dimen/_100sdp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_70sdp"
                 android:background="@drawable/background_buttons"
 
                 android:drawableTop="@drawable/gallery"
-                android:paddingVertical="@dimen/_20sdp"
                 android:text="Open gallery"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/photoFromCamera"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/photoFromCamera"
                 app:layout_constraintTop_toTopOf="@+id/photoFromCamera" />
 
             <Button
                 android:id="@+id/photoFromCamera"
                 android:layout_width="@dimen/_100sdp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_70sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:background="@drawable/background_buttons"
                 android:drawableTop="@drawable/cam"
-                android:paddingVertical="@dimen/_20sdp"
                 android:text="Take photo"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/photoFromGallery"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
@@ -120,7 +115,7 @@
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 android:text="Add mafqoud photo"
+                android:text="Add mafqoud photo"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
@@ -138,11 +133,41 @@
             android:gravity="center"
             android:text="@string/next"
             android:textColor="@color/black"
-
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout4" />
+
+
+        <LinearLayout
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/selectedImage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+                app:shapeAppearanceOverlay="@style/roundedCornerImageView"
+                app:srcCompat="@drawable/person_icon_generated" />
+
+            <ImageView
+                android:id="@+id/removeImage"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_gravity="end"
+                android:src="@drawable/remove_notification" />
+        </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -2,5 +2,6 @@ package com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.m
 
 data class Location(
     val latitude: Double,
-    val longitude: Double
+    val longitude: Double,
+    val address:String
 )

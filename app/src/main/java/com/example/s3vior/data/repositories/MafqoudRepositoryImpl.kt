@@ -191,4 +191,18 @@ class MafqoudRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getMatchDetailsById(id: Int): MatchedPersonsResponseModelItem {
+         val matchDetailsResult = mafqoudRemoteDataSource.getMatchDetailsById(id)
+        return if (matchDetailsResult.isSuccessful && matchDetailsResult.body() != null && matchDetailsResult.code() == 200){
+            matchDetailsResult.body()!!
+        }else{
+            matchDetailsResult.errorBody()!!.string()
+            throw Exception(
+                JSONObject(
+                    matchDetailsResult.errorBody()!!.string()
+                ).getString("message")
+            )
+        }
+    }
+
 }

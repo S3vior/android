@@ -43,7 +43,6 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     FragmentAddPhotoLocationBinding::inflate
 ) {
     private lateinit var pickSingleMediaLauncher: ActivityResultLauncher<Intent>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pickSingleMediaLauncher =
@@ -77,6 +76,20 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
         callBack()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
+
+        val data = sharedViewModel.thirdDetails.value!!.imageUri
+
+        binding.selectedImage.setImageURI(data)
+        if (data != null) {
+            uri = data
+        }
+
+
+
+        binding.removeImage.setOnClickListener {
+            binding.selectedImage.setImageResource(R.drawable.person_icon_generated)
+            uri = Uri.EMPTY
+        }
     }
 
     private fun hasLocationPermission(): Boolean {
@@ -155,9 +168,14 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     private fun callBack() {
         binding.next.setOnClickListener {
             try {
-                sharedViewModel.getDataFromGalleryFragment(ThirdDetails(uri))
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_addPhotoLocationFragment_to_personFormFragment)
+                if (uri == Uri.EMPTY) {
+                    showSnackBar("من فضلك اضف صورة للمفقود")
+                } else {
+                    sharedViewModel.getDataFromGalleryFragment(ThirdDetails(uri))
+
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_addPhotoLocationFragment_to_personFormFragment)
+                }
 
             } catch (e: Exception) {
                 showSnackBar("من فضلك اضف صورة للمفقود")
@@ -169,7 +187,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun galleryIntent() {
-         openGalleryForImage()
+        openGalleryForImage()
 //        openGalleryForPhotoPicker()
     }
 
@@ -210,6 +228,8 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
             try {
 
                 uri = data.data!!
+                binding.selectedImage.setImageURI(uri)
+
             } catch (e: Exception) {
                 Log.e("GalleryERROR", e.message.toString())
             }
@@ -219,6 +239,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.UploadImage.REQUEST_CODE_CAMERA && data != null) {
             try {
                 val bitMap = data.extras?.get("data") as Bitmap
+                binding.selectedImage.setImageBitmap(bitMap)
                 val file: File? = bitmapToFile(requireContext(), bitMap)
                 val uriFromBitmap = FileProvider.getUriForFile(
                     requireContext(),

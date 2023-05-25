@@ -29,7 +29,7 @@ class AddNameFragment :
                 showSnackBar("من فضلك ادخل مواصفات المفقود")
             }
             if (binding.editTextTextPersonName3.text!!.isNotBlank() && binding.edCaseName.text!!.isNotBlank()
-                && binding.editTextTextPersonName3.text!!.length >= 20 && binding.edCaseName.text!!.length >= 2
+                && binding.editTextTextPersonName3.text!!.length >= 4 && binding.edCaseName.text!!.length >= 2
             ) {
                 try {
                     sharedViewModel.getDataFromNameFragment(
@@ -74,8 +74,8 @@ class AddNameFragment :
 
     private fun validDesc(): String {
         val desc = binding.editTextTextPersonName3.text.toString()
-        return if (desc.length < 20) {
-            "description must be more than 20 characters"
+        return if (desc.length < 4) {
+            "description must be more than 4 characters"
         } else {
             ""
         }
