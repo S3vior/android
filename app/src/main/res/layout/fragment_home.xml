@@ -29,6 +29,7 @@
             android:background="@drawable/ed_style_search"
             android:drawableStart="@drawable/search"
             android:drawablePadding="@dimen/_10sdp"
+            android:imeOptions="actionDone"
             android:fontFamily="@font/red_hat_display_medium"
             android:hint="Search for missing person"
             android:inputType="text"
