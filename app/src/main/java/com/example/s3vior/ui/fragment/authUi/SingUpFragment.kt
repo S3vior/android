@@ -3,6 +3,7 @@ package com.example.s3vior.ui.fragment.authUi
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,7 +69,7 @@ class SingUpFragment : Fragment() {
                     return
                 }
                 val responseUser = response.body() as User
-                saveUserData(requireContext(), responseUser)
+                Log.d("response",responseUser.toString())
                 navigationToMainFragment(v)
             }
 

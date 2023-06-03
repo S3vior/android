@@ -65,8 +65,8 @@ class NetworkModule {
 //                if (request.header("No-Authentication") == null) {
 //                    var token: String = prefs.getString("token", null) ?: ""
 //                    request = request.newBuilder()
-//                        .addHeader("Authorization", prefs.getString("token", null) ?: "guest")
-//                        .build();
+//                        .addHeader("Authentication", prefs.getString("token", null) ?: "guest")
+//                        .build()
 //                }
 //                chain.proceed(request)
 //            }
@@ -76,6 +76,9 @@ class NetworkModule {
             .writeTimeout(120, TimeUnit.SECONDS)
             .build()
     }
-
-
+    @Provides
+    @Singleton
+    fun context(@ApplicationContext context: Context): Context {
+        return context
+    }
 }

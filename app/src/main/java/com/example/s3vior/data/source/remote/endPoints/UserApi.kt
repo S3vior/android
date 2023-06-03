@@ -17,7 +17,17 @@ import retrofit2.http.Query
 
 interface UserApi {
     @POST("auth/login")
-    fun signIn(@Body user: User): Call<User>
+    suspend fun signIn(@Body user: SignInFields): Response<SignInToken>
+
+    data class SignInFields(
+        @SerializedName("user_name")
+        val username: String,
+        @SerializedName("password")
+        val password: String
+    )
+    data class SignInToken(
+        @SerializedName("access_token")
+        val token: String)
 
     @POST("auth/register")
     fun signUp(@Body user: User): Call<User>
@@ -38,7 +48,18 @@ interface UserApi {
         @Body request: ContactUs
     ): Response<ResponseBody>
 
+    @POST("users/update_token")
+    suspend fun sendFcmToken(
+        @Header("token") token: String,
+        @Body fcm: Fcm
+    ): Response<ResponseBody>
+
 }
+
+data class Fcm(
+    @SerializedName("fcm_token")
+    val fcmToken: String
+)
 
 data class ContactUs(
     @SerializedName("name")

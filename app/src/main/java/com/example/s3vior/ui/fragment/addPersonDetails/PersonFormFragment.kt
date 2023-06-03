@@ -2,6 +2,7 @@ package com.example.s3vior.ui.fragment.addPersonDetails
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -11,6 +12,7 @@ import com.example.s3vior.R
 import com.example.s3vior.databinding.FragmentPersonFormBinding
 import com.example.s3vior.ui.fragment.base.BaseFragment
 import com.example.s3vior.utils.BtnLoadingProgressbar
+import com.example.s3vior.utils.Constants
 import com.example.s3vior.viewModel.SharedViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -65,9 +67,11 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
             progressbar.setLoading()
             lifecycleScope.launch(Dispatchers.IO) {
 
+                val prefs =  requireActivity().getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+
                 val result = sharedViewModel.uploadPersonUseCase.invoke(
-                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDY2MzI0MywianRpIjoiNDQ4ZGM4YmEtMWMwMy00NGEzLWJlMjQtZDEyNGRmMmYxZjViIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjg0NjYzMjQzLCJsb2dnZWRfb3V0IjpmYWxzZX0.WYQ2RGpVCvtkPatmB_fVkIz2XEkJYIZfkfXkVScJmlY",
-                    name = binding.personName.text.toString(),
+                    "Bearer ${prefs.getString("token", null)}",
+                     name = binding.personName.text.toString(),
                     age = binding.personAge.text.toString().toInt(),
                     gender = binding.personGender.text.toString(),
                     description = binding.personDescription.text.toString(),

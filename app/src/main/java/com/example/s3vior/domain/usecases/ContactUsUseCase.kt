@@ -24,6 +24,4 @@ class ContactUsUseCase @Inject constructor(
            "something wrong"
         }
     }
-
-
 }
