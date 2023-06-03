@@ -1,6 +1,6 @@
 package com.example.s3vior.ui.fragment.authUi
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,20 +11,35 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.s3vior.R
 import com.example.s3vior.cache.UserInfo.saveUserData
+import com.example.s3vior.data.source.remote.endPoints.Fcm
+import com.example.s3vior.data.source.remote.endPoints.UserApi
 import com.example.s3vior.databinding.NewLoginFragmentBinding
 import com.example.s3vior.domain.model.User
 import com.example.s3vior.networking.API
+import com.example.s3vior.utils.Constants
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.messaging.FirebaseMessaging
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
+@AndroidEntryPoint
 class SignInFragment : Fragment(), TextWatcher {
 
     private lateinit var binding: NewLoginFragmentBinding
+    private val signInViewModel: SignInViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +49,8 @@ class SignInFragment : Fragment(), TextWatcher {
         binding = DataBindingUtil.inflate(inflater, R.layout.new_login_fragment, container, false)
 
         binding.loginButton.setOnClickListener { v ->
-            navigationToMainFragment(v)
+            initUserClick(v)
+
         }
 
         binding.tvSignUp.setOnClickListener {
@@ -45,44 +61,52 @@ class SignInFragment : Fragment(), TextWatcher {
 
 
     private fun initUserClick(v: View) {
-        binding.apply {
-            loginButton.setOnClickListener {
-                val user_name = binding.emailEditText.text.toString()
-                val password = binding.passwordEditText.text.toString()
-                val valid = user_name.isEmpty() || password.isEmpty()
 
-                if (valid) {
-                    binding.emailEditText.error = "ادخل بريدك الالكتروني"
-                    binding.passwordEditText.error = "اكتب كلمة السر"
-                } else {
-                    val user = User(null, user_name, "", password, "")
-                    loginUser(user,v)
-                }
-            }
+        val user_name = binding.emailEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
+        val valid = user_name.isBlank() || password.isBlank()
+
+        if (valid) {
+            binding.emailEditText.error = "ادخل بريدك الالكتروني"
+            binding.passwordEditText.error = "اكتب كلمة السر"
+        } else {
+            val user = UserApi.SignInFields(user_name, password)
+            loginUser(user, v)
+
         }
     }
 
-    private fun loginUser(user: User,v: View) {
-        val retrofitBuilder = API.userApi.signIn(user)
+    private fun loginUser(user: UserApi.SignInFields, v: View) {
+        lifecycleScope.launch {
+            val signInResult = signInViewModel.SignInUseCase.invoke(user)
 
-        retrofitBuilder.enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.code() != 200) {
-                    Toast.makeText(requireContext(), "Not 200", Toast.LENGTH_SHORT).show()
+            val prefs =
+                requireActivity().getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
 
-                    return
+            withContext(Dispatchers.Main) {
+                Toast.makeText(requireContext(), signInResult.result, Toast.LENGTH_LONG).show()
+                if (signInResult.result == "login successfully") {
+                    navigationToMainFragment(v)
+                    try {
+                        lifecycleScope.launch {
+                            val token = FirebaseMessaging.getInstance().token.await()
+                            signInViewModel.FCMUseCase.invoke(
+                                prefs.getString("token", null)!!,
+                                Fcm(token)
+                            )
+
+                        }
+                    } catch (e: Exception) {
+                        Log.i("notification", "notification exception")
+                    }
                 }
-                val responseUser = response.body() as User
-                saveUserData(requireContext(), responseUser)
-                navigationToMainFragment(v)
-
-
+                Log.d("userSignIn", signInResult.result)
             }
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(requireContext(), "خطأ فى التسجيل", Toast.LENGTH_SHORT).show()
-            }
-        })
+
+        }
+
+
     }
 
 //    override fun onBackPressed() {
