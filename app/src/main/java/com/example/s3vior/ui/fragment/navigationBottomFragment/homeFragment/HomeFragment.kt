@@ -29,7 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.edSearch.setOnEditorActionListener { text, actionId, _ ->
-            if (actionId != EditorInfo.IME_NULL) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 if (text.text.toString() == "") {
                     personViewModel.getAllPersons()
                 } else {
