@@ -1,5 +1,6 @@
 package com.example.s3vior.ui.fragment.authUi
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -12,21 +13,33 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.s3vior.R
 import com.example.s3vior.cache.UserInfo.saveUserData
+import com.example.s3vior.data.source.remote.endPoints.Fcm
+import com.example.s3vior.data.source.remote.endPoints.UserApi
 import com.example.s3vior.databinding.FragmentSingUpBinding
 
 import com.example.s3vior.databinding.NewSignupFragmentBinding
 import com.example.s3vior.domain.model.User
 import com.example.s3vior.networking.API
+import com.example.s3vior.utils.Constants
+import com.google.firebase.messaging.FirebaseMessaging
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+@AndroidEntryPoint
 class SingUpFragment : Fragment() {
     private lateinit var binding: NewSignupFragmentBinding
 
+    private val viewModel : SignInViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +58,7 @@ class SingUpFragment : Fragment() {
         val name = binding.edSignUpFirstName.text.toString()
         val mobile = binding.phone.text.toString()
         val password = binding.password.text.toString()
-        val valid = name.isEmpty() || mobile.isEmpty() || password.isEmpty()
+        val valid = name.isBlank() || mobile.isBlank() || password.isBlank()
 
         if (valid) {
             binding.edSignUpFirstName.error = "اكتب اسمك"
@@ -53,30 +66,39 @@ class SingUpFragment : Fragment() {
             binding.password.error = "اختر كلمة سر لا تقل عن 6 أحرف"
             return
         } else {
-            val user = User(null, name, mobile, password)
+            val user = UserApi.SignUpFields(  name, password,mobile)
             createUser(user, v)
         }
 
     }
 
-    private fun createUser(user: User,v: View) {
-        val retrofitBuilder =API.userApi.signUp(user)
+    private fun createUser(user: UserApi.SignUpFields,v: View) {
 
-        retrofitBuilder.enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.code() != 201) {
-                    Toast.makeText(requireContext(), "Not 200", Toast.LENGTH_SHORT).show()
-                    return
+        lifecycleScope.launch {
+            val token = FirebaseMessaging.getInstance().token.await()
+
+            withContext(Dispatchers.Main){
+                Toast.makeText(requireContext(),token,Toast.LENGTH_LONG).show()
+            }
+           val signUpResult =  viewModel.signUpUserCase.invoke(user)
+               .also {
+               viewModel.FCMUseCase.invoke(
+                   "Bearer "+it.token.toString(),
+                   Fcm(viewModel.fcmToken.value)
+               )
+           }
+
+            withContext(Dispatchers.Main) {
+                Toast.makeText(requireContext(), signUpResult.result, Toast.LENGTH_LONG).show()
+                if (signUpResult.result == "login successfully") {
+                    navigationToMainFragment(v)
+
                 }
-                val responseUser = response.body() as User
-                Log.d("response",responseUser.toString())
-                navigationToMainFragment(v)
+                Log.d("userSignIn", signUpResult.result)
             }
+        }
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(requireContext(), "خطأ فى التسجيل", Toast.LENGTH_SHORT).show()
-            }
-        })
+
     }
 
 

@@ -42,4 +42,9 @@ class UserRemoteDataSource @Inject constructor(private var userApi: UserApi) {
     ) = withContext(Dispatchers.IO){
         userApi.signIn(signInFields)
     }
+    suspend fun signUp(
+        signUpFields: UserApi.SignUpFields
+    ) = withContext(Dispatchers.IO){
+        userApi.signUp(signUpFields)
+    }
 }

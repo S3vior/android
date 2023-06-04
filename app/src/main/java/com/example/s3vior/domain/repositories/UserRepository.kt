@@ -16,6 +16,10 @@ interface UserRepository {
         signInFields: UserApi.SignInFields
     ): UserRepositoryImpl.SignInResult
 
+    suspend fun signUp(
+        signUpFields: UserApi.SignUpFields
+    ): UserRepositoryImpl.SignInResult
+
     suspend fun contactUs(
         token: String,
         contactUs: ContactUs
