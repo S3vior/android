@@ -30,7 +30,16 @@ interface UserApi {
         val token: String)
 
     @POST("auth/register")
-    fun signUp(@Body user: User): Call<User>
+    suspend fun signUp(@Body user: SignUpFields):  Response<SignInToken>
+
+    data class SignUpFields(
+        @SerializedName("user_name")
+        val username: String,
+        @SerializedName("password")
+        val password: String,
+        @SerializedName("phone_number")
+        val phoneNumber: String,
+    )
 
     @GET("users/profile")
     fun userProfile(@Header("TOKEN") token: String): Call<Profile>

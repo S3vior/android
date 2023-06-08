@@ -71,7 +71,7 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
 
                 val result = sharedViewModel.uploadPersonUseCase.invoke(
                     "Bearer ${prefs.getString("token", null)}",
-                     name = binding.personName.text.toString(),
+                    name = binding.personName.text.toString(),
                     age = binding.personAge.text.toString().toInt(),
                     gender = binding.personGender.text.toString(),
                     description = binding.personDescription.text.toString(),

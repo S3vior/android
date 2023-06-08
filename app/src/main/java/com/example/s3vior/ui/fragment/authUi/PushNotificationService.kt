@@ -3,6 +3,7 @@ package com.example.s3vior.ui.fragment.authUi
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -21,11 +22,12 @@ import com.google.firebase.messaging.RemoteMessage
 
 const val channelId = "FCM Channel"
 
-class PushNotificationService: FirebaseMessagingService() {
+class PushNotificationService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         Log.i("PUSH_TOKEN", "Refreshed firebase token: $token")
-     }
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
@@ -40,11 +42,12 @@ class PushNotificationService: FirebaseMessagingService() {
         notificationIntent.putExtra("title", title)
         notificationIntent.putExtra("body", body)
 
-        val pendingIntent = NavDeepLinkBuilder(this)
-            .setComponentName(MainActivity::class.java)
-            .setGraph(R.navigation.nav_graph)
-            .setDestination(R.id.matchDetailsFragment)
-             .createPendingIntent()
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            notificationIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
 
         val icon = BitmapFactory.decodeResource(
             this.resources,

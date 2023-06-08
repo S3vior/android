@@ -48,6 +48,19 @@ class UserRepositoryImpl @Inject constructor(private val userRemoteDataSource: U
         }
     }
 
+    override suspend fun signUp(signUpFields: UserApi.SignUpFields): SignInResult {
+         val signUpResult = userRemoteDataSource.signUp(signUpFields)
+        return if (signUpResult.isSuccessful ){
+            Log.d("userToken",signUpResult.body()!!.token)
+            UserInfo.saveUserData( appContext, signUpResult.body()!!.token )
+
+            SignInResult("login successfully" ,signUpResult.body()!!.token )
+
+        }else{
+            SignInResult( "username or password is wrong" ,"" )
+        }
+    }
+
     data class SignInResult(val result : String,val token: String?)
     override suspend fun contactUs(token: String, contactUs: ContactUs): String {
 

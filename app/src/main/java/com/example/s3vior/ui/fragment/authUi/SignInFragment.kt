@@ -78,32 +78,34 @@ class SignInFragment : Fragment(), TextWatcher {
 
     private fun loginUser(user: UserApi.SignInFields, v: View) {
         lifecycleScope.launch {
-            val signInResult = signInViewModel.SignInUseCase.invoke(user)
+            try {
 
-            val prefs =
-                requireActivity().getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
 
-            withContext(Dispatchers.Main) {
-                Toast.makeText(requireContext(), signInResult.result, Toast.LENGTH_LONG).show()
-                if (signInResult.result == "login successfully") {
-                    navigationToMainFragment(v)
-                    try {
-                        lifecycleScope.launch {
-                            val token = FirebaseMessaging.getInstance().token.await()
-                            signInViewModel.FCMUseCase.invoke(
-                                prefs.getString("token", null)!!,
-                                Fcm(token)
-                            )
+                val token = FirebaseMessaging.getInstance().token.await()
 
-                        }
-                    } catch (e: Exception) {
-                        Log.i("notification", "notification exception")
-                    }
+                val signInResult = signInViewModel.SignInUseCase.invoke(user).also {
+
+                    signInViewModel.FCMUseCase.invoke(
+                        "Bearer " + it.token.toString(),
+                        Fcm(signInViewModel.fcmToken.value)
+                     )
+                    Log.d("fmcToken",signInViewModel.fcmToken.value)
                 }
-                Log.d("userSignIn", signInResult.result)
+
+
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), signInResult.result, Toast.LENGTH_LONG).show()
+                    if (signInResult.result == "login successfully") {
+                        navigationToMainFragment(v)
+
+                    }
+                    Log.d("userSignIn", signInResult.result)
+                }
+
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "something error", Toast.LENGTH_LONG).show()
             }
-
-
         }
 
 
