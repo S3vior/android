@@ -21,5 +21,7 @@ data class MafqoudModel(
     @SerializedName("name")
     val name: String?,
     @SerializedName("type")
-    val type: String?
+    val type: String?,
+    @SerializedName("user")
+    val user:String?
 )

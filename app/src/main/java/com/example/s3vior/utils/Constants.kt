@@ -24,8 +24,7 @@ object Constants {
         var state = arrayOf(
             "All persons",
             "Missed",
-            "Founded",
-            "Scraped persons"
+            "Founded"
         )
     }
 

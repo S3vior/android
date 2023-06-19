@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/_10sdp">
 
             <!-- Publisher's small image, name, time, location, and menu toggle -->
             <LinearLayout
@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginStart="8dp"
-                    android:text="Ahmed Khater"
+                    android:text="@{item.user}"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -69,33 +69,16 @@
 
                 <TextView
                     android:id="@+id/postTime"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:gravity="start"
+                    android:gravity="end"
+                    android:layout_gravity="end"
                     android:text="@{item.createdAt.substring(0,10)}"
                     android:textColor="#6A6C71"
                     android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/location"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:gravity="start"
-                    android:layout_weight="1"
-                    android:maxLines="1"
-                    android:text="@{item.location.address}"
-                    android:textColor="#6A6C71"
-                    android:textSize="12sp" />
 
-                <ImageView
-                    android:id="@+id/menuToggle"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/baseline_more_vert_24" />
 
             </LinearLayout>
 
@@ -169,13 +152,6 @@
 
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/personDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@{item.description}" />
 
         </LinearLayout>
 

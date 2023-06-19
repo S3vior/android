@@ -71,18 +71,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     1 -> personViewModel.getMissedPersons()
                     2 -> personViewModel.getFoundedPersons()
 
-
                 }
 
             }
 
         }
 
-//        when (spinner.selectedItem.toString()) {
-//            Constants.StateFilter.state[0] -> personViewModel.getMissedPersons()
-//            Constants.StateFilter.state[1] -> personViewModel.getFoundedPersons()
-//            Constants.StateFilter.state[2] -> personViewModel.getScrapedPersons()
-//        }
+
     }
 
     override fun callFunctions() {
@@ -94,6 +89,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             Navigation.findNavController(it)
                 .navigate(com.example.s3vior.R.id.action_homeFragment_to_moreFragment)
          }
+            binding.homeNotification.setOnClickListener {
+                Navigation.findNavController(requireView())
+                    .navigate(com.example.s3vior.R.id.action_homeFragment_to_notificationsFragment)
+            }
 
  
      

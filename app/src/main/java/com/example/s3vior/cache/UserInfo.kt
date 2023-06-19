@@ -14,8 +14,8 @@ import com.example.s3vior.utils.Constants.TOKEN_KEY
 object UserInfo {
     fun isUserLoggedIn(context: Context): Boolean {
         val pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val name = pref.getString(NAME_KEY, null)
-        return name != null
+        val token = pref.getString(TOKEN_KEY, null)
+        return token != null
     }
 
     fun getUserData(context: Context): User {
@@ -33,8 +33,7 @@ object UserInfo {
         editor.putString(TOKEN_KEY, token)
         editor.apply()
 
-        Log.i("toekn", pref.getString("token", null).toString())
-    }
+     }
 
     fun getUserID(context: Context): Profile {
         val pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)

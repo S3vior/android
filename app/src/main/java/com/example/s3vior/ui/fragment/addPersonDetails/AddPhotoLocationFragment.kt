@@ -70,8 +70,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    override fun callFunctions() {
+     override fun callFunctions() {
         initButtons()
         callBack()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -153,7 +152,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+
     private fun initButtons() {
         binding.photoFromGallery.setOnClickListener { galleryIntent() }
         binding.photoFromCamera.setOnClickListener { cameraIntent() }
@@ -185,29 +184,11 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+
     private fun galleryIntent() {
         openGalleryForImage()
 //        openGalleryForPhotoPicker()
     }
-
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    private fun openGalleryForPhotoPicker() {
-        //  openGalleryForImage()
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            pickSingleMediaLauncher.launch(
-                Intent(MediaStore.ACTION_PICK_IMAGES)
-                    .apply {
-                        type = "image/*"
-                    }
-            )
-        } else {
-            openGalleryForImage()
-            showSnackBar("Failed to pick image from")
-        }
-    }
-
 
     private fun cameraIntent() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -240,14 +221,6 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
             try {
                 val bitMap = data.extras?.get("data") as Bitmap
                 binding.selectedImage.setImageBitmap(bitMap)
-                val file: File? = bitmapToFile(requireContext(), bitMap)
-                val uriFromBitmap = FileProvider.getUriForFile(
-                    requireContext(),
-                    this.activity?.packageName + ".provider",
-                    file!!
-                )
-                uri = uriFromBitmap
-
 
             } catch (e: Exception) {
 
