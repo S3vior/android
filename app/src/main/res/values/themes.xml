@@ -36,6 +36,11 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">2%</item>
     </style>
+
+    <style name="roundedCornerImageViewMatched">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5%</item>
+    </style>
     <style name="roundedCornerImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10%</item>

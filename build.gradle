@@ -1,4 +1,7 @@
 buildscript {
+    ext {
+        kotlin_version = '1.9.0-Beta'
+    }
     dependencies {
         classpath 'com.google.gms:google-services:4.3.15'
          def nav_version = "2.5.3"

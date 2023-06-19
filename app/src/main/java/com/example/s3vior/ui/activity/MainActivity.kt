@@ -37,6 +37,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         startUp()
 
+
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+      //  finish()
     }
 
 

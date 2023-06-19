@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.s3vior.R
+import com.example.s3vior.cache.UserInfo
 import com.example.s3vior.cache.UserInfo.saveUserData
 import com.example.s3vior.data.source.remote.endPoints.Fcm
 import com.example.s3vior.data.source.remote.endPoints.UserApi
@@ -48,6 +49,9 @@ class SignInFragment : Fragment(), TextWatcher {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.new_login_fragment, container, false)
 
+
+
+
         binding.loginButton.setOnClickListener { v ->
             initUserClick(v)
 
@@ -57,6 +61,14 @@ class SignInFragment : Fragment(), TextWatcher {
             navigationToSignupFragment(it)
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (UserInfo.isUserLoggedIn(requireContext())){
+            navigationToMainFragment(requireView())
+        }
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
 
