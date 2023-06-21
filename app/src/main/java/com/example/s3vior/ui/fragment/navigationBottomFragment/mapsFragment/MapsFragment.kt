@@ -79,30 +79,15 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                         true
                     }
                     mGoogleMap = googleMap;
-                    if (args.personId > 0) {
-                        getPersonDetails()
-                        mapViewModel.personsDetailsStateFlow.collect {
-                            val location = LatLng(
-                                requireNotNull(it.toData()?.location?.latitude),
-                                requireNotNull(it.toData()?.location?.longitude)
-                            ) ?:LatLng(29.4574515, 30.1319497)
-                            //val position = LatLng(location.latitude, location.longitude)
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
-                            val zoomLevel = 15f
-                            val cameraUpdate =
-                                CameraUpdateFactory.newLatLngZoom(location, zoomLevel)
-                            mGoogleMap.animateCamera(cameraUpdate)
-                        }
-                    } else {
-                        val sydney = LatLng(29.4574515, 30.1319497)
+    val sydney = LatLng(30.4666648, 31.1833326)
 //        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
-                        val zoomLevel = 5f // specify the desired zoom level
-                        val cameraUpdate = CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel)
-                        mGoogleMap.animateCamera(cameraUpdate)
-
-                }}
+                    val zoomLevel = 7f // specify the desired zoom level
+                    val cameraUpdate = CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel)
+                    mGoogleMap.animateCamera(cameraUpdate)
+                }
+ 
             }
         }
 

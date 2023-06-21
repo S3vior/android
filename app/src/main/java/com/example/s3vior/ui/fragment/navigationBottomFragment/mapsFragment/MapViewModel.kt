@@ -1,6 +1,5 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.mapsFragment
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,8 +7,10 @@ import com.example.s3vior.domain.model.Location
 import com.example.s3vior.domain.model.MafqoudModel
 import com.example.s3vior.domain.model.State
 import com.example.s3vior.domain.usecases.GetAllMapsUseCase
+ 
 import com.example.s3vior.domain.usecases.GetAllPersonsUseCase
 import com.example.s3vior.domain.usecases.GetPersonDetailsUseCase
+ 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

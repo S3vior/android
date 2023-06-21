@@ -9,6 +9,7 @@ import com.example.s3vior.domain.usecases.ValidatePersonNameUseCase
 import com.example.s3vior.viewModel.model.FirstDetails
 import com.example.s3vior.viewModel.model.SecondDetails
 import com.example.s3vior.viewModel.model.ThirdDetails
+import com.google.android.gms.maps.model.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -25,6 +26,14 @@ class SharedViewModel @Inject constructor(
 
     private val _thirdDetails = MutableLiveData(ThirdDetails(null))
     val thirdDetails: LiveData<ThirdDetails> = _thirdDetails
+
+    private val _late_long_Details = MutableLiveData(LateLong(null,null))
+    val late_long_Details: LiveData<LateLong> = _late_long_Details
+
+    data class LateLong(
+        var late:Double?,
+        var long :Double?
+    )
 
     private val useCase = ValidatePersonNameUseCase()
 
@@ -55,6 +64,12 @@ class SharedViewModel @Inject constructor(
             }
         }
 
+    }
+    fun setLateLong(lateLong: LateLong){
+        _late_long_Details.value?.apply {
+            late = lateLong.late
+            long = lateLong.long
+        }
     }
 
     fun getDataFromAgeGenderFragment(newDetails: SecondDetails) {

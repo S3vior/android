@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.runtime.R
+ 
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.s3vior.databinding.FragmentAllPersonInfoBinding
@@ -34,8 +34,15 @@ class AllPersonInfoFragment : BaseFragment<FragmentAllPersonInfoBinding>(
     override fun callFunctions() {
         initViewModel()
         getPersonDetails()
+ 
+
+        binding.btnBackToHome.setOnClickListener {
+            Navigation.findNavController(it).popBackStack()
+        }
+ 
         showOnMap()
         backToHomeFragment()
+ 
     }
 
     private fun showOnMap() {

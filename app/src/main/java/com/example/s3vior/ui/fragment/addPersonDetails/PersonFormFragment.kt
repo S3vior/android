@@ -64,6 +64,8 @@ class PersonFormFragment : BaseFragment<FragmentPersonFormBinding>(
         try {
             val imageUri = sharedViewModel.thirdDetails.value?.imageUri
             val progressbar = BtnLoadingProgressbar(view) // `it` is view of button
+            val late = sharedViewModel.late_long_Details.value!!.late
+            val long = sharedViewModel.late_long_Details.value!!.long
             progressbar.setLoading()
             lifecycleScope.launch(Dispatchers.IO) {
 

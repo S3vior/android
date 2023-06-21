@@ -44,30 +44,32 @@
                 <TextView
                     android:id="@+id/publisherName"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@{item.name}"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:gravity="start"
+                    android:textSize="11sp"
+                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="1dp"
-                    android:text="."
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:text="اسم الناشر:"
+                    android:textSize="11sp"
+                    android:textColor="#000000"
+                    />
 
                 <TextView
                     android:id="@+id/postTime"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:gravity="start"
                     android:text="@{item.date}"
-                    android:textColor="#6A6C71"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="11sp"/>
 
 
             </LinearLayout>
@@ -94,23 +96,15 @@
 
                 <TextView
                     android:id="@+id/personName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@{item.name}"
-                    android:textSize="16sp"
+                    android:text="@{item.name.toString()}"
+                    android:textSize="11sp"
+                    android:gravity="start"
+                    android:layout_gravity="start"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:text="@{item.source}"
-                    android:textSize="16sp"
-
-                    android:textStyle="bold" />
-
 
                 <TextView
                     android:id="@+id/personStatus"
