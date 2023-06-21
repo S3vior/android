@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="viewModel"
-    type="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.details.MatchDetailsViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.details.MatchDetailsViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -61,9 +62,9 @@
                 android:id="@+id/cardView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
                 app:cardCornerRadius="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_7sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_tv2"
                 tools:layout_editor_absoluteY="228dp">
@@ -87,11 +88,11 @@
                         <ImageView
                             android:id="@+id/publisher1_image"
                             android:layout_width="match_parent"
-                            android:layout_height="241dp"
+                            android:layout_height="180dp"
                             android:background="@drawable/corner_shape"
                             android:scaleType="centerCrop"
-                            app:imageUrl="@{viewModel.personsStateFlow.toData().missed_person.image}"
                             android:src="@drawable/person_image_orange"
+                            app:imageUrl="@{viewModel.personsStateFlow.toData().missed_person.image}"
                             tools:layout_editor_absoluteX="-7dp" />
                     </androidx.cardview.widget.CardView>
 
@@ -114,7 +115,7 @@
                         android:layout_gravity="end"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="12dp"
-                        android:text="@{viewModel.personsStateFlow.toData().missed_person.created_at}"
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.created_at.substring(0,10)}"
                         android:textSize="@dimen/_7ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -166,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:text="@{viewModel.personsStateFlow.toData().missed_person.created_at}"
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.created_at.substring(0,10)}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toStartOf="@+id/text_2"
@@ -221,15 +222,27 @@
                         android:layout_marginEnd="5dp"
                         android:lines="2"
                         android:text="@{viewModel.personsStateFlow.toData().missed_person.description}"
-
                         android:textColor="@color/black"
-
                         android:textSize="@dimen/_8ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/text_4"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/text_4" />
+
+                    <Button
+                        android:id="@+id/callMissed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:autoLink="phone"
+                        android:background="@drawable/back_ground_call"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@{viewModel.personsStateFlow.toData().missed_person.phone.toString()}"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView5" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -239,11 +252,11 @@
                 android:id="@+id/cardView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
                 app:cardCornerRadius="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardView4"
-                android:layout_marginTop="@dimen/_7sdp"
                 tools:layout_editor_absoluteY="228dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -265,11 +278,11 @@
                         <ImageView
                             android:id="@+id/publisher2_image"
                             android:layout_width="match_parent"
-                            android:layout_height="241dp"
+                            android:layout_height="180dp"
                             android:background="@drawable/corner_shape"
                             android:scaleType="centerCrop"
-                            app:imageUrl="@{viewModel.personsStateFlow.toData().found_person.image}"
                             android:src="@drawable/person_image_orange"
+                            app:imageUrl="@{viewModel.personsStateFlow.toData().found_person.image}"
                             tools:layout_editor_absoluteX="-7dp" />
                     </androidx.cardview.widget.CardView>
 
@@ -344,7 +357,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:text="@{viewModel.personsStateFlow.toData().found_person.created_at}"
+                        android:text="@{viewModel.personsStateFlow.toData().found_person.created_at.substring(0,10)}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toStartOf="@+id/text_6"
@@ -408,6 +421,20 @@
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/text_8" />
+
+                    <Button
+                        android:id="@+id/callFounded"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:autoLink="phone"
+                        android:background="@drawable/back_ground_call"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@{viewModel.personsStateFlow.toData().found_person.phone.toString()}"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView7" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

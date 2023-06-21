@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.provider.MediaStore
@@ -16,10 +15,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.s3vior.R
@@ -43,6 +40,7 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
     FragmentAddPhotoLocationBinding::inflate
 ) {
     private lateinit var pickSingleMediaLauncher: ActivityResultLauncher<Intent>
+    private val viewModel: SharedViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pickSingleMediaLauncher =
@@ -122,6 +120,8 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
                     longitude.toString() + " lat " + latitude.toString(),
                     Toast.LENGTH_SHORT
                 ).show()
+                viewModel.setLateLong(lateLong = SharedViewModel.LateLong(latitude,longitude))
+
                 Log.e("TAG", "lat :$latitude  long : $longitude")
             }
         }
@@ -154,14 +154,24 @@ class AddPhotoLocationFragment : BaseFragment<FragmentAddPhotoLocationBinding>(
 
 
     private fun initButtons() {
-        binding.photoFromGallery.setOnClickListener { galleryIntent() }
-        binding.photoFromCamera.setOnClickListener { cameraIntent() }
-        binding.button5.setOnClickListener {
+        binding.photoFromGallery.setOnClickListener { galleryIntent()
             if (hasLocationPermission()) {
                 startLocationUpdate()
             } else
                 requestLocationPermission()
         }
+        binding.photoFromCamera.setOnClickListener { cameraIntent()
+            if (hasLocationPermission()) {
+                startLocationUpdate()
+            } else
+                requestLocationPermission()
+        }
+//        binding.button5.setOnClickListener {
+//            if (hasLocationPermission()) {
+//                startLocationUpdate()
+//            } else
+//                requestLocationPermission()
+//        }
     }
 
     private fun callBack() {

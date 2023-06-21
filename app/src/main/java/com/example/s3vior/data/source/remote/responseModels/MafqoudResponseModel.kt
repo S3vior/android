@@ -14,7 +14,8 @@ data class MafqoudResponseModel(
     val type: String?,
     val created_at: String?,
     val location: Location,
-    val user:String?
+    val user:String?,
+    val phone:String?,
 ) {
     fun toMafqoudModel() = MafqoudModel(
         image = image,
@@ -30,7 +31,8 @@ data class MafqoudResponseModel(
             longitude = location.longitude,
             address = location.address
         ),
-        user = user
+        user = user,
+        phone = phone
     )
 }
 

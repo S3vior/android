@@ -10,5 +10,6 @@ data class MissedPerson(
     val location: Location,
     val name: String,
     val type: String,
-    val user:String
+    val user:String,
+    val phone:String
 )

@@ -1,5 +1,6 @@
 package com.example.s3vior.ui.fragment.navigationBottomFragment.matchedPersons.details
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.s3vior.domain.model.MafqoudModel
@@ -25,6 +26,7 @@ class MatchDetailsViewModel @Inject constructor(
             try {
                 _personsDetailsStateFlow.value =
                     State.Success(matchDetailsUseCase.invoke(matchId)).toData()!!
+
             } catch (e: Exception) {
                 _personsDetailsStateFlow.value = State.Error(e.message.toString())
             }

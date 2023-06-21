@@ -77,11 +77,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                     }
                     mGoogleMap = googleMap;
 
-                    val sydney = LatLng(29.4574515, 30.1319497)
+                    val sydney = LatLng(30.4666648, 31.1833326)
 //        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
-                    val zoomLevel = 5f // specify the desired zoom level
+                    val zoomLevel = 7f // specify the desired zoom level
                     val cameraUpdate = CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel)
                     mGoogleMap.animateCamera(cameraUpdate)
                 }
