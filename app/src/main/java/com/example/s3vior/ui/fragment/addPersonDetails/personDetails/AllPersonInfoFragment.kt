@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+ 
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.s3vior.databinding.FragmentAllPersonInfoBinding
@@ -31,23 +32,30 @@ class AllPersonInfoFragment : BaseFragment<FragmentAllPersonInfoBinding>(
 
 
     override fun callFunctions() {
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-
+        initViewModel()
         getPersonDetails()
+ 
 
         binding.btnBackToHome.setOnClickListener {
             Navigation.findNavController(it).popBackStack()
         }
+ 
+        showOnMap()
+        backToHomeFragment()
+ 
     }
 
+    private fun showOnMap() {
+        binding.btnShowonmap.setOnClickListener {
+           val action= AllPersonInfoFragmentDirections.actionAllPersonInfoToMapsFragment(args.personId)
 
-
-
-
+            Navigation.findNavController(it)
+                .navigate(action)
+        }
+    }
 
     private fun getPersonDetails() {
-        lifecycleScope.launch (Dispatchers.IO){
+        lifecycleScope.launch(Dispatchers.IO) {
             viewModel.getPersonDetails(args.personId)
         }
     }
@@ -60,4 +68,15 @@ class AllPersonInfoFragment : BaseFragment<FragmentAllPersonInfoBinding>(
         )
     }
 
+    private fun initViewModel() {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+    }
+
+    private fun backToHomeFragment() {
+        binding.btnBackToHome.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(com.example.s3vior.R.id.action_allPersonInfo_to_homeFragment)
+        }
+    }
 }
